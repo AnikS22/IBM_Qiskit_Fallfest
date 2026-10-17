@@ -16,3 +16,6 @@ venv/
 *.zip
 *.log
 .DS_Store
+
+# Stride/mosaic runtime logs
+mosaic-workspace/

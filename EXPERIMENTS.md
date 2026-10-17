@@ -2,8 +2,8 @@
 
 This file records every experiment: the question, the method, the settings, the pre-registered success criterion,
 and the result. Numbers come from files in `results/`; nothing here is typed in by hand without a source file,
-except the v1 hardware table, which was copied from the run output (raw JSON: `results/hardware_ibm_marrakesh.json`
-on the team laptop).
+including the v1 hardware table (from `results/hardware_ibm_marrakesh.json`; run log with job id in `results/hw_run.log`;
+the script the laptop used is `hardware/run_notebook03_hw.py`).
 
 ## 0. What is being tested
 

@@ -1,0 +1,2 @@
+2026-10-17 14:04:30,916 - INFO       MONITOR         Listening at <CommsManager object at 140612664865616, uid=monitor, address=192.0.2.2, port=3000, state=connected>
+2026-10-17 14:04:32,033 - INFO       MONITOR         Listening at <NODE:0 | WORKER:0-1>

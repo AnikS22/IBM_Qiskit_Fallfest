@@ -1,0 +1,45 @@
+{
+ "experiment": "E6_2d",
+ "grid": "2x2 (scalp, skull, skull, brain)",
+ "rows": [
+  {
+   "steps": 2,
+   "qubits": 16,
+   "cz": 198,
+   "job_id": "5f2cd996-2053-4bbc-b6de-066fddb7c816",
+   "ideal_circuit": 0.020315523069270255,
+   "exact": 0.019537584308929965,
+   "shots": 1000,
+   "raw": 0.009,
+   "postselected": 0.01768172888015717,
+   "kept_fraction": 0.509,
+   "corrected": 0.017552605815206245,
+   "corrected_weight1_fraction": 0.533699287222359,
+   "readout_error_mean": 0.004125,
+   "raw_se": 0.0030546940199560994,
+   "postselected_se": 0.006139585781227865,
+   "corrected_se": 0.006139585781227865
+  },
+  {
+   "steps": 4,
+   "qubits": 16,
+   "cz": 370,
+   "job_id": "5f2cd996-2053-4bbc-b6de-066fddb7c816",
+   "ideal_circuit": 0.019667865240949448,
+   "exact": 0.019537584308929965,
+   "shots": 1000,
+   "raw": 0.005,
+   "postselected": 0.015873015873015876,
+   "kept_fraction": 0.31499999999999995,
+   "corrected": 0.015356486373576506,
+   "corrected_weight1_fraction": 0.32842207096537257,
+   "readout_error_mean": 0.004125,
+   "raw_se": 0.002167292217389145,
+   "postselected_se": 0.007677879301384233,
+   "corrected_se": 0.007677879301384233
+  }
+ ],
+ "backend": "fake_marrakesh",
+ "dry_run": true,
+ "utc": "2026-10-17T19:56:40Z"
+}

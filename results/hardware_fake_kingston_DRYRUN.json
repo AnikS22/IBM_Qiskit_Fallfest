@@ -1,0 +1,115 @@
+{
+ "backend": "fake_kingston",
+ "dry_run": true,
+ "utc": "2026-10-17T18:42:52Z",
+ "T": 1.5,
+ "receiver_qubit": 2,
+ "exact": {
+  "healthy": 0.1040337914178439,
+  "bleed": 0.10408078805474814
+ },
+ "sampler_job_id": "b1cc7960-1998-4164-85c1-f8841f6086ef",
+ "sampler": [
+  {
+   "bleed": false,
+   "steps": 2,
+   "fold": 1,
+   "cz": 70,
+   "depth": 45,
+   "raw": 0.04,
+   "raw_se": 0.01131370849898476,
+   "postselected": 0.055299539170506916,
+   "post_se": 0.015515935043285314,
+   "kept_fraction": 0.7233333333333334,
+   "shots": 300
+  },
+  {
+   "bleed": false,
+   "steps": 4,
+   "fold": 1,
+   "cz": 126,
+   "depth": 75,
+   "raw": 0.06666666666666667,
+   "raw_se": 0.01440164599646191,
+   "postselected": 0.11834319526627218,
+   "post_se": 0.024847235437334875,
+   "kept_fraction": 0.5633333333333334,
+   "shots": 300
+  },
+  {
+   "bleed": false,
+   "steps": 6,
+   "fold": 1,
+   "cz": 182,
+   "depth": 104,
+   "raw": 0.056666666666666664,
+   "raw_se": 0.013348602368232609,
+   "postselected": 0.11888111888111888,
+   "post_se": 0.027064853276896682,
+   "kept_fraction": 0.4766666666666667,
+   "shots": 300
+  },
+  {
+   "bleed": false,
+   "steps": 8,
+   "fold": 1,
+   "cz": 238,
+   "depth": 130,
+   "raw": 0.05333333333333334,
+   "raw_se": 0.012972906239401265,
+   "postselected": 0.10738255033557047,
+   "post_se": 0.02536333799446498,
+   "kept_fraction": 0.49666666666666665,
+   "shots": 300
+  },
+  {
+   "bleed": true,
+   "steps": 8,
+   "fold": 1,
+   "cz": 238,
+   "depth": 130,
+   "raw": 0.03333333333333333,
+   "raw_se": 0.010363754503432016,
+   "postselected": 0.06578947368421052,
+   "post_se": 0.02010845901417536,
+   "kept_fraction": 0.5066666666666667,
+   "shots": 300
+  },
+  {
+   "bleed": false,
+   "steps": 8,
+   "fold": 3,
+   "cz": 714,
+   "depth": 388,
+   "raw": 0.013333333333333334,
+   "raw_se": 0.006622073078111707,
+   "postselected": 0.06557377049180328,
+   "post_se": 0.03169368016727883,
+   "kept_fraction": 0.20333333333333334,
+   "shots": 300
+  }
+ ],
+ "zne_raw": {
+  "value": 0.07333333333333333,
+  "se": 0.019739038214402177
+ },
+ "zne_postselected": {
+  "value": 0.12828694025745407,
+  "se": 0.041213406770549195
+ },
+ "estimator": [
+  {
+   "resilience_level": 0,
+   "error": "ValueError: could not broadcast input array from shape (0,20) into shape (300,20)"
+  },
+  {
+   "resilience_level": 1,
+   "error": "ValueError: could not broadcast input array from shape (0,20) into shape (64,20)"
+  },
+  {
+   "resilience_level": 2,
+   "error": "ValueError: could not broadcast input array from shape (0,20) into shape (64,20)"
+  }
+ ],
+ "qpu_usage_seconds_reported": null
+}

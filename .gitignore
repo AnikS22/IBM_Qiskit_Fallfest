@@ -1,0 +1,18 @@
+# secrets: never commit API keys
+apikey*.json
+*.env
+.env
+qiskit-ibm.json
+
+# python / jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+venv/
+.venv/
+
+# misc
+*.zip
+*.log
+.DS_Store

@@ -1,0 +1,26 @@
+{
+  "ours_lap_x1_vs_stride_A": {
+    "relative_rms_error": 0.1467294069917057,
+    "mean_correlation": 0.9770705409747157
+  },
+  "ours_lap_x2_vs_stride_A": {
+    "relative_rms_error": 0.07124093974136704,
+    "mean_correlation": 0.992633871041299
+  },
+  "ours_lap_x3_vs_stride_A": {
+    "relative_rms_error": 0.07112543013330029,
+    "mean_correlation": 0.993319988187834
+  },
+  "ours_graph_x3_vs_stride_B": {
+    "relative_rms_error": 0.05565312878365009,
+    "mean_correlation": 0.9885277015941281
+  },
+  "stride_B_vs_A (quantum-form physics vs paper physics)": {
+    "relative_rms_error": 0.4479207992553711,
+    "mean_correlation": 0.7564866119889861
+  },
+  "stride_C_vs_A (effect of skull attenuation, missing from quantum form)": {
+    "relative_rms_error": 0.01817367598414421,
+    "mean_correlation": 0.9997066276015831
+  }
+}

@@ -1,0 +1,9 @@
+qiskit>=2.3
+qiskit-aer>=0.17
+qiskit-ibm-runtime>=0.45
+numpy
+scipy
+matplotlib
+jax[cpu]          # on a CUDA GPU node use: jax[cuda12]   (and qiskit-aer-gpu instead of qiskit-aer)
+pytest
+jupyter

@@ -133,7 +133,7 @@ Both sides solve the same problem: energy in every cell after the wave crosses a
 | Measured | Classical (finite differences) | Quantum (unary circuit) |
 |---|---|---|
 | Steps needed at 5%, n = 4 → 12 per side | 44 → 198 time steps (∝ n^1.47) | 26 → 136 Trotter steps (∝ n^1.67) |
-| Cost of one step | ∝ voxels^0.96: every voxel updated, timed up to 48³ | **41.8 µs, flat**: all gates in a layer run in parallel (measured at 3³ = 135 qubits on a Heron layout) |
+| Cost of one step | ∝ voxels^0.96: every voxel updated, timed up to 48³ | 23 µs at 2³, **41.8 µs at 3³ (135 qubits)** on a Heron layout. All gates in a layer run in parallel; the projection holds it at 41.8 µs (grid-connected hardware) |
 | 3³ head, 4,000 shots | — | 2.6 s |
 
 | Projected | Value |
@@ -141,7 +141,7 @@ Both sides solve the same problem: energy in every cell after the wave crosses a
 | **Crossover** | **~283³ voxels (2.3×10⁷)** |
 | Full head, 440³ voxels (22 cm at 0.5 mm) | Classical ~10.2 h vs quantum ~3.1 h: **~3.3× faster** |
 
-**Why quantum wins at scale:** classical cost per step grows with every voxel. On the quantum chip all voxels update in the same layer of gates, so time per step stays flat. Classical cost overall grows ∝ voxels^1.45; quantum grows ∝ voxels^0.56.
+**Why quantum wins at scale:** classical cost per step grows with every voxel. On the quantum chip all voxels update in the same layer of gates, so time per step is set by circuit depth, not grid size. Classical cost overall grows ∝ voxels^1.45; quantum grows ∝ voxels^0.56.
 
 **State these assumptions on the slide** (they're also in the JSON):
 - Beyond 135 qubits this is a projection. The unary encoding needs about 4 qubits per voxel, and per-step time is held at the measured 3³ value, which assumes hardware connectivity matching the grid.

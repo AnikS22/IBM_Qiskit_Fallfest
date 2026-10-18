@@ -31,7 +31,7 @@ overtakes classical as the head grid grows.
 | ⚛️ **Real quantum hardware** | `ibm_marrakesh`, job `db9smd9gv2cc73e60pm0`, 6 circuits × 4,000 shots, 9 s of QPU. Exact answer **0.104**. Raw chip 0.013, **post-selected 0.081 ± 0.011** | [§ Hardware](#-real-ibm-quantum-hardware) |
 | ⚡ **Gate speed, measured** | One run of the circuit on IBM Heron: **6.3 µs**. Classical solve of the same problem: **695 µs** (**~110× per run**) | [§ Speed](#-speed-where-quantum-overtakes-classical) |
 | 📈 **Crossover, measured + projected** | At equal 5% accuracy, quantum overtakes classical at **~283³ voxels**; **~3.3× faster at a full 440³ head** | [§ Speed](#-speed-where-quantum-overtakes-classical) |
-| ✅ **Quantum = physics** | Circuits match the classical wave in 1D, 2D and **3D (135 qubits)**; the 2D animation below stays within 1.4% | [§ Correctness](#-the-quantum-circuit-computes-the-same-wave) |
+| ✅ **Quantum = physics** | Circuits match the classical wave in 1D, 2D and **3D (135 qubits)**; the 2,945-qubit 2D animation below stays within 1.5% | [§ Correctness](#-the-quantum-circuit-computes-the-same-wave) |
 | 🎯 **Validated vs the researchers' software** | Our solver vs Stride (the paper group's code): **0.993** trace correlation | [§ Validation](#-validation-against-stride) |
 | 🧠 **Finds the bleed** | Classical FWI recovers the bleed: **1,576 m/s vs true 1,578** | [§ Imaging](#-imaging-the-bleed-fwi) |
 | 🔬 **Five-way method comparison** | Gate ideal 0.58% · SQA 1.55% · SA 1.58% · gate + noise 8.9% error | [§ Pilot](#-pilot-five-methods-on-the-same-wave) |
@@ -57,7 +57,7 @@ simulates sound moving through the head. We built two encodings:
 
 | Encoding | Qubits | Gates | Use |
 |---|---|---|---|
-| **Unary** (one qubit per cell/link) | cells + links | small, local, all gates in a layer run in parallel | Run on real hardware; per-step time stays flat as the grid grows |
+| **Unary** (one qubit per cell/link) | cells + links | small, local, all gates in a layer run in parallel | Run on real hardware; time per step is set by circuit depth, not grid size (given grid-connected qubits) |
 | **Compact** (binary index) | log₂(cells + links): **29 qubits for the full head** | ~40× more in 2D | The memory-advantage route, for fault-tolerant hardware |
 
 ## ✅ The quantum circuit computes the same wave
@@ -66,9 +66,10 @@ simulates sound moving through the head. We built two encodings:
 <img src="docs/quantum_vs_classical.gif" width="640" alt="Quantum circuit vs classical exact solver, side by side">
 </div>
 
-Left: the output of our **Qiskit unary circuit** (Strang–Trotter product of bond layers, replayed exactly in its
-single-excitation subspace). Right: the exact classical solution. Same head, same source, same time. The maximum
-difference stays below 1.4% of the peak.
+Left: the output of our **Qiskit unary circuit** for a 31 × 31 head slice, a **2,945-qubit** circuit. It's replayed exactly
+in its single-excitation subspace (`test_subspace_replay_equals_circuit` proves the replay equals the gate-level circuit),
+because no simulator can hold 2,945 qubits otherwise. Right: the exact classical solution. Same head, same source, same
+time. The difference stays below 1.5% of the peak.
 
 The test suite (`pytest -q`, 37 checks, ~30 s) proves this formally:
 
@@ -78,6 +79,7 @@ The test suite (`pytest -q`, 37 checks, ~30 s) proves this formally:
 | `test_paper_form_is_the_papers_equation` | The quantum Hamiltonian encodes exactly the paper's equation `p_tt = c²∇²p` |
 | `test_unary_hamiltonian_equals_wave_hamiltonian_in_subspace` | The qubit Hamiltonian *is* the wave equation |
 | `test_compact_circuit_matches_classical`, `test_unary_circuit_matches_classical` | Gate-level circuits reproduce the wave in 1D, 2D and **3D (135 qubits)** |
+| `test_subspace_replay_equals_circuit` | The fast subspace replay equals the gate-level circuit, so big-grid results are the circuit's |
 | `test_trotter_error_shrinks_with_steps` | Error converges as circuits get deeper |
 | `test_light_cone_truncation_is_valid` | The 9-qubit hardware circuit is exact to < 0.001 |
 | `test_readout_correction_recovers_true_distribution` | Readout-error correction is right |
@@ -85,7 +87,7 @@ The test suite (`pytest -q`, 37 checks, ~30 s) proves this formally:
 
 ![Cost vs accuracy of both encodings](results/02_cost_accuracy.png)
 
-## ⚛️ Real IBM quantum hardware
+## 💻 Real IBM quantum hardware
 
 **Backend** `ibm_marrakesh` (156-qubit Heron r2) · **Job** `db9smd9gv2cc73e60pm0` · **Date** 2026-10-17 ·
 **Circuit** the ear-to-ear line through the 3D head, 15 qubits, t = 1.5 · **Settings** SamplerV2 in Batch mode,
@@ -140,8 +142,8 @@ within 5% of exact. Each side's step count is tuned to just meet that.
 | Measured | Classical (finite differences) | Quantum (unary circuit) |
 |---|---|---|
 | Steps needed at 5%, n = 4 → 12 cells per side | 44 → 198 (∝ n^1.47) | 26 → 136 (∝ n^1.67) |
-| Cost of one step | ∝ voxels^0.96: every voxel updated | **41.8 µs, flat**: all gates in a layer run in parallel (3³ = 135 qubits compiled for Heron) |
-| Overall scaling | ∝ voxels^1.45 | ∝ voxels^0.56 |
+| Cost of one step | ∝ voxels^0.96: every voxel updated, timed up to 48³ | 23 µs at 2³ and **41.8 µs at 3³ (135 qubits)**, compiled for Heron. All gates in a layer run in parallel, so on grid-connected hardware this stays flat; the projection holds it at 41.8 µs |
+| Overall scaling | ∝ voxels^1.45 (measured) | ∝ voxels^0.56 (projected) |
 
 **Crossover at ~283³ voxels (2.3 × 10⁷). At the full 440³ head: ~10.2 h classical vs ~3.1 h quantum, ~3.3× faster.**
 
@@ -153,7 +155,7 @@ within 5% of exact. Each side's step count is tuned to just meet that.
 
 **Takeaway:** quantum advantage here isn't available *today*, because qubits are scarce, noisy and expensive. It is
 a question of **scale**. As quantum hardware grows and gets cheaper, the curve above moves in our favour, because
-classical cost grows with every voxel and the quantum time per step doesn't.
+classical cost grows with every voxel while the quantum time per step is set by circuit depth, not grid size.
 
 Reproduce: `PYTHONPATH=. python scaling/crossover.py` (~3 min, no QPU).
 
@@ -175,8 +177,9 @@ through our solver.
 ## 🧠 Imaging the bleed (FWI)
 
 Classical FWI on a 104 × 104 slice with 32 transducers and 40 rounds recovers the bleed: **1,576 m/s vs true 1,578**
-(brain 1,546 vs 1,546; misfit 1.9×10⁻⁵ → 1.3×10⁻⁶). The quantum route plugs in as the forward solver, and the
-hybrid quantum-misfit search finds the bleed too (notebook 05).
+(brain 1,546 vs 1,546; misfit 1.9×10⁻⁵ → 1.3×10⁻⁶). The quantum route plugs in as the forward solver. The
+hybrid quantum-misfit search also locates the bleed (notebook 05), but it needs 10¹⁰ shots per circuit for 50% accuracy and 10¹¹ for 95%,
+which is decades of QPU time today. That's the readout wall below.
 
 ![FWI](results/05_fwi.png)
 
@@ -233,7 +236,7 @@ python hardware/campaign.py --dry-run --with-2d    # free hardware rehearsal on 
 to disk or to this repo. `python hardware/campaign.py --backend ibm_marrakesh` runs the v2 campaign
 (time trace, repeats, ablation, Estimator comparison) within the free 10 minutes.
 
-## 🗂️ Repository map
+## 📁 Repository map
 
 ```
 qwave/                     the package

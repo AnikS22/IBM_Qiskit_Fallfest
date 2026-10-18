@@ -11,6 +11,8 @@ from .grid import Grid
 
 @dataclass
 class Problem:
+    """Validated inverse problem from a schema-1 JSON config: grid, base speed ratios, region map
+    of the unknown parameters with bounds, sources, receivers, times and source waveform."""
     config: dict
     grid: Grid
     base: np.ndarray
@@ -24,6 +26,7 @@ class Problem:
 
     @classmethod
     def load(cls, path):
+        """Read and validate a config file; raises ValueError on any inconsistent field."""
         cfg = json.loads(Path(path).read_text())
         if cfg.get('schema') != 1:
             raise ValueError('Expected configuration schema 1')
@@ -33,6 +36,7 @@ class Problem:
         grid = Grid(shape)
         base = np.asarray(cfg['base_speed_ratio'], dtype=float).reshape(-1)
         def integer_array(values, name):
+            """Return `values` as an int array, rejecting non-integer input."""
             raw = np.asarray(values)
             if raw.dtype.kind not in 'iu':
                 raise ValueError(f'{name} must contain integers, not rounded coordinates')
@@ -92,6 +96,8 @@ class Problem:
         return cls(cfg, grid, base, regions, initial, lower, upper, sources, receivers, times)
 
     def speeds(self, parameters):
+        """Sound speed per cell in m/s: base ratios with each region set to its parameter, times the
+        reference speed. Rejects parameters outside the bounds."""
         theta = np.asarray(parameters, dtype=float)
         if theta.shape != self.initial.shape or not np.isfinite(theta).all():
             raise ValueError('Invalid parameter vector')
@@ -104,6 +110,8 @@ class Problem:
 
     def hamiltonian(self, parameters):
         # pi = p/c, z = auxiliary flux, d(pi,z)/dt = (K z, -K.T pi).
+        """Sparse Hermitian H = [[0, iK], [-iK^T, 0]] with K = diag(c) B / spacing, so the first-order
+        system (p/c, flux) evolves as exp(-iHt)."""
         c = self.speeds(parameters)
         K = sp.diags(c) @ self.grid.incidence() / self.config['spacing_m']
         return sp.bmat([[None, 1j*K], [-1j*K.T, None]], format='csr')
@@ -128,6 +136,7 @@ class Problem:
     @property
     def acquisition_signature(self):
         # Exclude optimizer, truth and circuit approximation settings deliberately.
+        """SHA-256 of the acquisition and physics settings; observations must carry the same value."""
         keys = ('schema', 'shape', 'spacing_m', 'reference_speed_m_s',
                 'sources', 'receivers', 'times_s', 'source')
         payload = {k: self.config[k] for k in keys}
@@ -138,6 +147,8 @@ class Problem:
     @property
     def comparison_signature(self):
         # Same inverse problem and update settings, without truth or solver accuracy.
+        """SHA-256 identifying the inverse problem and optimiser settings, used to pair runs from
+        different solvers."""
         keys = ('base_speed_ratio', 'region_ids', 'initial_parameters',
                 'parameter_lower', 'parameter_upper', 'optimizer')
         payload = {k: self.config[k] for k in keys}
@@ -147,10 +158,13 @@ class Problem:
 
     @property
     def trace_shape(self):
+        """Shape of every pressure trace array: (sources, times, receivers)."""
         return (len(self.sources), len(self.times), len(self.receivers))
 
 
 def load_observations(path, problem):
+    """Load observed pressures (Pa) from an NPZ, checking its acquisition signature, shape and that
+    it is finite and nonzero."""
     with np.load(path, allow_pickle=False) as data:
         if str(data['acquisition_signature'].item()) != problem.acquisition_signature:
             raise ValueError('Observations use a different acquisition/physics convention')

@@ -30,8 +30,9 @@ verified it against classical solvers, ran noise analysis, and estimated what th
   Generic circuits need about 10⁶ two-qubit gates even for a 3×3×3 head.
 - A way around the **read-out wall**. FWI needs about 10⁹ numbers per iteration; sampling them costs about 10¹³ shots.
   Quantum only helps if the clinical question can be reduced to very few numbers (e.g., one misfit, or bleed yes/no).
-- Even then, today's GPUs already reach the paper's 10-minute target. Quantum would have to beat a moving
-  classical baseline.
+- More, cheaper, lower-noise qubits. Our accuracy-matched benchmark (`scaling/crossover.py`) projects the quantum
+  forward solver overtaking our classical solver at ~283³ voxels and running ~3.3× faster at the full 440³ head.
 
-**Recommendation:** classical GPUs for this pipeline now. Keep watching quantum PDE solvers for the
-simulation step once fault-tolerant machines exist, and redesign the clinical question around few-number outputs.
+**Roadmap:** run reconstruction on classical hardware today, with the quantum forward solver validated on real IBM
+hardware (done: `ibm_marrakesh`, job `db9smd9gv2cc73e60pm0`). As quantum hardware grows and gets cheaper, move the
+wave-simulation step onto the QPU, and design the clinical question around few-number outputs (bleed yes/no).

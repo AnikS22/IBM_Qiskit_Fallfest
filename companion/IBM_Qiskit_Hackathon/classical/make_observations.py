@@ -3,6 +3,8 @@ import argparse
 
 
 def main():
+    """CLI: generate synthetic observations from the config's `synthetic_truth_parameters` with the
+    exact classical solver (same-model test data). Does nothing without --execute."""
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', required=True)
     parser.add_argument('--output', required=True)

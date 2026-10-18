@@ -4,6 +4,8 @@ from numbers import Integral
 
 
 def ancilla_statistics(counts, shots):
+    """From one-bit ancilla counts: signed overlap <Z> = (n0 - n1)/shots, a smoothed reporting SE,
+    and the unbiased sampling variance (1 - <Z>^2)/(shots - 1)."""
     if shots < 2 or not counts or set(counts)-{'0', '1'}:
         raise ValueError('Expected raw one-bit ancilla counts and at least two shots')
     if any(not isinstance(n, Integral) or n < 0 for n in counts.values()) or sum(counts.values()) != shots:

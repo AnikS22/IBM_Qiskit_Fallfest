@@ -1,4 +1,13 @@
-# Runs notebook 03's RUN_ON_IBM cell verbatim. Usage: run_hw.py <project_dir> [--dry-run]
+"""Runs notebook 03's RUN_ON_IBM cell verbatim: the script behind the v1 hardware result.
+
+Circuits: the 15-qubit ear-to-ear ray at t = 1.5, healthy at 2/4/6/8 Trotter steps, healthy at 8 steps folded x3
+(for ZNE) and bleed at 8 steps: 6 circuits x 4,000 shots, SamplerV2 in Batch mode with DD and twirling.
+Real run: ibm_marrakesh, job db9smd9gv2cc73e60pm0 -> results/03_hardware_results.json.
+The API key is read from ~/Downloads/apikey.json at run time and handed to run()'s prompt; it is never printed or stored.
+--dry-run: FakeKingston noise model, 300 shots, no key -> results/hardware_fake_kingston_DRYRUN.json.
+
+Usage: python hardware/run_notebook03_hw.py <project_dir> [--dry-run]
+"""
 import sys, json, pathlib, getpass
 root = pathlib.Path(sys.argv[1]); sys.path.insert(0, str(root))
 DRY = "--dry-run" in sys.argv

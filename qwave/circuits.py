@@ -11,6 +11,7 @@ BASIS = ["cz", "rz", "sx", "x"]
 
 
 def compact_circuit(grid, c, t, steps, source=0, op=None):
+    """Compact (binary-index) circuit: X gates load `source` as a bit pattern, then 2nd-order Suzuki-Trotter exp(-iHt) with `steps` reps."""
     op = compact_pauli_op(grid, c) if op is None else op
     n = op.num_qubits
     qc = QuantumCircuit(n, name="compact_wave")
@@ -36,6 +37,7 @@ def unary_circuit(grid, c, t, steps, source=0, layers=None):
 
 
 def gate_cost(qc, opt=1):
+    """Transpile to the {cz, rz, sx, x} basis; returns CZ count, depth and qubit count."""
     tq = transpile(qc, basis_gates=BASIS, optimization_level=opt)
     return {"cz": int(tq.count_ops().get("cz", 0)), "depth": int(tq.depth()), "qubits": tq.num_qubits}
 

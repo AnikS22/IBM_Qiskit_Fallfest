@@ -12,6 +12,8 @@ import scipy.sparse as sp
 
 
 class Grid:
+    """Grid of `shape` (1–3 axes) stored as cells (vertices) and links (edges); edge_u/edge_v hold
+    endpoint cell indices, with -1 for the ghost boundary node."""
     def __init__(self, shape):
         self.shape = tuple(int(s) for s in shape)
         assert 1 <= len(self.shape) <= 3
@@ -39,9 +41,11 @@ class Grid:
         self.n_edges = len(eu)
 
     def index(self, *coords):
+        """Flat cell index of grid coordinates (C order)."""
         return int(np.ravel_multi_index(coords, self.shape))
 
     def coords(self, v):
+        """Grid coordinates of flat cell index `v`."""
         return np.unravel_index(v, self.shape)
 
     def incidence(self):

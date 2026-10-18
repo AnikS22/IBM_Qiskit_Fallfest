@@ -10,6 +10,7 @@ from pathlib import Path
 
 
 def parser():
+    """Argument parser for the IBM hardware CLI."""
     cli = argparse.ArgumentParser(description=__doc__)
     cli.add_argument('--mode', choices=['prepare', 'forward', 'invert'], default='prepare')
     cli.add_argument('--config', required=True)
@@ -28,6 +29,8 @@ def parser():
 
 
 def main(argv=None):
+    """CLI: prepare circuits, run one forward call, or run a full inversion on an IBM backend. Needs --execute,
+    plus --submit-hardware for anything that submits jobs."""
     cli = parser()
     args = cli.parse_args(argv)
     # Fail before SDK imports, credentials, compilation or backend calls.

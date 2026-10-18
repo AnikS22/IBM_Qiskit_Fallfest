@@ -13,6 +13,9 @@ Results land in `results/hardware_campaign/`. Send the whole folder back. What e
 
 ## v1 (already run on ibm_marrakesh): the single-file version below
 
+The actual v1 job (`db9smd9gv2cc73e60pm0`) was submitted with `hardware/run_notebook03_hw.py`, which runs notebook 03's
+`RUN_ON_IBM` cell (the same 6 circuits); `hardware/run_ibm.py` below is the standalone equivalent.
+
 Needs: Python 3.10–3.13, internet, a free IBM Quantum account and API key (quantum.cloud.ibm.com).
 
 ```bash
@@ -21,7 +24,7 @@ python3 -m venv venv
 source venv/bin/activate              # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
-# 2. check everything works (~30 s): should print "35 passed"
+# 2. check everything works (~30 s): should print "37 passed"
 pytest -q
 
 # 3. free rehearsal on IBM's simulated Kingston chip (~5 min, no QPU time used)

@@ -10,6 +10,7 @@ from .encoding import wave_hamiltonian, coupling
 
 
 def laplacian(grid, c, form="paper"):
+    """Discrete wave operator L = K K^T (sparse CSR), so the classical model is q_tt = -L q."""
     K = coupling(grid, c, form)
     return (K @ K.T).tocsr()
 

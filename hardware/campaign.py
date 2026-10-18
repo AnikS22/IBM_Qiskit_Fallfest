@@ -14,7 +14,8 @@ Usage
   python hardware/campaign.py --dry-run                     # free rehearsal of everything (FakeMarrakesh noise model)
   IBM_QUANTUM_TOKEN=... python hardware/campaign.py --backend ibm_marrakesh [--only E1,E3] [--max-seconds 900]
 Outputs: results/hardware_campaign/<experiment>_<backend>.json (raw counts, settings, job ids, physical qubits,
-calibration data of those qubits) and a summary printed at the end. Re-run analysis offline with --reanalyse.
+calibration data of those qubits) and a summary printed at the end. Re-run the E1/E2 analysis offline with
+`python hardware/run_ibm_v2.py --reanalyse <saved json>` (no QPU).
 """
 import argparse, json, os, sys, time, pathlib, warnings
 import numpy as np
@@ -40,12 +41,14 @@ PER_SHOT_S, PER_JOB_S = 0.00035, 2.0          # IBM rule of thumb (Open Plan doc
 
 # ------------------------------------------------------------------ helpers
 def cal_circuits(n):
+    """Readout calibration circuits: all qubits in |0> and all qubits in |1>, measured."""
     c0 = QuantumCircuit(n); c0.measure_all()
     c1 = QuantumCircuit(n); c1.x(range(n)); c1.measure_all()
     return [c0, c1]
 
 
 def ideal_and_exact(g, c, t, steps, rx, src=0):
+    """Receiver energy of the noiseless Trotter circuit and of the exact solution: (ideal, exact)."""
     return (float(trotter_receiver_energy(g, c, t, steps, src, [rx])[0]),
             float(exact_receiver_energy(g, c, [t], src, [rx])[0, 0]))
 
@@ -64,17 +67,20 @@ def qubit_calibration(backend, isa):
 
 
 class Runner:
+    """Submits sampler jobs and keeps an estimated QPU-time budget so the campaign stops before --max-seconds."""
     def __init__(self, backend, dry_run, max_seconds):
         self.backend, self.dry, self.max_s = backend, dry_run, max_seconds
         self.used_est = 0.0; self.used_reported = 0.0; self.jobs = []
 
     def budget_ok(self, shots_total, jobs=1):
+        """Reserve the estimated time for this job; False (and skip) if it would exceed the budget."""
         est = jobs * PER_JOB_S + shots_total * PER_SHOT_S
         if self.used_est + est > self.max_s:
             print(f"  ! skipping: would exceed --max-seconds ({self.used_est + est:.0f} > {self.max_s})"); return False
         self.used_est += est; return True
 
     def sampler(self, isa, dd=True, twirl=True, shots=SHOTS, seed=None):
+        """Run ISA circuits with the Sampler (DD / twirling on real hardware only); returns (job id, list of counts)."""
         try:
             from qiskit_ibm_runtime.executor_sampler import Sampler
         except ImportError:
@@ -105,6 +111,7 @@ class Runner:
 
 # ------------------------------------------------------------------ experiments
 def exp_trace(R, pm, tag, seed):
+    """E1/E2: v2 time trace (9 qubits, calibration + 6 times + 2 folded) with transpiler seed `seed`."""
     g, c, steps, exact, ideal = v2.problem()
     n, circs, meta = v2.build(g, c, steps)
     if not R.budget_ok(len(circs) * SHOTS):
@@ -119,6 +126,7 @@ def exp_trace(R, pm, tag, seed):
 
 
 def exp_ablation(R, pm):
+    """E3: the same circuits under no suppression, DD, twirling, and both."""
     g7, c7, _ = ray_problem(); g, c = Grid((4,)), c7[:4]; n = 9
     settings = [("none", False, False), ("DD", True, False), ("twirl", False, True), ("DD+twirl", True, True)]
     times = (1.5, 2.0)
@@ -141,6 +149,7 @@ def exp_ablation(R, pm):
 
 
 def exp_estimator(R, pm):
+    """E4: IBM Estimator at resilience levels 0/1/2 on E = (1 - <Z_receiver>)/2, for comparison with post-selection."""
     from qiskit_ibm_runtime import EstimatorV2
     g7, c7, _ = ray_problem(); g, c = Grid((4,)), c7[:4]; n = 9
     z = ["I"] * n; z[n - 1 - 2] = "Z"; obs = SparsePauliOp("".join(z))
@@ -170,6 +179,7 @@ def exp_estimator(R, pm):
 
 
 def exp_size(R, pm):
+    """E5: full 7-cell (15-qubit) line vs light-cone 4-cell (9-qubit) line, same physics."""
     times = (1.5, 2.0); rows = []
     g7, c7, _ = ray_problem()
     for cells in (7, 4):
@@ -188,6 +198,7 @@ def exp_size(R, pm):
 
 
 def exp_2d(R, pm):
+    """E6: 2x2 grid (scalp, skull, skull, brain) on hardware, 2 and 4 Trotter steps."""
     from qwave.phantom import SPEEDS, C_REF
     g = Grid((2, 2)); n = g.n_vertices + g.n_edges
     c = np.array([SPEEDS["scalp"], SPEEDS["skull"], SPEEDS["skull"], SPEEDS["brain"]]) / C_REF   # source corner -> skull -> brain corner
@@ -207,6 +218,7 @@ def exp_2d(R, pm):
 
 # ------------------------------------------------------------------ main
 def summarise(results):
+    """Print a one-line-per-row summary of every experiment that ran."""
     print("\n================ SUMMARY ================")
     for r in results:
         if r is None:
@@ -232,6 +244,7 @@ def summarise(results):
 
 
 def main():
+    """Parse arguments, run the selected experiments within the budget, save JSON per experiment, print the summary."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--backend", default=None)

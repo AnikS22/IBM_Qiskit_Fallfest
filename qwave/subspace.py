@@ -13,6 +13,7 @@ from .encoding import unary_bonds, unary_qubits
 
 
 def layer_matrices(grid, c):
+    """Bond layers as sparse matrices on the single-excitation subspace (same greedy colouring as encoding.unary_layers)."""
     n = unary_qubits(grid)
     layers, used = [], []
     for a, b, h in unary_bonds(grid, c):
@@ -31,6 +32,7 @@ def layer_matrices(grid, c):
 
 
 def trotter_receiver_energy(grid, c, t, steps, source, receivers, mats=None):
+    """Exact output of the unary Strang-Trotter circuit: |psi|^2 at the receivers after `steps` steps to time t."""
     mats = layer_matrices(grid, c) if mats is None else mats
     n = mats[0].shape[0]
     psi = np.zeros(n, dtype=complex); psi[source] = 1.0

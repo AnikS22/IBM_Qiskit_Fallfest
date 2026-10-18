@@ -25,6 +25,7 @@ plt.rcParams.update({"text.color": FG, "axes.labelcolor": FG, "font.size": 11})
 
 
 def wave_head(n=110, frames=90):
+    """2D head slice with a bleed; velocity-Verlet finite differences from a smooth source left of the head -> wave_head.gif."""
     bleed = (int(n * .62), int(n * .40))
     c, lab = head_phantom((n, n), bleed=bleed, bleed_radius=n * .06)
     g = Grid((n, n)); L = laplacian(g, c.ravel())
@@ -40,6 +41,7 @@ def wave_head(n=110, frames=90):
     ax.set_title("Sound crossing the skull and a bleed (red)", color=FG, fontsize=11)
 
     def step(_):
+        """Advance `per` time steps and draw the velocity field (signed square root for contrast)."""
         nonlocal u, v, a
         for _ in range(per):
             vh = v + .5 * dt * a; u = u + dt * vh; a = -(L @ u); v = vh + .5 * dt * a
@@ -67,6 +69,7 @@ def quantum_vs_classical(n=31, frames=60, steps_per_frame=6):
     txt = fig.text(.5, .04, "", ha="center", color=ACC, fontsize=10)
 
     def step(k):
+        """Advance both solvers by one frame and draw them; caption = max energy difference as % of the peak."""
         nonlocal psi_q, psi_c
         for _ in range(steps_per_frame):
             for M, tau in seq: psi_q = expm_multiply(-1j * tau * M, psi_q)

@@ -3,6 +3,9 @@ import numpy as np
 
 
 def invert(problem, observed, predict, checkpoint):
+    """Projected gradient descent on the normalised pressure misfit, with central (or one-sided at a
+    bound) finite-difference gradients and a max-step trust radius. `predict` is any forward solver;
+    `checkpoint(history)` is called after every iteration. Returns (parameters, history)."""
     cfg = problem.config['optimizer']
     count = int(cfg['iterations'])
     eps, lr, max_step = (float(cfg[k]) for k in ('difference_step', 'learning_rate', 'max_parameter_step'))
@@ -13,6 +16,8 @@ def invert(problem, observed, predict, checkpoint):
     history = []
 
     def loss(parameters):
+        """Shot-noise-corrected misfit 0.5*||mean - observed||^2 / ||observed||^2 minus the sampling
+        variance term; returns (corrected loss, correction)."""
         result = predict(parameters)
         if any(a.shape != observed.shape or not np.isfinite(a).all()
                for a in (result.mean, result.standard_error, result.sampling_variance)):

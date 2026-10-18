@@ -7,6 +7,8 @@ import argparse
 
 
 def main():
+    """CLI: write a Stride input NPZ: layered head with a bleed, padded with water, a ring (2D) or
+    Fibonacci sphere (3D) of transducers, and a 3-cycle windowed sine wavelet. Does nothing without --execute."""
     parser = argparse.ArgumentParser()
     parser.add_argument('--dimension', type=int, choices=[2, 3], default=3)
     parser.add_argument('--head-cells', type=int, default=64)

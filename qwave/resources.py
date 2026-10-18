@@ -3,12 +3,14 @@ import numpy as np
 
 
 def grid_counts(n_per_side, ndim=3):
+    """Cells and links (including ghost boundary links) of an n^ndim grid."""
     V = n_per_side ** ndim
     E = ndim * n_per_side ** (ndim - 1) * (n_per_side + 1)       # incl. ghost boundary edges
     return V, E
 
 
 def paper_head(voxel_mm=0.5, head_cm=22.0):
+    """Size of the paper's head at the given voxel size: cells, links, and qubits for each encoding."""
     n = int(round(head_cm * 10 / voxel_mm))
     V, E = grid_counts(n, 3)
     return {"cells_per_side": n, "vertices": V, "edges": E,

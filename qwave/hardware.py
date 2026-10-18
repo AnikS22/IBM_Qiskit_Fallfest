@@ -36,6 +36,8 @@ def fold(qc, factor):
 
 
 def build_circuits(t=1.5, steps_list=(2, 4, 6, 8), shape3d=(7, 7, 7), folds=(1,), source=0):
+    """Measured unary circuits for the healthy and bleed rays at each Trotter step count and fold factor.
+    Returns (circuits, meta) with meta = {bleed, steps, fold} per circuit."""
     circs, meta = [], []
     for bleed in (False, True):
         g, c, lab = ray_problem(shape3d, bleed)
@@ -50,6 +52,8 @@ def build_circuits(t=1.5, steps_list=(2, 4, 6, 8), shape3d=(7, 7, 7), folds=(1,)
 
 
 def analyse_counts(counts, receiver_qubit, n_qubits):
+    """Raw and post-selected receiver energy from one circuit's counts.
+    Post-selection keeps only shots with exactly one excitation. Standard errors are binomial."""
     tot = sum(counts.values())
     target = format(1 << receiver_qubit, f"0{n_qubits}b")
     w1 = {k: v for k, v in counts.items() if k.count("1") == 1}

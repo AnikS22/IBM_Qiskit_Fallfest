@@ -9,6 +9,8 @@ from qiskit.quantum_info import SparsePauliOp
 
 
 def pauli_terms(hamiltonian, max_data_qubits):
+    """Pauli decomposition of the Hamiltonian, zero-padded to n = ceil(log2(dim)) qubits (n <= 8).
+    Returns (n, [(label, real coefficient), ...])."""
     dimension = hamiltonian.shape[0]
     n = int(np.ceil(np.log2(dimension)))
     if n > max_data_qubits or n > 8:
@@ -50,6 +52,8 @@ def append_rotation(circuit, label, angle):
 
 
 def evolution(n, terms, duration, max_step):
+    """Trotter circuit for exp(-i H duration): ceil(duration/max_step) symmetric steps, each a forward
+    then reversed sweep of Pauli rotations over half a step."""
     steps = max(1, int(np.ceil(duration/max_step)))
     circuit = QuantumCircuit(n, name='wave_evolution')
     half_step = duration/(2*steps)

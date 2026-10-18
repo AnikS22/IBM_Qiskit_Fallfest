@@ -32,6 +32,8 @@ def _simulate(job):
 
 
 class GateForward:
+    """Forward solver that runs every source/time/receiver circuit on Aer, ideal or with generic
+    depolarizing noise, within circuit, shot, qubit and gate budgets."""
     def __init__(self, problem, evidence, shots, seed, max_circuits, max_total_shots,
                  max_data_qubits=7, max_gates=500000, noise_probability=0.0):
         if shots < 2 or max_circuits < 1 or max_total_shots < shots:
@@ -58,6 +60,8 @@ class GateForward:
         self.noise_probability = noise_probability
 
     def predict(self, parameters):
+        """Simulate one forward call (circuits run in parallel worker processes) and return pressure traces
+        (Pa) with shot-noise errors; saves each circuit's counts to the run directory."""
         p = self.problem
         needed = len(p.sources)*len(p.receivers)*sum(len(p.impulses(t)) for t in p.times)
         if self.circuits+needed > self.max_circuits or self.total_shots+needed*self.shots > self.max_total_shots:
@@ -110,6 +114,7 @@ class GateForward:
         return Prediction(output, np.sqrt(variance), sampling_variance)
 
     def statistics(self):
+        """Run counters, maximum depth and gate count, and the noise setting, for completed.json."""
         return {'forward_calls': self.calls, 'circuits': self.circuits, 'shots': self.total_shots,
                 'maximum_depth': self.max_observed_depth, 'maximum_gates': self.max_observed_gates,
                 'noise': 'ideal' if self.noise_probability == 0 else 'generic_depolarizing_stress',

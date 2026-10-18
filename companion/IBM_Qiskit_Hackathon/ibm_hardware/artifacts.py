@@ -6,10 +6,12 @@ from qiskit_ibm_runtime import RuntimeEncoder
 
 
 def write_runtime_json(evidence, name, value):
+    """Write an IBM Runtime object to the run directory as JSON, using RuntimeEncoder."""
     evidence.write(name, json.loads(json.dumps(value, cls=RuntimeEncoder)))
 
 
 def save_circuits(evidence, name, circuits):
+    """Save `circuits` as a QPY file (fails if it exists); returns its SHA-256."""
     path = evidence.path/name
     with path.open('xb') as stream:
         qpy.dump(circuits, stream)
@@ -18,6 +20,7 @@ def save_circuits(evidence, name, circuits):
 
 def save_result(evidence, prefix, result, records, shots):
     # Save raw payload before parsing/validation, so unexpected outputs are recoverable.
+    """Save the raw Sampler result, then check and save per-PUB one-bit counts; returns the counts list."""
     write_runtime_json(evidence, prefix+'_raw_result.json', result)
     if len(result) != len(records):
         raise ValueError('IBM returned an unexpected number of PUB results')

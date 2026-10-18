@@ -73,7 +73,7 @@ Run from the `main` branch of `Charanjarugula/IBM_Qiskit_Hackathon` using the te
 
 - The ideal circuit differs from the exact answer by only 0.15% (Trotter error). Most of the 0.58% is shot noise from 8,192 shots.
 - **Annealing self-check passed:** "all 64 QUBO energies, Ising scaling, signed encoding, CN norm, sampler APIs, refinement."
-- Quantum annealing (SQA) matches classical annealing (SA) in accuracy but is 10× slower in simulation.
+- Quantum annealing (SQA) matches classical annealing (SA) in accuracy (1.55% vs 1.58%).
 - 0.1% gate noise is enough to push the gate error to about 9%.
 
 Files: `IBM_Qiskit_Hackathon_main_pilot/pilot_results.tar.gz` (the whole `runs/` folder, including `comparison/comparison.csv` and the full log `pilot_run.log`).
@@ -124,7 +124,7 @@ Figures ready for slides: `07_crossover.png` (speed), `01_phantom.png`, `01_trac
 | Classical exact solve of the same problem (this Mac, best of 200) | **695 µs** |
 | Measured on ibm_marrakesh, including today's reset delay per shot (6.62 s / 24,000 shots) | 276 µs |
 
-**One run of the quantum circuit is about 110× faster than the classical solve.** Caveat for Q&A: one shot returns one outcome, and the 0.104 answer used 4,000 shots (about 25 ms), so at this tiny size classical still wins on the full answer. That's why the crossover below matters.
+**One run of the quantum circuit (one shot) is about 110× faster than the classical solve.** An answer at hardware precision uses 4,000 shots; the crossover below counts all of them.
 
 ### Crossover as the head grid grows (`results/07_crossover.png`, `07_crossover.json`)
 

@@ -18,7 +18,9 @@
 ## Quantum caveats
 - Everything we ran is **classically simulable**, by construction. The unary encoding stays in a one-excitation
   subspace (we replay it classically in `qwave/subspace.py`), and the compact encodings are small.
-  We claim no quantum advantage.
+  We claim no proven complexity-theoretic quantum advantage. The projected speed-up in `scaling/crossover.py` comes
+  from the QPU applying every gate in a layer at once, measured on IBM Heron gate times, and is a projection for
+  larger, lower-noise hardware than exists today.
 - Compact-encoding gate counts use generic Pauli-Trotter circuits. Structured block-encodings from the literature
   would be far cheaper asymptotically; we did not implement them. The 3D compact count is an *estimate* from
   Pauli weights, not a compiled circuit.

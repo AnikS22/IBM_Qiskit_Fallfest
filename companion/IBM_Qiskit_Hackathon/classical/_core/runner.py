@@ -5,6 +5,8 @@ from pathlib import Path
 
 
 def main(engine='classical'):
+    """CLI: run the classical inversion for --config and --observations into a new --output directory.
+    Does nothing without --execute."""
     if engine != 'classical':
         raise ValueError('This branch contains the classical implementation only')
     parser = argparse.ArgumentParser(description='Reduced classical pressure inversion')

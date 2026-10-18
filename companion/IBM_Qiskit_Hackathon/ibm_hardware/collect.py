@@ -5,6 +5,8 @@ from pathlib import Path
 
 
 def main():
+    """CLI: fetch the result of an already-submitted job by index from a run directory and save it.
+    Submits nothing; requires --execute."""
     cli = argparse.ArgumentParser(description=__doc__)
     cli.add_argument('--run-directory', required=True)
     cli.add_argument('--job-index', type=int, required=True)

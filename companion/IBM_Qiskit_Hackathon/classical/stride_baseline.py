@@ -12,6 +12,8 @@ from pathlib import Path
 
 
 def main():
+    """CLI: Stride/Devito acoustic forward modelling ('forward') or multi-frequency FWI ('invert') from an
+    input NPZ; validates the input and sampling before running. Does nothing without --execute."""
     parser = argparse.ArgumentParser(description='Classical Stride 2D/3D acoustic FWI')
     parser.add_argument('mode', choices=['forward', 'invert'])
     parser.add_argument('--input', required=True, help='Input NPZ following the documented schema')
@@ -96,6 +98,8 @@ def main():
                                  'attenuation': 'none', 'boundary': 'Stride absorbing layer'})
 
     async def run(runtime):
+        """Mosaic entry point: build the Stride problem, then run forward modelling or adjoint-gradient FWI
+        and save the outputs to the run directory."""
         space = Space(shape=vp_input.shape, spacing=spacing,
                       extra=(int(cfg['padding_cells']),)*nd,
                       absorbing=(int(cfg['absorbing_cells']),)*nd)

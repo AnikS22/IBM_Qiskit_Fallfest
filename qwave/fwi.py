@@ -15,12 +15,14 @@ jax.config.update("jax_enable_x64", False)
 
 
 def head_in_water(n_head=72, pad=16, bleed=None, bleed_radius=0):
+    """Head phantom (m/s, not normalised) padded with `pad` cells of water on every side; returns (speeds, labels)."""
     c, lab = head_phantom((n_head, n_head), bleed=bleed, bleed_radius=bleed_radius, normalise=False)
     c = np.pad(c, pad, constant_values=SPEEDS["water"]); lab = np.pad(lab, pad, constant_values=LABELS["water"])
     return c, lab
 
 
 def ring_transducers(shape, n_trans=32, radius=None):
+    """`n_trans` (row, col) grid positions evenly spaced on a circle around the centre."""
     cy, cx = (shape[0] - 1) / 2, (shape[1] - 1) / 2
     radius = radius or 0.5 * min(shape) - 10
     ang = np.linspace(0, 2 * np.pi, n_trans, endpoint=False)
@@ -28,12 +30,14 @@ def ring_transducers(shape, n_trans=32, radius=None):
 
 
 def ricker(nt, dt, f0):
+    """Ricker wavelet of peak frequency f0 (Hz), nt samples at step dt (s), delayed by 1.2/f0."""
     t = np.arange(nt) * dt - 1.2 / f0
     a = (np.pi * f0 * t) ** 2
     return ((1 - 2 * a) * np.exp(-a)).astype(np.float32)
 
 
 def sponge(shape, width=12, strength=0.015):
+    """Multiplicative damping mask: 1 inside, decaying over `width` cells at each edge (absorbing boundary)."""
     d = np.ones(shape, np.float32)
     for ax in range(2):
         n = shape[ax]
@@ -51,6 +55,7 @@ def forward(c, src_pos, rec_pos, wavelet, damp, dx, dt, nt):
     k = (c * dt / dx) ** 2
 
     def step(carry, w):
+        """One leapfrog time step: 5-point Laplacian update, inject wavelet sample w at the source, damp edges."""
         p_prev, p = carry
         lap = (jnp.roll(p, 1, 0) + jnp.roll(p, -1, 0) + jnp.roll(p, 1, 1) + jnp.roll(p, -1, 1) - 4 * p)
         p_next = (2 * p - p_prev + k * lap).at[src_pos[0], src_pos[1]].add(w)
@@ -63,6 +68,8 @@ def forward(c, src_pos, rec_pos, wavelet, damp, dx, dt, nt):
 
 
 def make_problem(n_head=72, pad=16, dx=2.5e-3, f0=60e3, n_trans=32, bleed=(20, 44), bleed_radius=4):
+    """Set up the 2D FWI test: true head with bleed, healthy head, starting model (skull known, brain homogeneous),
+    ring of transducers, time step (0.4 x CFL), wavelet and sponge. Returns a dict."""
     c_true, lab = head_in_water(n_head, pad, bleed=bleed, bleed_radius=bleed_radius)
     c_heal, _ = head_in_water(n_head, pad)
     shape = c_true.shape
@@ -76,6 +83,7 @@ def make_problem(n_head=72, pad=16, dx=2.5e-3, f0=60e3, n_trans=32, bleed=(20, 4
 
 
 def simulate_all(P, c):
+    """Forward-simulate every transducer as a source (vmap); returns (n_src, nt, n_rec) pressures."""
     f = jax.vmap(lambda s: forward(jnp.asarray(c), s, jnp.asarray(P["trans"]), jnp.asarray(P["wavelet"]),
                                    jnp.asarray(P["damp"]), P["dx"], P["dt"], P["nt"]))
     return f(jnp.asarray(P["trans"]))                  # (n_src, nt, n_rec)
@@ -88,6 +96,7 @@ def invert(P, data, iters=40, batch=8, lr=3.0, seed=0, verbose=True):
     trans = jnp.asarray(P["trans"])
 
     def loss(dc, idx):
+        """Normalised L2 data misfit for the source batch `idx`, with speed perturbation dc applied to the brain only."""
         c = c_fixed + mask * dc
         pred = jax.vmap(lambda s: forward(c, s, trans, jnp.asarray(P["wavelet"]), jnp.asarray(P["damp"]),
                                           P["dx"], P["dt"], P["nt"]))(trans[idx])

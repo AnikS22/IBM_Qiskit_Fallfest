@@ -31,6 +31,7 @@ EST_SHOTS = int(os.environ.get("SHOTS", 4000))
 
 
 def build():
+    """v1 circuits (healthy at 2/4/6/8 steps, bleed at 8, healthy at 8 folded x3), Estimator circuits, and exact answers."""
     circs, meta = [], []
     for bleed, steps, factor in [(False, 2, 1), (False, 4, 1), (False, 6, 1), (False, 8, 1), (True, 8, 1), (False, 8, 3)]:
         g, c, _ = ray_problem(bleed=bleed)
@@ -47,6 +48,7 @@ def build():
 
 
 def get_backend(dry_run, name):
+    """FakeKingston for --dry-run; otherwise an IBM backend (token from IBM_QUANTUM_TOKEN or a hidden prompt, never saved)."""
     if dry_run:
         from qiskit_ibm_runtime.fake_provider import FakeKingston
         return FakeKingston()
@@ -63,6 +65,7 @@ def get_backend(dry_run, name):
 
 
 def main():
+    """Build, transpile, run the Sampler job (and optionally the Estimator job), analyse and save results."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="use FakeKingston locally (free)")
     ap.add_argument("--backend", default=None)

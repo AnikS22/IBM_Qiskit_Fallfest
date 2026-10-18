@@ -14,6 +14,8 @@ from .encoding import wave_hamiltonian, compact_qubits
 
 
 def setup(shape=(7, 7, 7), true_bleed=None, times=(2.0, 3.0, 4.0)):
+    """Tiny 3D hybrid test: source = first surface cell, receivers = other surface cells,
+    candidates = no bleed or a bleed in any brain cell. Returns a dict."""
     g = Grid(shape)
     c_h, lab = head_phantom(shape)
     brain = [tuple(x) for x in np.argwhere(lab == LABELS["brain"])]
@@ -35,6 +37,7 @@ def site_probs(P, bleed):
 
 
 def misfit(pred, meas, rx):
+    """Sum of squared differences between predicted and measured energies at the receivers, over all times."""
     return float(sum(np.sum((p[rx] - m[rx]) ** 2) for p, m in zip(pred, meas)))
 
 

@@ -6,6 +6,8 @@ from simulator.circuits import pauli_terms, evolution, pressure_interferometer
 
 
 def rotation_gate_bound(terms, steps):
+    """Upper bound on logical gates for `steps` Strang steps of the Pauli rotations in `terms`
+    (basis changes, CX ladders, one RZ per rotation)."""
     per_sweep = 0
     for label, _ in terms:
         active = sum(letter != 'I' for letter in label)
@@ -15,6 +17,8 @@ def rotation_gate_bound(terms, steps):
 
 
 def compile_call(problem, parameters, backend, limits, seed, initial_layout=None):
+    """Build and transpile every interferometer circuit of one forward call for `backend`, checking each
+    against the gate, depth and readout limits. Returns (logical, compiled, records)."""
     n, terms = pauli_terms(problem.hamiltonian(parameters), limits.max_data_qubits)
     if n+1 > backend.num_qubits:
         raise ValueError('Backend lacks data register plus readout ancilla')

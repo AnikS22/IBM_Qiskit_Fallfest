@@ -39,6 +39,7 @@ def wave_hamiltonian(grid, c, form="paper"):
 
 # ---------------- compact (binary) encoding ----------------
 def compact_qubits(grid):
+    """Qubits for the compact encoding: ceil(log2(cells + links))."""
     return int(np.ceil(np.log2(grid.n_vertices + grid.n_edges)))
 
 
@@ -54,12 +55,14 @@ def compact_pauli_op(grid, c, atol=1e-12, form="paper"):
 
 # ---------------- unary (one-hot) encoding ----------------
 def unary_qubits(grid):
+    """Qubits for the unary encoding: one per cell plus one per link."""
     return grid.n_vertices + grid.n_edges
 
 
 def _bond_terms(nq, a, b, h):
     """Pauli terms for h |b><a| + h* |a><b| restricted to the single-excitation subspace."""
     def lbl(pb, pa):
+        """Pauli label with `pb` on qubit b, `pa` on qubit a, identity elsewhere (Qiskit little-endian order)."""
         s = ["I"] * nq
         s[nq - 1 - b] = pb; s[nq - 1 - a] = pa
         return "".join(s)
@@ -98,6 +101,7 @@ def unary_layers(grid, c):
 
 
 def unary_full_op(grid, c):
+    """Sum of all bond layers: the full unary Hamiltonian as one SparsePauliOp."""
     ops = unary_layers(grid, c)
     tot = ops[0]
     for o in ops[1:]:

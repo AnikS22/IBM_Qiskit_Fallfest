@@ -24,6 +24,31 @@ simulations, and **over 95% of the compute is the wave simulation itself**. We t
 group's own software, **ran it on a real IBM quantum computer** with error mitigation, and measured where quantum
 overtakes classical as the head grid grows.
 
+## What we built vs. what we reused
+
+| We came up with / built | We reused |
+|---|---|
+| The **paper-physics coupling**: the published Costa graph form models a different medium (0.756 correlation), so we derived a coupling that encodes exactly `p_tt = c²∇²p` and validated it against Stride (0.993) | The wave-to-Hamiltonian idea (Costa, Jordan & Ostrander 2019) |
+| A **heterogeneous 3D head** (water, scalp, skull, brain, bleed) as unary and compact Qiskit circuits, verified gate by gate in 1D, 2D and 3D | Qiskit, Aer, IBM Runtime (SamplerV2, DD, twirling), FakeKingston/FakeMarrakesh noise models |
+| **Excitation-number post-selection** as error mitigation for wave circuits, run on real IBM hardware | Zero-noise extrapolation by unitary folding (standard) |
+| **Light-cone truncation** (15 → 9 qubits, exact to < 0.001) and **readout-error correction** for the v2 hardware campaign | The clinical problem, tissue speeds and helmet geometry from Guasch et al. 2020 |
+| The **hybrid** quantum-misfit + classical bleed search, and the **readout-wall** resource analysis | Stride (the paper group's software), called as an external tool for validation only |
+| An **accuracy-matched speed benchmark** anchored to measured Heron gate times (`scaling/crossover.py`) | JAX autodiff for the classical FWI gradient |
+| A **~150× faster noisy simulator** (density matrix + parallel workers, bit-identical) for the team pipeline | The team pipeline itself ([`companion/`](companion/IBM_Qiskit_Hackathon/), from `Charanjarugula/IBM_Qiskit_Hackathon`) |
+
+## What the code shows, and where to check it
+
+| Claim | Evidence you can rerun |
+|---|---|
+| The circuits compute the paper's wave equation | `pytest -q` (37 checks): `tests/test_quantum.py`, `tests/test_physics.py` |
+| Our solver matches the researchers' software | `validation/compare_stride.py` → `results/stride_comparison.json` |
+| It runs on a real quantum computer, and mitigation recovers the signal | Job `db9smd9gv2cc73e60pm0`: raw counts in `project/handoff/3_ibm_job/raw_counts.json`, analysis in `results/hardware_ibm_marrakesh.json` |
+| Quantum overtakes classical at scale (projection) | `scaling/crossover.py` → `results/07_crossover.{png,json}` (assumptions listed inside) |
+| The bleed can be found | notebook 05 → `results/05_fwi.png` |
+| Gate model vs annealing | `companion/IBM_Qiskit_Hackathon/pilot_main/runs/` |
+
+Every figure and number file is explained in [`results/README.md`](results/README.md).
+
 ## Headline results
 
 | | Result | Where |
@@ -128,9 +153,8 @@ The submission script is [`hardware/run_notebook03_hw.py`](hardware/run_notebook
 | Classical exact solve of the same problem (best of 200, laptop) | **695 µs** |
 | Measured on `ibm_marrakesh` including today's reset delay between shots (6.62 s / 24,000 shots) | 276 µs |
 
-One quantum circuit run is **~110× faster** than the classical solve. One shot gives one outcome, though, and the
-answer above used 4,000 shots. At this tiny size, classical still wins on the full answer. The question that
-matters is what happens as the head gets bigger.
+One quantum circuit run (one shot) is **~110× faster** than the classical solve. An answer at hardware precision
+uses 4,000 shots, and the crossover below includes all 4,000 in the quantum time.
 
 ### Crossover as the head grows
 

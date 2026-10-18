@@ -12,6 +12,7 @@ import numpy as np
 
 
 def counts_to_probs(counts, n):
+    """Counts dict -> probability vector over all 2^n bitstrings (index = bitstring read as binary)."""
     p = np.zeros(2 ** n)
     tot = sum(counts.values())
     for b, v in counts.items():
@@ -39,6 +40,7 @@ def correct(p, e0, e1):
 
 
 def receiver_energy(p, rx, n):
+    """Post-select weight-1 states: returns (energy at receiver rx, total weight-1 probability kept)."""
     w1 = np.array([1 << q for q in range(n)])
     kept = p[w1].sum()
     return p[1 << rx] / kept, kept

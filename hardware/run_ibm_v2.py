@@ -39,6 +39,7 @@ SHOTS = int(os.environ.get("SHOTS", 4000))
 
 
 def problem():
+    """Light-cone 4-cell problem. Checks it matches the full 7-cell line, then returns (grid, speeds, steps, exact, ideal)."""
     g7, c7, lab7 = ray_problem()
     g, c = Grid((CELLS,)), c7[:CELLS]
     exact_full = exact_receiver_energy(g7, c7, TIMES, SRC, [RX]).ravel()
@@ -50,6 +51,7 @@ def problem():
 
 
 def build(g, c, steps):
+    """Calibration circuits plus one measured circuit per time (and a x3 fold at FOLD_TIMES); returns (n_qubits, circuits, meta)."""
     n = g.n_vertices + g.n_edges
     circs, meta = [], []
     cal0 = QuantumCircuit(n); cal0.measure_all()
@@ -64,6 +66,7 @@ def build(g, c, steps):
 
 
 def get_backend(dry_run, name):
+    """FakeMarrakesh for --dry-run; otherwise an IBM backend (token from IBM_QUANTUM_TOKEN or a hidden prompt, never saved)."""
     if dry_run:
         from qiskit_ibm_runtime.fake_provider import FakeMarrakesh
         return FakeMarrakesh()
@@ -80,6 +83,7 @@ def get_backend(dry_run, name):
 
 
 def run(circs, backend, dry_run):
+    """Transpile (opt. level 3) and run all circuits in one Sampler job; returns (job, isa circuits, counts)."""
     pm = generate_preset_pass_manager(optimization_level=3, backend=backend, seed_transpiler=7)
     isa = pm.run(circs)
     try:
@@ -105,6 +109,7 @@ def run(circs, backend, dry_run):
 
 
 def analyse(n, meta, isa, counts, exact, ideal):
+    """Readout-corrected + post-selected energies, ZNE from folds 1 and 3, and the pre-registered verdict."""
     cal0 = counts[[m["kind"] for m in meta].index("cal0")]
     cal1 = counts[[m["kind"] for m in meta].index("cal1")]
     rows = []
@@ -129,6 +134,7 @@ def analyse(n, meta, isa, counts, exact, ideal):
 
 
 def main():
+    """Run on hardware or a fake backend, or recompute the analysis of a saved JSON with --reanalyse (no QPU)."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--backend", default=None)
@@ -142,7 +148,7 @@ def main():
         cz = {(r["t"], r["fold"]): r["cz"] for r in d["rows"]}
         class _C:                                   # stand-in for transpiled circuits (only gate counts are needed)
             def __init__(self, n): self.n = n
-            def count_ops(self): return {"cz": self.n}
+            def count_ops(self): return {"cz": self.n}   # analyse() only reads the CZ count
         isa = [_C(cz.get((m.get("t"), m.get("fold")), 0)) for m in meta]
         rows, zne, verdict = analyse(d["qubits"], meta, isa, counts, exact, ideal)
         d.update(rows=rows, zne=zne, verdict=verdict)

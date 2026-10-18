@@ -9,6 +9,8 @@ from pathlib import Path
 
 
 def main():
+    """CLI: run the inversion with the gate-model simulator as the forward solver, after checking the
+    planned circuits and shots against the budget. Does nothing without --execute."""
     parser = argparse.ArgumentParser(description='Gate-simulated pressure inversion')
     parser.add_argument('--config', required=True)
     parser.add_argument('--observations', required=True)

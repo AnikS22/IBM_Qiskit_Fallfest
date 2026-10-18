@@ -33,11 +33,13 @@ backend = FakeKingston()
 
 
 def problem(n):
+    """3D head phantom on an n x n x n grid: (Grid, flattened normalised speeds)."""
     c, _ = head_phantom((n, n, n))
     return Grid((n, n, n)), c.ravel()
 
 
 def ok(p, ex):
+    """True if every cell's energy is within TOL of exact (relative to the peak)."""
     return np.abs(p - ex).max() <= TOL * ex.max()
 
 
@@ -54,6 +56,7 @@ def matched_steps(n):
 
 
 def bisect(good, lo):
+    """Smallest step count >= lo for which good(steps) holds: doubling, then bisection to 2% resolution."""
     hi = lo
     while not good(hi): lo, hi = hi, hi * 2
     while hi - lo > max(1, hi // 50):                     # 2% resolution
@@ -63,6 +66,7 @@ def bisect(good, lo):
 
 
 def classical_time(n, steps, reps=3):
+    """Best-of-`reps` wall time (s) of the finite-difference solver to t = n with `steps` time steps."""
     g, c = problem(n); t = float(n)
     best = np.inf
     for _ in range(reps):
@@ -81,6 +85,7 @@ def quantum_step_time(n):
 
 
 def powerfit(x, y):
+    """Least-squares fit y = a x^b in log-log space; returns (callable, exponent b)."""
     b, a = np.polyfit(np.log(x), np.log(y), 1)
     return lambda z: np.exp(a) * np.asarray(z, float) ** b, b
 

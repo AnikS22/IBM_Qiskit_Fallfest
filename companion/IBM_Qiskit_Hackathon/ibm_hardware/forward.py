@@ -10,6 +10,8 @@ from .policy import raw_sampler_options
 
 
 class HardwareForward:
+    """Forward solver that runs the interferometer circuits on an IBM backend. Jobs are only submitted
+    if submit_hardware=True; every circuit, job and result is saved to `evidence`."""
     def __init__(self, problem, backend, evidence, limits, seed=7, initial_layout=None,
                  submit_hardware=False):
         self.problem, self.backend, self.evidence, self.limits = problem, backend, evidence, limits
@@ -19,6 +21,7 @@ class HardwareForward:
         self.sampler = None
 
     def prepare(self, parameters):
+        """Compile the circuits for `parameters` and save them (QPY + records); submits nothing."""
         logical, isa, records = compile_call(self.problem, parameters, self.backend,
                                             self.limits, self.seed, self.initial_layout)
         prefix = f'call_{self.calls:04d}'
@@ -30,6 +33,8 @@ class HardwareForward:
         return isa, records
 
     def predict(self, parameters):
+        """Check the budget, compile the whole call, submit it in batches with SamplerV2, and turn the
+        ancilla counts into pressure traces (Pa) with shot-noise errors. No error mitigation."""
         if not self.submit_hardware:
             raise PermissionError('Hardware submission was not explicitly enabled')
         p, limits = self.problem, self.limits
@@ -82,6 +87,7 @@ class HardwareForward:
         return Prediction(output, np.sqrt(reporting_variance), sampling_variance)
 
     def statistics(self):
+        """Run counters, job IDs and the (disabled) mitigation settings, for completed.json."""
         return {'forward_calls': self.calls, 'reserved_circuits': self.circuits,
                 'reserved_shots': self.circuits*self.limits.shots, 'reserved_jobs': self.jobs,
                 'job_ids': self.job_ids, 'error_mitigation': False, 'error_correction': False,

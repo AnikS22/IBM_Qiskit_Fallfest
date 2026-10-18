@@ -9,6 +9,7 @@ import scipy.sparse as sp
 
 
 class Grid:
+    """Cells of a 1-3D box plus links between neighbours; every boundary cell also links to a ghost node (index -1)."""
     def __init__(self, shape):
         self.shape = tuple(int(s) for s in shape)
         assert 1 <= len(self.shape) <= 3
@@ -26,9 +27,11 @@ class Grid:
         self.n_edges = len(eu)
 
     def index(self, *coords):
+        """Flat cell index of grid coordinates."""
         return int(np.ravel_multi_index(coords, self.shape))
 
     def coords(self, v):
+        """Grid coordinates of flat cell index v."""
         return np.unravel_index(v, self.shape)
 
     def incidence(self):

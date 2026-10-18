@@ -33,12 +33,14 @@ K0 = 1000.0 * 1500.0 ** 2    # bulk modulus of water
 
 
 def build_medium():
+    """2D head (m/s) with a bleed, padded with water; returns (speeds, labels)."""
     c, lab = head_phantom((HEAD, HEAD), bleed=(HEAD // 2, int(HEAD * 0.65)), bleed_radius=5, normalise=False)
     c = np.pad(c, PAD, constant_values=SPEEDS["water"]); lab = np.pad(lab, PAD, constant_values=LABELS["water"])
     return c.astype(np.float64), lab
 
 
 def transducer_cells(shape, n=N_TRANS):
+    """N_TRANS grid positions on a circle 2 mm outside the scalp."""
     ctr = (np.array(shape) - 1) / 2
     r = HEAD / 2 + 4                            # 2 mm outside the scalp
     ang = np.linspace(0, 2 * np.pi, n, endpoint=False)
@@ -47,6 +49,7 @@ def transducer_cells(shape, n=N_TRANS):
 
 # ------------------------------------------------------------------ our solvers (numpy)
 def sponge(shape, width, strength=0.012):
+    """Separable Gaussian damping mask over `width` cells at each edge."""
     prof = lambda n: np.array([np.exp(-(strength * max(width - i, width - (n - 1 - i), 0)) ** 2) for i in range(n)])
     return np.outer(prof(shape[0]), prof(shape[1]))
 
@@ -65,6 +68,7 @@ def our_traces(c_inner, src, recs, wavelet, form):
     damp = np.ones(shape)
     if form == "lap":                       # c^2 * laplacian(p)
         def L(p):
+            """Wave operator applied to pressure p."""
             lap = (np.roll(p, 1, 0) + np.roll(p, -1, 0) + np.roll(p, 1, 1) + np.roll(p, -1, 1) - 4 * p) / DX ** 2
             return c ** 2 * lap
     else:                                   # div(c^2 grad p): the graph Laplacian our quantum encoding uses

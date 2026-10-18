@@ -10,12 +10,15 @@ from ._core.evidence import Prediction
 
 
 class ClassicalForward:
+    """Exact classical forward solver for a Problem (sparse matrix exponential); counts calls and evolutions."""
     def __init__(self, problem):
         self.problem = problem
         self.calls = 0
         self.evolutions = 0
 
     def predict(self, parameters):
+        """Pressure traces (Pa) for `parameters`: exp(-iHt) from each source for every time and source
+        impulse, scaled by the impulse increment and c[receiver]/c[source]. Errors are zero."""
         self.calls += 1
         p = self.problem
         c = p.speeds(parameters)
@@ -34,5 +37,6 @@ class ClassicalForward:
         return Prediction(output, np.zeros_like(output), np.zeros_like(output))
 
     def statistics(self):
+        """Run counters for completed.json."""
         return {'forward_calls': self.calls, 'sparse_evolutions': self.evolutions,
                 'quantum_shots': 0, 'reference': 'exact discrete evolution, midpoint source quadrature'}

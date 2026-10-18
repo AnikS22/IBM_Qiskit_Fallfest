@@ -7,6 +7,7 @@ from pathlib import Path
 
 @dataclass(frozen=True)
 class Limits:
+    """Hardware resource ceilings read from limits.json (shots, qubits, circuits, jobs, time, gates, depth)."""
     shots: int
     max_data_qubits: int
     max_circuits: int
@@ -22,6 +23,7 @@ class Limits:
 
     @classmethod
     def load(cls, path):
+        """Read limits from JSON; every value must be a positive integer, shots >= 2, data qubits <= 8."""
         limits = cls(**json.loads(Path(path).read_text()))
         if any(type(value) is not int or value < 1 for value in vars(limits).values()):
             raise ValueError('Hardware limits must be positive integers')
@@ -30,6 +32,7 @@ class Limits:
         return limits
 
     def check_totals(self, circuits, jobs):
+        """Raise ValueError if `circuits` or `jobs` would exceed the circuit, shot, job or time ceilings."""
         if circuits > self.max_circuits or circuits*self.shots > self.max_total_shots:
             raise ValueError('Circuit/shot budget exceeded')
         if jobs > self.max_jobs or jobs*self.max_execution_seconds_per_job > self.max_total_execution_seconds:
@@ -37,6 +40,8 @@ class Limits:
 
 
 def plan(problem, limits, mode):
+    """Resource plan for `mode` ('invert' or one forward call): forward calls, circuits, shots, jobs and the
+    execution-time ceiling. Raises if it exceeds the limits."""
     per_call = len(problem.sources)*len(problem.receivers)*sum(len(problem.impulses(t)) for t in problem.times)
     calls = (problem.config['optimizer']['iterations']*(1+2*len(problem.initial))+1
              if mode == 'invert' else 1)
@@ -51,6 +56,7 @@ def plan(problem, limits, mode):
 
 def raw_sampler_options(limits):
     # Sampler has no Estimator resilience_level. Do not pass one.
+    """SamplerV2 options with dynamical decoupling and twirling off, i.e. raw hardware counts."""
     return {'default_shots': limits.shots,
             'max_execution_time': limits.max_execution_seconds_per_job,
             'dynamical_decoupling': {'enable': False},

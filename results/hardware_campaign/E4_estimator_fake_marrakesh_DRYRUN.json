@@ -1,0 +1,63 @@
+{
+ "experiment": "E4_estimator",
+ "note": "Estimator has no post-selection; it measures P(receiver qubit = 1) directly",
+ "rows": [
+  {
+   "resilience_level": 0,
+   "t": 1.5,
+   "energy": 0.1078921078921079,
+   "se": 0.009805878119832238,
+   "ideal_circuit": 0.09956450665644283,
+   "exact": 0.10403312521528346,
+   "job_id": "31f011b0-19fa-410d-af42-1b23e4d463a2"
+  },
+  {
+   "resilience_level": 0,
+   "t": 2.0,
+   "energy": 0.2017982017982018,
+   "se": 0.012685218672787537,
+   "ideal_circuit": 0.18973723526988331,
+   "exact": 0.18930529262567966,
+   "job_id": "31f011b0-19fa-410d-af42-1b23e4d463a2"
+  },
+  {
+   "resilience_level": 1,
+   "t": 1.5,
+   "energy": 0.12787212787212787,
+   "se": 0.010555066904015047,
+   "ideal_circuit": 0.09956450665644283,
+   "exact": 0.10403312521528346,
+   "job_id": "bdc25711-5bf3-4cbc-ad74-6bd1f68ae7db"
+  },
+  {
+   "resilience_level": 1,
+   "t": 2.0,
+   "energy": 0.2027972027972028,
+   "se": 0.012708618663981012,
+   "ideal_circuit": 0.18973723526988331,
+   "exact": 0.18930529262567966,
+   "job_id": "bdc25711-5bf3-4cbc-ad74-6bd1f68ae7db"
+  },
+  {
+   "resilience_level": 2,
+   "t": 1.5,
+   "energy": 0.1238761238761239,
+   "se": 0.010412608097981455,
+   "ideal_circuit": 0.09956450665644283,
+   "exact": 0.10403312521528346,
+   "job_id": "cc06ca54-5855-49ba-8e9d-89e703e0e627"
+  },
+  {
+   "resilience_level": 2,
+   "t": 2.0,
+   "energy": 0.2107892107892108,
+   "se": 0.012891506059246797,
+   "ideal_circuit": 0.18973723526988331,
+   "exact": 0.18930529262567966,
+   "job_id": "cc06ca54-5855-49ba-8e9d-89e703e0e627"
+  }
+ ],
+ "backend": "fake_marrakesh",
+ "dry_run": true,
+ "utc": "2026-10-17T19:47:01Z"
+}

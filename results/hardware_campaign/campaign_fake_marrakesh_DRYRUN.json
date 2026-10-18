@@ -1,0 +1,17 @@
+{
+ "backend": "fake_marrakesh",
+ "jobs": [
+  "912c461a-ee8a-4457-bcf0-ebb4f2345df1",
+  "88800541-e3f2-440c-990e-978159404e3c",
+  "d2ca423a-2b84-4c16-be77-4500f436ff9a",
+  "631264dc-b7eb-4a39-b83a-57e7f91769df",
+  "682e65c6-2ecc-4108-9d64-44c364ddb8ab",
+  "8f2ca8dc-606f-4dcd-8b32-7e4283354464",
+  "ff398c16-968f-41d9-b8af-fa851630ae96",
+  "52e6a601-bd4b-470f-8539-b4ed1b9f940f",
+  "727068fd-c77d-460c-ae45-e2844add9c5a",
+  "5f2cd996-2053-4bbc-b6de-066fddb7c816"
+ ],
+ "qpu_seconds_estimated": 50.84999999999999,
+ "qpu_seconds_reported": 0.0
+}

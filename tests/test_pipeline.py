@@ -39,3 +39,26 @@ def test_fwi_gradient_points_toward_bleed():
     c_est, hist = invert(P, d, iters=15, batch=6, lr=3.0, verbose=False)
     bleed = P["lab"] == 4
     assert c_est[bleed].mean() > P["c0"][bleed].mean() + 5     # moved toward the faster blood
+
+
+def test_readout_correction_recovers_true_distribution():
+    """Apply known per-qubit readout errors to a known distribution; the correction must undo them exactly."""
+    from qwave.readout import correct
+    n = 4
+    rng = np.random.default_rng(0)
+    true = np.zeros(2 ** n); true[[1, 2, 4, 8]] = [0.1, 0.2, 0.3, 0.4]          # single-excitation states
+    e0, e1 = rng.uniform(0.01, 0.05, n), rng.uniform(0.02, 0.08, n)
+    x = true.reshape((2,) * n)
+    for q in range(n):
+        A = np.array([[1 - e0[q], e1[q]], [e0[q], 1 - e1[q]]])
+        x = np.moveaxis(np.tensordot(A, x, axes=([1], [n - 1 - q])), 0, n - 1 - q)
+    noisy = x.reshape(-1)
+    assert np.abs(correct(noisy, e0, e1) - true).max() < 1e-12
+
+
+def test_light_cone_truncation_is_valid():
+    """The 9-qubit hardware circuit (first 4 cells) gives the same receiver energy as the full 15-qubit line."""
+    import importlib.util, pathlib
+    spec = importlib.util.spec_from_file_location("v2", pathlib.Path(__file__).parents[1] / "hardware" / "run_ibm_v2.py")
+    v2 = importlib.util.module_from_spec(spec); spec.loader.exec_module(v2)
+    v2.problem()          # asserts |full - truncated| < 2e-3 at every measured time

@@ -31,8 +31,10 @@ qwave/                  the package (plain Python files)
   hybrid.py             quantum misfit + classical search for the bleed
   fwi.py                classical full-waveform inversion baseline (JAX)
   resources.py          scaling to the paper's 440³ head and the read-out wall
-tests/                  35 automated checks (pytest): physics = encoding = circuits
+tests/                  37 automated checks (pytest): physics = encoding = circuits
 validation/             compare_stride.py: our solver vs. the researchers' Stride software
+hardware/               campaign.py (v2 test campaign), run_ibm_v2.py, run_ibm.py (v1): see RUN_HARDWARE.md
+EXPERIMENTS.md          every experiment: question, method, settings, success criterion, results
 notebooks/              01–05, the story with figures (run in order)
 results/                figures + JSON numbers written by the notebooks
 ```
@@ -47,8 +49,8 @@ jupyter lab notebooks/            # run 01 → 05
 
 - **Laptop or Colab:** everything. Notebook 03's noisy simulations take about 10–20 min; the others take seconds to a couple of minutes.
 - **Cluster (optional):** larger noise sweeps, or 3D FWI on a GPU node (`pip install "jax[cuda12]" qiskit-aer-gpu`).
-- **Real IBM hardware:** set `RUN_ON_IBM = True` in notebook 03. It asks for your API key at run time and never saves it.
-  About 6 circuits × 4,000 shots ≈ 10 s of the 10 free minutes. Iterate on the simulator, then submit once.
+- **Real IBM hardware:** follow `RUN_HARDWARE.md` (`python hardware/run_ibm.py`, current IBM runtime API). The key is read
+  from the environment and never saved. About 6 circuits × 4,000 shots ≈ 10–30 s of the 10 free minutes.
 
 ## How we know it works (the tests)
 
@@ -83,6 +85,7 @@ through our solver. It needs a separate Python 3.11 environment with Stride + De
 | Does the quantum circuit reproduce the wave in 3D? | Yes: 3×3×3 head, 135 qubits, error 0.006 vs. classical at 8 steps | 02 |
 | Cost of the compact (memory-saving) encoding | About 40× more gates in 2D; about 10⁶ CZ for a 3×3×3 head (estimate) | 02 |
 | What IBM-level noise does (FakeKingston, 8 steps, 238 CZ; exact 0.104) | Raw 0.047 ± 0.003 (signal halved) → post-selected 0.096 ± 0.007 (keeps 49% of shots) → + ZNE 0.103 ± 0.011. ZNE alone on raw counts: 0.062 | 03 |
+| **Real IBM hardware v1** (ibm_marrakesh, 15 qubits) | Raw loses ~87% of the signal; post-selection recovers all points to within 2σ of the ideal circuit; ZNE fails; chip ~3× noisier than its noise model | EXPERIMENTS.md §4 |
 | Bleed detectable on today's hardware? | No: the exact signal change (0.00005) is ~100× below the error bar | 03 |
 | Real 3D head (paper scale) | 29 qubits compact; unary needs 3×10⁸ qubits and at least ~10¹³ CZ (lower bound) | 04 |
 | Read-out for one FWI iteration | About 10¹³ shots, about 114 years at today's IBM rate (paper's GPU target: under 10 min total) | 04 |

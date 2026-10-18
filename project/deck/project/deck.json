@@ -1,0 +1,97 @@
+{
+  "v": 4,
+  "attachments": {},
+  "createdOnFiles": {
+    "at": "2026-10-17T17:15:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "faces": {
+    "inter": {
+      "family": "Inter",
+      "href": "https://fonts.googleapis.com/css2?family=Inter:wght@300..700&display=swap"
+    },
+    "outfit": {
+      "family": "Outfit",
+      "href": "https://fonts.googleapis.com/css2?family=Outfit:wght@300..500&display=swap"
+    }
+  },
+  "lists": "css",
+  "order": [
+    "cover",
+    "problem",
+    "team",
+    "04fdc616",
+    "us1",
+    "us2",
+    "baseline32",
+    "p_classical",
+    "litreview",
+    "p_whyq",
+    "p_compare",
+    "p_gate1",
+    "p_gate2",
+    "p_sqa_method",
+    "p_simval",
+    "b3b4decc",
+    "14753d2e",
+    "ae505b56",
+    "3e82b9d4",
+    "cf7959ec",
+    "r_all",
+    "p_lessons",
+    "impact",
+    "refs",
+    "close",
+    "innoblank",
+    "physics",
+    "inverse",
+    "fwi",
+    "whyquantum",
+    "schade"
+  ],
+  "sections": {
+    "s0": {
+      "description": "Opening and the team.",
+      "start": "cover"
+    },
+    "s1": {
+      "before": null,
+      "description": "The problem and the 32-hour catch.",
+      "start": "04fdc616"
+    },
+    "s2": {
+      "before": "p_sqa_method",
+      "description": "Why quantum: the loop and our algorithm.",
+      "seq": 0,
+      "start": null
+    },
+    "s3": {
+      "before": null,
+      "description": "What we built, tested and found.",
+      "start": "p_sqa_method"
+    },
+    "s4": {
+      "description": "Conclusion: lives saved, lessons, future uses.",
+      "start": "impact"
+    },
+    "s5": {
+      "before": "physics",
+      "description": "Team pitch (Figma), rebuilt in aperion style.",
+      "seq": 0,
+      "start": null
+    },
+    "s6": {
+      "before": null,
+      "description": "Backup: background, prior work, extra results, references.",
+      "start": "physics"
+    },
+    "s7": {
+      "before": null,
+      "description": "Earlier drafts, restored.",
+      "seq": 0,
+      "start": null
+    }
+  },
+  "title": "Aperion"
+}

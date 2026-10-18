@@ -1,0 +1,41 @@
+<section id="chain" data-transition="fade" style="display:flex; flex-direction:column; gap:44px; padding:128px 128px 170px; background:#05070b">
+  <div style="display:flex; flex-direction:column; gap:10px">
+    <h2 style="font-family:Inter, Arial, sans-serif; font-size:60px; font-weight:700; line-height:1.1; letter-spacing:-1.5px; color:#f7f8fa">Quantum Rationale &amp; Understanding of Potential</h2>
+    <p style="width:1664px; font-family:Inter, Arial, sans-serif; font-size:30px; font-weight:600; line-height:1.3; color:#7fa2e8">How a sound wave becomes a quantum state, and why qubits.</p>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:28px">
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:32px; background:#0d1830; border-radius:28px">
+      <p style="font-family:Inter, Arial, sans-serif; font-size:24px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:#7fa2e8">One qubit per site · 15 qubits</p>
+      <p style="font-family:Inter, Arial, sans-serif; font-size:26px; font-weight:400; line-height:1.4; color:#c7cfdd">Site k = qubit k “on”. Neighbour hops are cheap gates: <b>238</b>. Runs today, but only 15 numbers are in play.</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:32px; background:#0d1830; border:2px solid #3b5b9f; border-radius:28px">
+      <p style="font-family:Inter, Arial, sans-serif; font-size:24px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:#7fa2e8">Compact · 4 qubits</p>
+      <p style="font-family:Inter, Arial, sans-serif; font-size:26px; font-weight:400; line-height:1.4; color:#c7cfdd">n qubits hold 2ⁿ amplitudes: 29 qubits hold a whole head. Catch: neighbours aren’t neighbouring bits, so <b>1,414</b> gates.</p>
+    </div>
+  </div>
+  <x-embed style="position:absolute; top:300px; left:128px; width:1664px; height:300px"><!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#05070B;overflow:hidden}canvas{display:block;width:100%;height:100%}</style></head><body><canvas id="c" width="1664" height="300"></canvas><script>
+const W=1664,H=300,x=document.getElementById('c').getContext('2d');
+const c=[1600,2800,1546,1546,1546,2800,1600].map(v=>v/1500),N=15,hop=[];for(let i=0;i<7;i++){hop[2*i]=c[i];hop[2*i+1]=c[i];}
+const tis=['scalp','skull','brain','brain','brain','skull','scalp'],tc={scalp:'#6C7FA6',skull:'#F7F8FA',brain:'#3B5B9F'};
+let re=new Float64Array(N),im=new Float64Array(N),t=0,hold=0;function reset(){re.fill(0);im.fill(0);re[1]=1;t=0;}reset();
+function f(r,m){const dr=new Float64Array(N),dm=new Float64Array(N);for(let k=0;k<N-1;k++){const h=hop[k];dr[k]+=h*m[k+1];dr[k+1]+=h*m[k];dm[k]-=h*r[k+1];dm[k+1]-=h*r[k];}return[dr,dm];}
+function step(dt){const[a1,b1]=f(re,im),r2=re.map((v,k)=>v+dt/2*a1[k]),m2=im.map((v,k)=>v+dt/2*b1[k]),[a2,b2]=f(r2,m2),r3=re.map((v,k)=>v+dt/2*a2[k]),m3=im.map((v,k)=>v+dt/2*b2[k]),[a3,b3]=f(r3,m3),r4=re.map((v,k)=>v+dt*a3[k]),m4=im.map((v,k)=>v+dt*b3[k]),[a4,b4]=f(r4,m4);
+for(let k=0;k<N;k++){re[k]+=dt/6*(a1[k]+2*a2[k]+2*a3[k]+a4[k]);im[k]+=dt/6*(b1[k]+2*b2[k]+2*b3[k]+b4[k]);}t+=dt;}
+const X=k=>80+k*(W-160)/(N-1);
+function draw(){if(hold>0)hold--;else{for(let s=0;s<4;s++){const before=t;step(0.004);if(before<1.5&&t>=1.5){hold=120;break;}}if(t>6)reset();}
+x.fillStyle='#05070B';x.fillRect(0,0,W,H);x.strokeStyle='#3A424C';x.lineWidth=3;x.beginPath();x.moveTo(X(0),200);x.lineTo(X(N-1),200);x.stroke();
+for(let k=0;k<N;k++){const p=re[k]*re[k]+im[k]*im[k],cell=k%2===1;x.fillStyle=cell?'#7FA2E8':'#7C8798';x.fillRect(X(k)-18,170-p*150,36,p*150);
+if(cell){const ti=tis[(k-1)/2];x.fillStyle=tc[ti];x.beginPath();x.arc(X(k),200,22,0,7);x.fill();if(k===5){x.strokeStyle='#F7FAFC';x.lineWidth=3;x.beginPath();x.arc(X(k),200,28,0,7);x.stroke();}}
+else{x.fillStyle='#8D97A8';x.fillRect(X(k)-9,191,18,18);}}
+x.font='24px -apple-system,Segoe UI,Arial,sans-serif';x.textAlign='center';for(let i=0;i<7;i++){x.fillStyle='#C3CBD4';x.fillText(tis[i],X(2*i+1),258);}
+x.textAlign='left';x.fillStyle='#8D97A8';x.fillText('circles = cells (velocity) · squares = links (stretch) · bar = |ψ|² = share of wave energy',24,292);
+const r=re[5]*re[5]+im[5]*im[5];x.fillStyle='#F7FAFC';x.fillText('t = '+t.toFixed(2),900,32);x.fillStyle='#7FA2E8';x.fillText('first brain cell: '+r.toFixed(3)+(hold>0?'  ← exact target 0.104 at t = 1.5':''),1040,32);
+requestAnimationFrame(draw);}
+requestAnimationFrame(draw);
+</script></body></html></x-embed>
+  <div style="position:absolute; right:128px; bottom:56px; left:128px; display:flex; flex-direction:row; gap:48px; align-items:center; justify-content:space-between">
+    <p style="width:1480px; font-family:Inter, Arial, sans-serif; font-size:24px; color:#8d97a8">Exact evolution of the team’s 15-site chain · ‖ψ‖² = wave energy</p>
+    <svg xmlns="http://www.w3.org/2000/svg" aria-label="aperion ring mark" viewBox="0 0 100 100" style="width:44px; height:44px"><circle cx="50.0" cy="12.0" r="7" fill="#F7F8FA"/><circle cx="69.0" cy="17.1" r="7" fill="#3B5B9F"/><circle cx="82.9" cy="31.0" r="5.5" fill="#F7F8FA"/><circle cx="88.0" cy="50.0" r="7" fill="#F7F8FA"/><circle cx="82.9" cy="69.0" r="7" fill="#3B5B9F"/><circle cx="69.0" cy="82.9" r="5.5" fill="#F7F8FA"/><circle cx="50.0" cy="88.0" r="7" fill="#F7F8FA"/><circle cx="31.0" cy="82.9" r="7" fill="#3B5B9F"/><circle cx="17.1" cy="69.0" r="5.5" fill="#F7F8FA"/><circle cx="12.0" cy="50.0" r="7" fill="#F7F8FA"/><circle cx="17.1" cy="31.0" r="7" fill="#3B5B9F"/><circle cx="31.0" cy="17.1" r="5.5" fill="#F7F8FA"/></svg>
+  </div>
+  <aside>Charan. The wave becomes a packet hopping along a chain.</aside>
+</section>

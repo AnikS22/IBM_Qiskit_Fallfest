@@ -1,0 +1,175 @@
+<title>Aperion Brand Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* Layout: bento grid on near-black ink; huge tight Geist display with Instrument Serif italic accents; mono labels; one luminous cyan "pulse" accent with soft glows. Single dark look by choice. */
+:root{
+  --ink:#07080A; --ink2:#0D1013; --ink3:#14191E; --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+  --paper:#F4F7F8; --fog:#9AA6AF; --dim:#5E6A73;
+  --pulse:#6EE7F9; --pulse2:#22B8CF; --deep:#0E6F7E; --signal:#FFB86B;
+  --display:"Geist",-apple-system,"Segoe UI",Arial,sans-serif; --serif:"Instrument Serif",Georgia,serif; --mono:"Geist Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--display);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(900px 500px at 85% -10%,rgba(110,231,249,.10),transparent 60%),radial-gradient(700px 400px at -10% 30%,rgba(34,184,207,.06),transparent 60%)}
+.wrap{position:relative;max-width:1240px;margin:0 auto;padding-inline:clamp(16px,4vw,40px);padding-block:56px 96px}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.04em;text-wrap:balance}
+p{margin:0}
+em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.lbl{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--fog)}
+.lbl b{color:var(--pulse);font-weight:500}
+header{display:grid;gap:22px;padding-bottom:56px;border-bottom:1px solid var(--line)}
+header h1{font-size:clamp(56px,10vw,132px);line-height:.92}
+header h1 em{color:var(--pulse)}
+header p{max-width:60ch;color:var(--fog);font-size:18px}
+section{padding-block:64px;border-bottom:1px solid var(--line);display:grid;gap:28px}
+.sh{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
+.sh h2{font-size:clamp(30px,4vw,48px)}
+.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}
+.tile{position:relative;border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,var(--ink2),var(--ink));padding:24px;overflow:hidden;min-width:0;display:grid;gap:14px;align-content:start}
+.tile.glow::after{content:"";position:absolute;inset:-1px;border-radius:22px;padding:1px;background:linear-gradient(140deg,rgba(110,231,249,.55),transparent 40%,transparent 70%,rgba(110,231,249,.25));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.c12{grid-column:span 12}.c8{grid-column:span 8}.c7{grid-column:span 7}.c6{grid-column:span 6}.c5{grid-column:span 5}.c4{grid-column:span 4}.c3{grid-column:span 3}
+@media (max-width:900px){.c8,.c7,.c6,.c5,.c4,.c3{grid-column:span 12}}
+.center{place-items:center;text-align:center}
+.mark{width:min(220px,60%)}
+.lockup{display:flex;align-items:center;gap:16px}
+.lockup svg{width:56px;height:56px}
+.word{font-weight:600;font-size:52px;letter-spacing:-.05em}
+.tile.light{background:var(--paper);color:var(--ink)}
+.tile.light .lbl{color:#5E6A73}
+.sw{display:grid;gap:10px}
+.chipc{height:120px;border-radius:14px;border:1px solid var(--line)}
+.sw b{font-weight:600;font-size:17px}
+.sw span{font:12px var(--mono);color:var(--fog)}
+.spec{display:grid;gap:6px;padding-block:16px;border-bottom:1px solid var(--line)}
+.spec:last-child{border-bottom:0}
+.scale{display:grid;grid-template-columns:140px minmax(0,1fr);gap:20px;align-items:baseline}
+@media (max-width:640px){.scale{grid-template-columns:1fr;gap:4px}}
+.btn{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 18px;border-radius:999px;font:500 15px var(--display);border:1px solid var(--line2);color:var(--paper);background:rgba(255,255,255,.04);cursor:pointer}
+.btn.p{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.btn.a{background:var(--pulse);color:var(--ink);border-color:var(--pulse);box-shadow:0 0 0 6px rgba(110,231,249,.12)}
+.pill{display:inline-flex;align-items:center;gap:8px;height:28px;padding:0 12px;border-radius:999px;font:500 12px var(--mono);border:1px solid var(--line2);color:var(--fog)}
+.pill i{width:6px;height:6px;border-radius:50%;background:var(--pulse);box-shadow:0 0 10px var(--pulse)}
+.pill.warn i{background:var(--signal);box-shadow:0 0 10px var(--signal)}
+.stat{display:grid;gap:4px}
+.stat .n{font-size:64px;font-weight:300;letter-spacing:-.05em;line-height:1}
+.stat .n em{color:var(--pulse)}
+.stat p{color:var(--fog);font-size:14px}
+.grad{height:56px;border-radius:12px;background:linear-gradient(90deg,#0B1A22,#1F4E5F,#2F8FA6,#6EE7F9,#F4F7F8)}
+.ticks{display:flex;justify-content:space-between;font:12px var(--mono);color:var(--fog)}
+.do,.dont{display:grid;gap:10px}
+.do p,.dont p{padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--ink3);font-size:15px}
+.do p::before{content:"Say";display:block;font:500 11px var(--mono);letter-spacing:.14em;color:var(--pulse);margin-bottom:4px}
+.dont p::before{content:"Avoid";display:block;font:500 11px var(--mono);letter-spacing:.14em;color:var(--dim);margin-bottom:4px}
+.dont p{color:var(--fog)}
+canvas{display:block;width:100%;height:auto;border-radius:14px}
+.motion{display:grid;gap:8px;color:var(--fog);font-size:15px}
+.motion b{color:var(--paper);font-weight:500}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="lbl">Brand kit · <b>v2</b> · October 2026</p>
+  <h1>Aperion. Waves into <em>vision.</em></h1>
+  <p>Portable ultrasound brain imaging, and the honest maths behind it. The identity is clinical calm with one luminous signal: the pulse of sound moving through tissue.</p>
+</header>
+
+<section>
+  <div class="sh"><h2>Logo</h2><p class="lbl">Mark + wordmark</p></div>
+  <div class="bento">
+    <div class="tile glow c7 center" style="min-height:360px">
+      <svg class="mark" viewBox="0 0 100 100" aria-label="Aperion mark"><defs><linearGradient id="m1" x1="0.15" y1="0" x2="0.85" y2="1"><stop offset="0" stop-color="#F4F7F8"/><stop offset=".55" stop-color="#BDEFF7"/><stop offset="1" stop-color="#6EE7F9"/></linearGradient><linearGradient id="m2" x1="0" y1="0.3" x2="1" y2="1"><stop offset="0" stop-color="#6EE7F9" stop-opacity=".25"/><stop offset=".6" stop-color="#9BE9F5" stop-opacity=".8"/><stop offset="1" stop-color="#F4F7F8"/></linearGradient></defs><path d="M6 86 C 24 58, 36 14, 50 14 C 63 14, 74 56, 90 88 C 74 62, 63 30, 50 30 C 38 30, 26 60, 6 86 Z" fill="url(#m1)"/><path d="M24 66 C 34 46, 42 36, 52 36 C 64 36, 78 66, 92 90 C 76 72, 66 52, 55 52 C 45 52, 36 58, 24 66 Z" fill="url(#m2)" opacity=".9"/></svg>
+      <p class="lbl">Two interfering wavefronts forming an A</p>
+    </div>
+    <div class="c5" style="display:grid;gap:14px">
+      <div class="tile"><p class="lbl">Primary lockup</p><div class="lockup"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M6 86 C 24 58, 36 14, 50 14 C 63 14, 74 56, 90 88 C 74 62, 63 30, 50 30 C 38 30, 26 60, 6 86 Z" fill="#F4F7F8"/><path d="M24 66 C 34 46, 42 36, 52 36 C 64 36, 78 66, 92 90 C 76 72, 66 52, 55 52 C 45 52, 36 58, 24 66 Z" fill="#6EE7F9"/></svg><span class="word">aperion</span></div></div>
+      <div class="tile light"><p class="lbl">On paper</p><div class="lockup"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M6 86 C 24 58, 36 14, 50 14 C 63 14, 74 56, 90 88 C 74 62, 63 30, 50 30 C 38 30, 26 60, 6 86 Z" fill="#07080A"/><path d="M24 66 C 34 46, 42 36, 52 36 C 64 36, 78 66, 92 90 C 76 72, 66 52, 55 52 C 45 52, 36 58, 24 66 Z" fill="#0E6F7E"/></svg><span class="word">aperion</span></div></div>
+      <div class="tile"><p class="lbl">Rules</p><p style="color:var(--fog);font-size:15px">Lowercase wordmark in Geist Semibold, −5% tracking. Clear space = the height of the inner wave. Minimum 20 px. Never recolour the mark outside ink, paper and pulse.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sh"><h2>Colour</h2><p class="lbl">Ink, paper, one signal</p></div>
+  <div class="bento">
+    <div class="tile c3 sw"><div class="chipc" style="background:#07080A"></div><b>Ink</b><span>#07080A · background</span></div>
+    <div class="tile c3 sw"><div class="chipc" style="background:#14191E"></div><b>Graphite</b><span>#14191E · surfaces</span></div>
+    <div class="tile c3 sw"><div class="chipc" style="background:#F4F7F8"></div><b>Paper</b><span>#F4F7F8 · text, light</span></div>
+    <div class="tile c3 sw"><div class="chipc" style="background:#9AA6AF"></div><b>Fog</b><span>#9AA6AF · secondary</span></div>
+    <div class="tile glow c4 sw"><div class="chipc" style="background:#6EE7F9;box-shadow:0 0 60px rgba(110,231,249,.35)"></div><b>Pulse</b><span>#6EE7F9 · the one accent, quantum</span></div>
+    <div class="tile c4 sw"><div class="chipc" style="background:#0E6F7E"></div><b>Deep</b><span>#0E6F7E · classical data</span></div>
+    <div class="tile c4 sw"><div class="chipc" style="background:#FFB86B"></div><b>Signal</b><span>#FFB86B · bleed, targets, warnings only</span></div>
+    <div class="tile c12"><p class="lbl">Imaging scale · speed of sound (m/s)</p><div class="grad"></div><div class="ticks"><span>water 1,480</span><span>grey 1,505</span><span>white 1,553</span><span>blood 1,578</span><span>scalp 1,624</span><span>skull 2,814</span></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="sh"><h2>Type</h2><p class="lbl">Geist · Instrument Serif · Geist Mono</p></div>
+  <div class="bento">
+    <div class="tile c8">
+      <div class="spec"><p class="lbl">Display · Geist 600 · −4%</p><p style="font-size:clamp(44px,6vw,76px);font-weight:600;letter-spacing:-.045em;line-height:.95">Every minute costs <em style="color:var(--pulse)">brain.</em></p></div>
+      <div class="spec"><p class="lbl">Accent · Instrument Serif italic, one or two words per headline</p><p style="font-family:var(--serif);font-style:italic;font-size:44px;line-height:1.1">clot, or bleed?</p></div>
+      <div class="spec"><p class="lbl">Body · Geist 400 · 17/27</p><p style="font-size:17px;color:var(--fog);max-width:58ch">Sound slows in brain and speeds up in skull. A map of how fast sound travels is a picture of the head, and a bleed shows up as a slightly faster patch.</p></div>
+      <div class="spec"><p class="lbl">Data · Geist Mono 500</p><p style="font:500 15px var(--mono)">15 qubits · 238 CZ · depth 130 · 0.104 ± 0.011</p></div>
+    </div>
+    <div class="tile c4">
+      <p class="lbl">Scale</p>
+      <div class="scale"><span class="lbl">Hero</span><span style="font-size:40px;font-weight:600;letter-spacing:-.045em">96 / 0.92</span></div>
+      <div class="scale"><span class="lbl">H2</span><span style="font-size:30px;font-weight:600;letter-spacing:-.04em">48 / 1.0</span></div>
+      <div class="scale"><span class="lbl">H3</span><span style="font-size:22px;font-weight:600;letter-spacing:-.03em">22 / 1.2</span></div>
+      <div class="scale"><span class="lbl">Body</span><span style="font-size:17px">17 / 1.6</span></div>
+      <div class="scale"><span class="lbl">Label</span><span style="font:500 11px var(--mono);letter-spacing:.14em">11 MONO CAPS</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sh"><h2>Interface</h2><p class="lbl">Components</p></div>
+  <div class="bento">
+    <div class="tile c6"><p class="lbl">Buttons</p><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn a" type="button">Try the simulator</button><button class="btn p" type="button">How it works</button><button class="btn" type="button">Read the paper</button></div></div>
+    <div class="tile c6"><p class="lbl">Status pills</p><div style="display:flex;gap:10px;flex-wrap:wrap"><span class="pill"><i></i>Measured</span><span class="pill"><i></i>Simulator</span><span class="pill warn"><i></i>Pending hardware</span><span class="pill" style="color:var(--dim)">Estimate</span></div></div>
+    <div class="tile glow c4 stat"><p class="lbl">Stat</p><span class="n">32<em>h</em></span><p>for one 3D brain image on 128 CPU nodes</p></div>
+    <div class="tile c4 stat"><p class="lbl">Stat</p><span class="n">0.993</span><p>agreement with the researchers’ own software</p></div>
+    <div class="tile c4 stat"><p class="lbl">Stat</p><span class="n">29</span><p>qubits to hold a whole head, on paper</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="sh"><h2>Imagery &amp; motion</h2><p class="lbl">Real anatomy, real physics</p></div>
+  <div class="bento">
+    <div class="tile c7"><canvas id="img" width="900" height="560" aria-label="Brand imagery example: axial brain slice with sensor ring and a luminous pulse"></canvas></div>
+    <div class="tile c5 motion">
+      <p class="lbl">Principles</p>
+      <p><b>Anatomy is real.</b> Brains come from the MNI152 template, never an oval.</p>
+      <p><b>Motion is physics.</b> Waves move at real tissue speeds; nothing animates for decoration.</p>
+      <p><b>One glow.</b> Pulse is the only light source. Everything else is ink and fog.</p>
+      <p><b>Label the truth.</b> Every number carries a pill: measured, simulator, estimate, pending.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sh"><h2>Voice</h2><p class="lbl">Clinical calm</p></div>
+  <div class="bento">
+    <div class="tile c6 do"><p>Quantum fits the physics. Today it loses to GPUs, and here is what would change that.</p><p>Clot or bleed, answered before the hospital.</p></div>
+    <div class="tile c6 dont"><p>Quantum will revolutionize stroke care.</p><p>Exponentially faster brain imaging.</p></div>
+  </div>
+</section>
+</div>
+
+<script>
+const c=document.getElementById('img'),x=c.getContext('2d'),W=c.width,H=c.height;let t=0;
+function draw(){x.fillStyle='#0D1013';x.fillRect(0,0,W,H);const cx=W*0.42,cy=H/2,rx=150,ry=190;
+const g=x.createRadialGradient(cx,cy,10,cx,cy,320);g.addColorStop(0,'rgba(110,231,249,.10)');g.addColorStop(1,'rgba(110,231,249,0)');x.fillStyle=g;x.fillRect(0,0,W,H);
+x.fillStyle='#0B1A22';x.beginPath();x.ellipse(cx,cy,rx+38,ry+38,0,0,7);x.fill();
+x.fillStyle='#BFD3DB';x.beginPath();x.ellipse(cx,cy,rx,ry,0,0,7);x.fill();x.fillStyle='#16303A';x.beginPath();x.ellipse(cx,cy,rx-12,ry-12,0,0,7);x.fill();
+x.strokeStyle='#2F8FA6';x.lineWidth=10;for(let k=0;k<14;k++){const a=k/14*Math.PI*2;x.beginPath();x.moveTo(cx+Math.cos(a)*(rx-30),cy+Math.sin(a)*(ry-30));x.quadraticCurveTo(cx+Math.cos(a+.2)*(rx*.55),cy+Math.sin(a+.2)*(ry*.55),cx+Math.cos(a)*30,cy+Math.sin(a)*40);x.stroke();}
+for(let s=0;s<48;s++){const a=s/48*Math.PI*2;x.fillStyle=s===36?'#F4F7F8':'rgba(110,231,249,.55)';x.beginPath();x.arc(cx+(rx+26)*Math.cos(a),cy+(ry+26)*Math.sin(a),s===36?6:3.5,0,7);x.fill();}
+const sa=36/48*Math.PI*2,sx=cx+(rx+26)*Math.cos(sa),sy=cy+(ry+26)*Math.sin(sa);for(let k=0;k<4;k++){const r=((t*1.6+k*70)%280);x.strokeStyle=`rgba(110,231,249,${.8*(1-r/280)})`;x.lineWidth=2.5;x.beginPath();x.arc(sx,sy,r,0,7);x.stroke();}
+x.strokeStyle='#FFB86B';x.lineWidth=2.5;x.beginPath();x.arc(cx+55,cy+20,22+3*Math.sin(t/14),0,7);x.stroke();
+x.font='500 14px "Geist Mono", monospace';x.fillStyle='#9AA6AF';x.fillText('ILLUSTRATIVE STYLE · USE REAL ANATOMY IN PRODUCT',24,H-24);t++;if(!matchMedia('(prefers-reduced-motion: reduce)').matches)requestAnimationFrame(draw);}
+draw();
+</script>

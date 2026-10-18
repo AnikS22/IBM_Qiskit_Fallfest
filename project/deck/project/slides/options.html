@@ -1,0 +1,21 @@
+<section id="options" data-transition="fade" style="display:flex; flex-direction:column; gap:44px; padding:128px 128px 170px; background:#f7f8fa">
+  <div style="display:flex; flex-direction:column; gap:10px">
+    <h2 style="font-family:Inter, Arial, sans-serif; font-size:60px; font-weight:700; line-height:1.1; letter-spacing:-1.5px; color:#05070b">Quantum Rationale &amp; Understanding of Potential</h2>
+    <p style="width:1664px; font-family:Inter, Arial, sans-serif; font-size:30px; font-weight:600; line-height:1.3; color:#3b5b9f">We tested every quantum approach against the bottleneck.</p>
+  </div>
+  <table style="width:1664px; font-family:Inter, Arial, sans-serif; font-size:26px; color:#05070b">
+    <tr><th style="width:26%">Approach</th><th style="width:14%">Fit</th><th style="width:42%">Why</th><th style="width:18%">Source</th></tr>
+    <tr><td>Quantum annealing</td><td>✗ No</td><td>Solves discrete choices; the slow step is simulation</td><td>Kadowaki 1998</td></tr>
+    <tr><td>QAOA: pick sensor subsets</td><td>~ Side project</td><td>Must beat classical selection</td><td>Farhi 2014</td></tr>
+    <tr><td>VQE / variational</td><td>✗ No</td><td>Finds ground states; we need time evolution</td><td>Peruzzo 2014</td></tr>
+    <tr><td>Quantum ML / kernels</td><td>✗ No</td><td>Needs labelled scans; most contested</td><td>Bowles 2024</td></tr>
+    <tr><td>Linear solvers (HHL)</td><td>~ Later</td><td>Deep circuits; same readout limit</td><td>HHL 2009</td></tr>
+    <tr style="background:#eef1f6"><td>Hamiltonian simulation</td><td>✓ Yes</td><td>Matches the forward wave step</td><td>Schade 2024</td></tr>
+    <tr><td>Classical GPU</td><td>Today</td><td>Authors’ own route; wins now</td><td>Guasch 2020</td></tr>
+  </table>
+  <div style="position:absolute; right:128px; bottom:56px; left:128px; display:flex; flex-direction:row; gap:48px; align-items:center; justify-content:space-between">
+    <p style="width:1480px; font-family:Inter, Arial, sans-serif; font-size:24px; color:#6b7591">Full citations: research/R3-quantum.md</p>
+    <svg xmlns="http://www.w3.org/2000/svg" aria-label="aperion ring mark" viewBox="0 0 100 100" style="width:44px; height:44px"><circle cx="50.0" cy="12.0" r="7" fill="#05070B"/><circle cx="69.0" cy="17.1" r="7" fill="#3B5B9F"/><circle cx="82.9" cy="31.0" r="5.5" fill="#05070B"/><circle cx="88.0" cy="50.0" r="7" fill="#05070B"/><circle cx="82.9" cy="69.0" r="7" fill="#3B5B9F"/><circle cx="69.0" cy="82.9" r="5.5" fill="#05070B"/><circle cx="50.0" cy="88.0" r="7" fill="#05070B"/><circle cx="31.0" cy="82.9" r="7" fill="#3B5B9F"/><circle cx="17.1" cy="69.0" r="5.5" fill="#05070B"/><circle cx="12.0" cy="50.0" r="7" fill="#05070B"/><circle cx="17.1" cy="31.0" r="7" fill="#3B5B9F"/><circle cx="31.0" cy="17.1" r="5.5" fill="#05070B"/></svg>
+  </div>
+  <aside>Charan. Q-Beam uses annealing for surgical planning: a real optimization problem, which is why it is the wrong tool here.</aside>
+</section>

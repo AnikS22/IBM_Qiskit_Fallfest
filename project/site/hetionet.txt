@@ -1,0 +1,45 @@
+Hetionet example · Florida Qiskit Fallfest Hackathon
+Skip to contentQFFFlorida Qiskit Fallfest HackathonFor ParticipantsFor Facilitators and Local HostsHandbookPathwaysRegisterResourcesSupportGlossary0/12 done
+Step 10 of 12 · 20 min
+Hetionet example
+A finished classification study, not the minimum bar and not an optimization study. The quantum model did not beat the strongest classical model on its own.
+From problem to submission
+This page paraphrases Quantum Kernel Link Prediction on Biomedical Knowledge Graphs, by Jonathan Beale, Kevin Robinson, Mark Jack, and Abdelrahman E. Ahmed. It does not paste the paper, and it does not copy the notebooks into this repository.
+Problem: rank possible Compound-treats-Disease links. That is a classification and ranking question.
+Current method and classical baseline: tuned Random Forest and Extra Trees, among other classical models.
+Quantum hypothesis: a quantum kernel might add a useful signal inside a hybrid stack. The project also records where it does not.
+Experiment: ingest the graph, fit the classical baseline, train the quantum model, and test. Those are notebooks 01 through 04.
+Metrics: test PR-AUC on the verified primary configuration.
+Evidence: the README, PAPER.md, RESULTS_EVIDENCE.md, and ACTUAL_VS_EXPLORATION_RESULTS.md.
+Limitation: this comparison does not show quantum advantage, the term defined on the benchmarking page and in the glossary, and it is not a clinical result.
+The handbook’s final step turns this example into a checklist for your own project. Keep the structure, replace the problem, and do not copy Hetionet.
+Recommendation a Fall Fest team can copy as a habit: name the metric, keep the baseline, and publish the comparison at a much smaller size. Do not train this model in the workshop.
+Primary scores
+On the verified primary configuration, test PR-AUC is hybrid stacking 0.7987, Random Forest 0.7838, and Extra Trees 0.7807. Standalone Pauli QSVC on that configuration is below both forests.
+If you see 0.8581, read it this way: the quantum kernel was cached while the classical pieces were tuned with Optuna. That number is not a fresh quantum win over the primary comparison.
+Handbook: study Hetionet and build your framework
+Public README
+ (opens in a new tab)
+PAPER.md
+ (opens in a new tab)
+RESULTS_EVIDENCE.md
+ (opens in a new tab)
+ACTUAL_VS_EXPLORATION_RESULTS.md
+ (opens in a new tab)
+01-kg-ingestion
+ (opens in a new tab)
+02-classical-baseline
+ (opens in a new tab)
+03-qml-training
+ (opens in a new tab)
+04-testing
+ (opens in a new tab)
+Presentation glossary
+ (opens in a new tab)
+Hetionet demo
+ (opens in a new tab)
+Which reading matches the primary comparison?Standalone Pauli QSVC beat Random Forest, which is quantum advantageThe hybrid stack led, and the quantum model alone did not beat the strongest classical modelThe paper is a clinical resultThe paper is an optimization study for the readiness tool
+Choose one answer when you are ready. This is practice.
+Save my place on this page.Form a team
+Florida Qiskit Fallfest Hackathon
+For ParticipantsFor Facilitators and Local HostsParticipant handbookDomain/Industry Expert and Builder/Developer ExpertNotebook catalogDiscordQiskit-approved websiteRobert Loredo, rloredo2026@fau.eduKevin Robinson, kevin@quantumglobalgroup.ioGrant Kurz, grant@deepstation.aiAyse Torres, atorre58@fau.eduSupport

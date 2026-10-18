@@ -1,0 +1,42 @@
+Benchmarking and readiness · Florida Qiskit Fallfest Hackathon
+Skip to contentQFFFlorida Qiskit Fallfest HackathonFor ParticipantsFor Facilitators and Local HostsHandbookPathwaysRegisterResourcesSupportGlossary0/12 done
+Step 09 of 12 · 25 min
+Benchmarking and readiness
+Chapter 7 of Quantum Readiness for Leaders is the attributed reading. The sequence below is this workshop’s exercise. The book is not copied here.
+What the chapter is, and what this page adds
+Chapter 7 of Quantum Readiness for Leaders, by Robert Loredo, is titled Prototyping and Proof-of-Concept Development (Packt, 2026). Public tables of contents place that chapter with the work of trying a small application before an organization commits. This page does not reproduce the chapter, its questions, its tables, or its layout.
+For Fall Fest, a prototype is a bounded test with the evidence written down before the run. A recommendation may be to stop.
+The sequence
+Write these in an order that helps the team. The quantum hypothesis may be that a quantum method is not the right fit. That is a useful result, and the Domain/Industry Expert pathway is often the one that can say so.
+Problem. One sentence a newcomer can repeat.
+Current method. How the work is done today.
+Classical baseline. The metric, the instance size, and the score you will compare against.
+Quantum hypothesis. What a quantum step might change, and what would show that it did not.
+Experiment. The smallest run that could inform the hypothesis. Simulator first.
+Metrics. The numbers you agreed to collect.
+Evidence. The files, plots, and configuration that produced those numbers.
+Limitations. What the run cannot support.
+Recommendation. Continue, narrow the question, or stop.
+Next-Step Quantum Decision Guide
+The project-framing page and the glossary define quantum advantage. This event does not ask you to show it.
+The guide below is the live Next-Step Quantum Decision Guide. It loads without an account. Use it for optimization-shaped problems only. Simulation, chemistry, classification, link prediction, and other non-optimization projects stay on the sequence above. Hetionet is classification and link prediction. It is not an optimization result, and it is not a clinical result.
+Open the Next-Step Quantum Decision Guide
+ (opens in a new tab)
+Charter fields
+These fields are the workshop form. They are not a page from the book.
+Problem, in one sentence.
+Problem type: optimization; simulation or chemistry; classification, learning, or data; or not presently quantum-shaped.
+Who has the problem.
+The classical method used today.
+How that baseline will be measured, including the metric and the instance size.
+Success criteria for the bounded prototype, written before any quantum run.
+What you will build this weekend, and what you will not build.
+What you will not claim.
+The evidence that would stop the work.
+Next-Step Quantum Decision Guide
+ (opens in a new tab)
+When do you write the success criteria?After the hardware histogram looks goodBefore any quantum runOnly if a private tool is copied into this repoAfter the statewide announcement
+Choose one answer when you are ready. This is practice.
+Save my place on this page.Study the Hetionet example
+Florida Qiskit Fallfest Hackathon
+For ParticipantsFor Facilitators and Local HostsParticipant handbookDomain/Industry Expert and Builder/Developer ExpertNotebook catalogDiscordQiskit-approved websiteRobert Loredo, rloredo2026@fau.eduKevin Robinson, kevin@quantumglobalgroup.ioGrant Kurz, grant@deepstation.aiAyse Torres, atorre58@fau.eduSupport

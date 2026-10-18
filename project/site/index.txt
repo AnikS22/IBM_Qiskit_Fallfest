@@ -1,0 +1,281 @@
+Florida Qiskit Fallfest Hackathon | Qiskit Fall Fest 2026
+Skip to contentQFFFlorida Qiskit Fallfest HackathonFor ParticipantsFor Facilitators and Local HostsHandbookPathwaysRegisterResourcesSupportGlossary0/12 done
+For Participants
+Florida Qiskit Fallfest Hackathon
+Part of Qiskit Fall Fest 2026
+Supported by IBM Quantum.
+Bring your curiosity. We’ll help with the qubits. Here are two simple ways to prepare: create your IBM Quantum account and start thinking about a problem or topic that interests you. No prior quantum experience is required—we’ll guide you through the rest together. Florida Qiskit Fallfest Hackathon is part of Qiskit Fall Fest 2026. You will leave with an account, one Bell state, and an honest project frame. You are not expected to prove that quantum computing is better than classical computing. Your goal is to define a meaningful problem, explore an appropriate quantum approach, compare it with a classical method when possible, document what happened, and explain what you learned—including the limitations.
+Start here
+Account and tools
+Basic quantum vocabulary
+Bell state in Composer
+Bell state in Python and Qiskit
+How Qiskit Works: One Bell State, End to End
+Two pathways
+Project frame and classical baseline
+Benchmarking and readiness
+Hetionet example
+Form a team
+Prepare and submit
+Before you arrive
+Essential pre-work is only what you need to access the event. A half-formed idea is a wonderful start. Both pathways are full roles, and coding is optional for the Domain/Industry Expert.
+Required before participating: your own IBM Quantum account. Official registration is Coming soon. Until then, the attendance form on this site tells us you are coming. It does not collect passwords, API keys, or CRNs.
+Recommended before the workshop: a GitHub account, a look at what a project can be, and a topic or problem that interests you. Ask to join the private project repository at https://github.com/robertloredo/FAU-Qiskit-Fallfest-2026
+ (opens in a new tab). Send your GitHub username.
+Optional next step: a few minutes in Composer, a short IBM course, or a local Qiskit install if you already like working that way.
+We will complete this together: the Bell labs, team formation, and the submission walk-through.
+The event
+The theme is A decade of quantum on the cloud. The 2026 theme recognizes ten years since IBM placed its first quantum processor on the cloud.
+Kickoff and challenge release: October 1, 2026. Local events: October 17–18, 2026. Local ceremony: October 18, 2026. First-place local winner deadline: October 31, 2026. Final: November 8, 2026. State championship ceremony: November 14, 2026. Capacity is up to 50 participants per campus.
+The host directory below lists all five universities. A confirmed venue and a local registration link are on the card. Anything still open says Details coming soon. The shared code of conduct is Coming soon. The statewide judging rubric for Florida Qiskit Fallfest Hackathon is on this page and in the participant handbook.
+Unresolved program questions go to Kevin Robinson at kevin@quantumglobalgroup.io. The chat is https://discord.gg/vz6uTbtJzR
+ (opens in a new tab). The announcement is https://www.ibm.com/quantum/blog/qiskit-fall-fest-2026
+ (opens in a new tab). The Qiskit-approved website is https://entangledsolutionsgroup.com/Qiskit-Fall-Fest-2026/
+ (opens in a new tab).
+Lead, co-leads, and local hosts
+Florida Qiskit Fallfest Hackathon is part of Qiskit Fall Fest 2026. Each university card lists the verified local lead, the confirmed venue, and a registration link when one is public.
+Robert Loredo, lead, rloredo2026@fau.edu
+Kevin Robinson, co-lead, Quantum Global Group, kevin@quantumglobalgroup.io
+Grant Kurz, co-lead, grant@deepstation.ai
+Ayse Torres, co-lead, atorre58@fau.edu
+If a card does not list a public address, send program questions to kevin@quantumglobalgroup.io. Ask your local university lead first, then the workshop instructor or designated co-host, then Kevin Robinson at kevin@quantumglobalgroup.io for unresolved program questions. Do not send basic account troubleshooting to IBM unless official IBM account support is required.
+Miami Dade College
+Local lead
+Kevin Robinson, Grant Kurz
+Venue
+Wolfson Campus, AI Center, Building 2, Room 2104, 300 N.E. Second Ave., Miami, FL 33132
+Registration
+Local registration
+Contact
+kevin@quantumglobalgroup.io
+grant@deepstation.ai
+Florida Atlantic University
+Local lead
+Robert Loredo, Ayse Torres, Kateryna Tsekhmayster
+Venue
+Details coming soon
+Registration
+Local registration
+Contact
+Robert Loredo, rloredo2026@fau.edu
+Ayse Torres, atorre58@fau.edu
+Kateryna Tsekhmayster, ktsekhmayste2022@fau.edu
+Embry-Riddle Aeronautical University
+Dates
+November 7–8, 2026
+Local lead
+Laxima Niure Kandel
+Venue
+Details coming soon
+Registration
+Local registration
+Contact
+niurekal@erau.edu
+Florida Institute of Technology
+Local lead
+Dr. Robert Usselman
+Venue
+Details coming soon
+Registration
+Local registration
+Contact
+russelman@fit.edu
+Florida Gulf Coast University
+Local lead
+Dr. Chengyi Qu
+Venue
+Details coming soon
+Registration
+Local registration
+Contact
+cqu@fgcu.edu
+What you will produce
+Work through these steps. Each one opens the full lab or handbook section. A strong project can also conclude that a problem is not a good fit for a quantum method. That conclusion needs a source and a reason.
+Get access. Open Plan is up to 10 minutes of QPU execution time per rolling 28-day window. Simulators first. The limit is explained at https://quantum.cloud.ibm.com/docs/en/guides/max-execution-time
+ (opens in a new tab). Account and tools
+Learn the two circuit-building approaches: IBM Quantum Composer, and Python and Qiskit. The Bell state connects them. Composer lab Python and Qiskit lab
+Understand the Qiskit workflow: build the circuit (map), add measurements or name an observable, transpile for a device when you need one, execute with a primitive, then retrieve and interpret the result. A sampler returns measured bitstrings. An estimator returns one number for an observable. A backend is the simulator or processor you run on. A job is that run. Shots are how many times you run it. An ISA circuit is the version rewritten for that device. The result is what comes back, and your job is to explain it. Qiskit workflow
+Establish the classical baseline before you compare anything. Project frame
+Compare responsibly. Do not promise the quantum result will outperform the classical one. Benchmarking
+Build one of the four project types: a mapped problem, a benchmark, a tool, or an analysis. Document what you tried and what the run cannot support. Project frame What you are actually going to build
+Submit and present through the approved GitHub branch and pull-request process. Submission guide
+Workshop 1: Qiskit Foundations
+Two hours. The cards below introduce the blocks. The full labs are the linked pages.
+Welcome, then your own IBM account. Account and tools
+Open the workshop lesson, Quantum from Zero to One. Andrew Chen of Qolour introduces the ideas with the handheld Qubi. Quantum from Zero to One
+The words the Bell lab needs. Vocabulary
+One Bell state in Composer, then the same circuit in Python and Qiskit. Composer Python
+Map, transpile, execute, and interpret. Workflow
+Workshop 2: Project Readiness and Submission
+About 75 to 90 minutes. The Domain/Industry Expert and the Builder/Developer Expert are equal. Coding is optional for the Domain/Industry Expert.
+Choose a pathway and see the shared responsibilities. Two pathways
+Frame a problem and write the classical baseline. Project frame
+Walk the benchmarking sequence. Benchmarking
+Read the Hetionet example as a finished packet, not as the minimum bar. Hetionet example
+Form a team, then open a pull request from the template. Form a team Submit
+Official statewide judging rubric
+This is the official statewide judging rubric for the Florida Qiskit Fallfest Hackathon. Score each criterion 1–5. Weights convert scores to a total out of 100; hardware bonus adds up to +5.
+Weighted Score = Σ (criterion score × weight) ÷ 5 × 100 → out of 100. Total = Weighted Score + Hardware Bonus (max 105).
+Download the judging rubric workbook
+Criteria and weightsCriterion
+Weight
+What it measures
+Problem Definition & Relevance
+15%
+Is there a clear, meaningful problem? Does the team explain who it affects and why it matters?
+Quantum Rationale & Understanding of Potential
+20%
+Does the team understand WHY quantum might help here, and are they honest about today's limits (noise, qubit counts, no guaranteed speedup)?
+Technical Implementation (Qiskit)
+20%
+Does the code run? Is Qiskit used appropriately (circuits, primitives, transpilation, algorithms)? Judged relative to team experience.
+Results & Validation
+10%
+Are results shown and interpreted? Is there a comparison to a classical baseline, expected values, or simulator vs. hardware?
+Innovation & Creativity
+10%
+Is the idea or approach original, or a fresh take on a known problem?
+Presentation & Communication
+15%
+Can the team clearly articulate the problem, the solution and the results to both technical and non-technical audiences?
+Q&A, Teamwork & Learning Journey
+10%
+Can the team answer questions? Do all members contribute? Can they describe what they learned and next steps?
+Total weight (must equal 100%)
+100%
+Problem Definition & Relevance (15%)
+Is there a clear, meaningful problem? Does the team explain who it affects and why it matters?
+Problem Definition & Relevance (15%)1 – Beginning
+2 – Developing
+3 – Proficient
+4 – Strong
+5 – Exceptional
+No clear problem; project is a demo without purpose.
+Problem named but vague; little sense of why it matters.
+Clear problem with some real-world context.
+Well-defined problem with clear stakeholders and motivation.
+Compelling, specific problem; scope is realistic and impact is clearly argued.
+Questions judges can ask. What problem are you solving, and for whom? Why does it matter?
+Quantum Rationale & Understanding of Potential (20%)
+Does the team understand WHY quantum might help here, and are they honest about today's limits (noise, qubit counts, no guaranteed speedup)?
+Quantum Rationale & Understanding of Potential (20%)1 – Beginning
+2 – Developing
+3 – Proficient
+4 – Strong
+5 – Exceptional
+No explanation of why quantum is used; or claims are inaccurate / overhyped.
+Generic claims ("quantum is faster") with little connection to the problem.
+Names a relevant quantum idea (superposition, entanglement, sampling, optimization, simulation) and links it to the problem.
+Clear reasoning for quantum fit; acknowledges current hardware limits and classical alternatives.
+Nuanced view of near-term vs. future potential; realistic about advantage; outlines what scale or hardware would be needed.
+Questions judges can ask. Why quantum instead of a classical approach? What would need to improve for this to beat classical methods?
+Technical Implementation (Qiskit) (20%)
+Does the code run? Is Qiskit used appropriately (circuits, primitives, transpilation, algorithms)? Judged relative to team experience.
+Technical Implementation (Qiskit) (20%)1 – Beginning
+2 – Developing
+3 – Proficient
+4 – Strong
+5 – Exceptional
+Code missing or does not run.
+Runs partially; mostly copied tutorial code with little adaptation.
+Working implementation adapted to the problem; reasonable circuit design.
+Solid, well-structured code; thoughtful use of Qiskit features (e.g., primitives, transpiler, parameterized circuits).
+Polished, documented, reproducible; creative or advanced techniques used correctly (e.g., error mitigation, hybrid workflows).
+Questions judges can ask. Walk me through your circuit. What did you build vs. reuse? What was hardest to get working?
+Results & Validation (10%)
+Are results shown and interpreted? Is there a comparison to a classical baseline, expected values, or simulator vs. hardware?
+Results & Validation (10%)1 – Beginning
+2 – Developing
+3 – Proficient
+4 – Strong
+5 – Exceptional
+No results shown.
+Results shown but not explained.
+Results explained with some interpretation.
+Results compared against a baseline or expectation; limitations discussed.
+Rigorous analysis: baselines, error bars or repeated runs, simulator vs. hardware comparison, clear conclusions.
+Questions judges can ask. How do you know it worked? What did you compare against? What surprised you?
+Innovation & Creativity (10%)
+Is the idea or approach original, or a fresh take on a known problem?
+Innovation & Creativity (10%)1 – Beginning
+2 – Developing
+3 – Proficient
+4 – Strong
+5 – Exceptional
+Direct copy of an existing tutorial or example.
+Minor variation on a common example.
+Some original thinking in problem choice or approach.
+Original idea or a creative application to a new domain.
+Highly original; would make other teams and judges say "I hadn't thought of that."
+Questions judges can ask. What makes your approach different from existing examples?
+Presentation & Communication (15%)
+Can the team clearly articulate the problem, the solution and the results to both technical and non-technical audiences?
+Presentation & Communication (15%)1 – Beginning
+2 – Developing
+3 – Proficient
+4 – Strong
+5 – Exceptional
+Hard to follow; problem and solution unclear.
+Some structure, but heavy jargon or key pieces missing.
+Clear problem-solution story; mostly understandable to non-experts.
+Engaging and well-structured; good visuals; explains quantum concepts in plain language.
+Excellent storytelling; accessible to any audience while still technically accurate; within time.
+Questions judges can ask. Can you explain your project in one sentence to someone with no physics background?
+Q&A, Teamwork & Learning Journey (10%)
+Can the team answer questions? Do all members contribute? Can they describe what they learned and next steps?
+Q&A, Teamwork & Learning Journey (10%)1 – Beginning
+2 – Developing
+3 – Proficient
+4 – Strong
+5 – Exceptional
+Cannot answer basic questions about their own project.
+Answers are partial; one member carries the team.
+Answers most questions; describes some lessons learned.
+Confident, accurate answers; shared ownership; clear next steps.
+Insightful answers, strong collaboration, clear growth story and realistic roadmap.
+Questions judges can ask. What did each of you contribute? What would you do with another month?
+Hardware Bonus (judge selects one tier per team)
+Hardware Bonus (judge selects one tier per team)Hardware tier
+Bonus pts
+Description
+Simulator only
+0
+Ran on a local or cloud simulator (e.g., Aer, statevector). No penalty; strong simulator projects can win.
+Real quantum device
+3
+Circuit executed on real IBM Quantum hardware; job results shown.
+Real device + noise analysis
+5
+Ran on real hardware AND compared to simulator, analysed noise, or applied error suppression/mitigation.
+Scoring notes
+Score relative to a student hackathon, not a research lab. A '3' is a solid, good project.
+Simulator-only projects are fully eligible; the bonus rewards the extra effort of running on real hardware, it is not a requirement.
+Reward honesty: a team that clearly explains why quantum may NOT yet beat classical methods shows more understanding than one that overclaims.
+Official statewide judging rubric
+Download the judging rubric workbook
+ (opens in a new tab)
+Participant handbook
+Domain/Industry Expert and Builder/Developer Expert
+Notebook catalog
+Troubleshooting and support
+Discord
+ (opens in a new tab)
+Qiskit-approved website
+ (opens in a new tab)
+01Start here10 minOpen
+02Account and tools40 minOpen
+03Basic quantum vocabulary20 minOpen
+04Bell state in Composer25 minOpen
+05Bell state in Python and Qiskit40 minOpen
+06How Qiskit Works: One Bell State, End to End25 minOpen
+07Two pathways20 minOpen
+08Project frame and classical baseline20 minOpen
+09Benchmarking and readiness25 minOpen
+10Hetionet example20 minOpen
+11Form a team15 minOpen
+12Prepare and submit20 minOpen
+Understand the eventWorkshop 1Quantum from Zero to OneWorkshop 2Participant handbookDomain/Industry Expert and Builder/Developer ExpertQiskit workflowHetionet exampleBenchmarking and readinessTeamSubmission guideResourcesNotebook catalogTroubleshooting and supportWhat does a successful path through this site produce?A paper claiming quantum computing is better than classical computingAn account, one Bell state, and an honest next stepA proof that quantum computers replace classical onesA finished clinical result
+Choose one answer when you are ready. This is practice.
+Save my place on this page.Prepare your account and tools
+Florida Qiskit Fallfest Hackathon
+For ParticipantsFor Facilitators and Local HostsParticipant handbookDomain/Industry Expert and Builder/Developer ExpertNotebook catalogDiscordQiskit-approved websiteRobert Loredo, rloredo2026@fau.eduKevin Robinson, kevin@quantumglobalgroup.ioGrant Kurz, grant@deepstation.aiAyse Torres, atorre58@fau.eduSupport

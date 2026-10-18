@@ -1,0 +1,26 @@
+<section id="mapping" data-transition="fade" style="display:flex; flex-direction:column; gap:44px; padding:128px 128px 170px; background:#f7f8fa">
+  <div style="display:flex; flex-direction:column; gap:10px">
+    <h2 style="font-family:Inter, Arial, sans-serif; font-size:60px; font-weight:700; line-height:1.1; letter-spacing:-1.5px; color:#05070b">Technical Implementation (Qiskit)</h2>
+    <p style="width:1664px; font-family:Inter, Arial, sans-serif; font-size:30px; font-weight:600; line-height:1.3; color:#3b5b9f">Step 2: two ways to put the head on qubits.</p>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:28px">
+    <div style="width:620px; display:flex; flex-direction:column; gap:20px">
+      <div style="display:flex; flex-direction:column; gap:16px; padding:32px; background:#eef1f6; border-radius:28px">
+        <p style="font-family:Inter, Arial, sans-serif; font-size:24px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:#3b5b9f">A · Compact</p>
+        <p style="font-family:Inter, Arial, sans-serif; font-size:32px; font-weight:400; line-height:1.4; color:#05070b"><b>4 qubits</b> · <b>1,414</b> gates</p>
+        <p style="font-family:Inter, Arial, sans-serif; font-size:26px; font-weight:400; line-height:1.4; color:#45516a">Scales to 29 qubits for a head; too deep today.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:16px; padding:32px; background:#eef1f6; border-radius:28px">
+        <p style="font-family:Inter, Arial, sans-serif; font-size:24px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:#3b5b9f">B · One per site</p>
+        <p style="font-family:Inter, Arial, sans-serif; font-size:32px; font-weight:400; line-height:1.4; color:#05070b"><b>15 qubits</b> · <b>238</b> gates · depth 130</p>
+        <p style="font-family:Inter, Arial, sans-serif; font-size:26px; font-weight:400; line-height:1.4; color:#45516a">Runs on hardware today; loses the memory win.</p>
+      </div>
+    </div>
+    <img src="/_blob/58e33d5f037dbdb5a99191e83a457f14" alt="Error vs two-qubit gates for both encodings in 1D, 2D, 3D" style="width:1016px; height:520px; background:#ffffff; border-radius:20px; object-fit:contain">
+  </div>
+  <div style="position:absolute; right:128px; bottom:56px; left:128px; display:flex; flex-direction:row; gap:48px; align-items:center; justify-content:space-between">
+    <p style="width:1480px; font-family:Inter, Arial, sans-serif; font-size:24px; color:#6b7591">Team repo: qwave/encoding.py, circuits.py · H = [[0, iK], [−iKᵀ, 0]], K = diag(c)·B · 8 Trotter steps</p>
+    <svg xmlns="http://www.w3.org/2000/svg" aria-label="aperion ring mark" viewBox="0 0 100 100" style="width:44px; height:44px"><circle cx="50.0" cy="12.0" r="7" fill="#05070B"/><circle cx="69.0" cy="17.1" r="7" fill="#3B5B9F"/><circle cx="82.9" cy="31.0" r="5.5" fill="#05070B"/><circle cx="88.0" cy="50.0" r="7" fill="#05070B"/><circle cx="82.9" cy="69.0" r="7" fill="#3B5B9F"/><circle cx="69.0" cy="82.9" r="5.5" fill="#05070B"/><circle cx="50.0" cy="88.0" r="7" fill="#05070B"/><circle cx="31.0" cy="82.9" r="7" fill="#3B5B9F"/><circle cx="17.1" cy="69.0" r="5.5" fill="#05070B"/><circle cx="12.0" cy="50.0" r="7" fill="#05070B"/><circle cx="17.1" cy="31.0" r="7" fill="#3B5B9F"/><circle cx="31.0" cy="17.1" r="5.5" fill="#05070B"/></svg>
+  </div>
+  <aside>Charan.</aside>
+</section>

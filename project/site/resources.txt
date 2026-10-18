@@ -1,0 +1,56 @@
+Resources · Florida Qiskit Fallfest Hackathon
+Skip to contentQFFFlorida Qiskit Fallfest HackathonFor ParticipantsFor Facilitators and Local HostsHandbookPathwaysRegisterResourcesSupportGlossary0/12 done
+Reference · 10 min
+Resources
+One list. Official pages stay on their own sites. This repo does not copy courses, the book, or a readiness engine.
+Event
+Official registration: Coming soon. Discord: https://discord.gg/vz6uTbtJzR
+ (opens in a new tab). Program questions: kevin@quantumglobalgroup.io. Qiskit-approved website: https://entangledsolutionsgroup.com/Qiskit-Fall-Fest-2026/
+ (opens in a new tab). Qiskit Slack: https://qisk.it/join-slack
+ (opens in a new tab). Announcement: https://www.ibm.com/quantum/blog/qiskit-fall-fest-2026
+ (opens in a new tab).
+Handbook and catalog
+The participant handbook, the domain track, and the notebook catalog are rendered on this website.
+Submit your team project in the private repository https://github.com/robertloredo/FAU-Qiskit-Fallfest-2026
+ (opens in a new tab). Ask to join it.
+IBM Quantum Platform and Qiskit
+Platform: https://quantum.cloud.ibm.com/
+ (opens in a new tab). Patterns: https://quantum.cloud.ibm.com/docs/en/guides/intro-to-patterns
+ (opens in a new tab). Hello world: https://quantum.cloud.ibm.com/docs/en/guides/hello-world
+ (opens in a new tab). Composer: https://quantum.cloud.ibm.com/docs/en/guides/composer
+ (opens in a new tab). Tutorials: https://www.ibm.com/quantum/qiskit#tutorials
+ (opens in a new tab). API: https://quantum.cloud.ibm.com/docs/api
+ (opens in a new tab). Source: https://github.com/Qiskit/qiskit#readme
+ (opens in a new tab).
+Qolour
+The workshop lesson is Quantum from Zero to One, by Andrew Chen of Qolour. It uses the handheld Qubi. Open the PDF from the lesson page.
+Educator course: https://www.qolour.com/educator-course
+ (opens in a new tab). Statevector exhibit: https://www.qolour.com/educator-course/statevector-exhibit
+ (opens in a new tab). The educator course stays on Qolour’s site.
+Case study and readiness
+Hetionet repository: https://github.com/Quantum-Global-Group/hybrid-qml-kg-poc
+ (opens in a new tab). The signed-out demo is https://hetqml-web.fly.dev/initialize
+ (opens in a new tab).
+The Next-Step Quantum Decision Guide is the step after both Bell labs and before Hetionet. Use it for optimization-shaped problems only. The benchmarking page defines quantum advantage. Hetionet is not that claim, and it is not a clinical result.
+Book
+Quantum Readiness for Leaders, by Robert Loredo. Chapter 7 is Prototyping and Proof-of-Concept Development. Read it, then use the charter on the benchmarking page. The book is not copied here.
+Quantum from Zero to One
+Open or download Quantum from Zero to One (PDF)
+ (opens in a new tab)
+Official statewide judging rubric
+Download the judging rubric workbook
+ (opens in a new tab)
+Participant handbook
+Notebook catalog
+Glossary
+Troubleshooting and support
+Domain/Industry Expert and Builder/Developer Expert
+Next-Step Quantum Decision Guide
+ (opens in a new tab)
+Qiskit-approved website
+ (opens in a new tab)
+Where is the definition of a sampler?A second glossary on every pageThe glossary linked from this siteInside the API keyIn a copied course
+Choose one answer when you are ready. This is practice.
+Save my place on this page.Back to the start
+Florida Qiskit Fallfest Hackathon
+For ParticipantsFor Facilitators and Local HostsParticipant handbookDomain/Industry Expert and Builder/Developer ExpertNotebook catalogDiscordQiskit-approved websiteRobert Loredo, rloredo2026@fau.eduKevin Robinson, kevin@quantumglobalgroup.ioGrant Kurz, grant@deepstation.aiAyse Torres, atorre58@fau.eduSupport

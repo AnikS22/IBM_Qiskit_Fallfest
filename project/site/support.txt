@@ -1,0 +1,26 @@
+Support · Florida Qiskit Fallfest Hackathon
+Skip to contentQFFFlorida Qiskit Fallfest HackathonFor ParticipantsFor Facilitators and Local HostsHandbookPathwaysRegisterResourcesSupportGlossary0/12 done
+For Participants
+When a step needs a hand
+Unexpected results are normal. The longer list is in the handbook. Each note says what may have happened, one or two things to try, and where to ask. You can keep learning while it is resolved. Ask your local university lead first, then the workshop instructor or designated co-host, then Kevin Robinson at kevin@quantumglobalgroup.io for unresolved program questions. Do not send basic account troubleshooting to IBM unless official IBM account support is required. Please leave passwords, API keys, and CRNs out of the message.
+Account or region
+What may have happened: the header is on a region other than us-east, so the instance list looks empty. Open Plan instances are created there. The Open Plan is up to 10 minutes of QPU execution time per rolling 28-day window. Switch the region before you create a second account. Ask a facilitator if the list is still empty. Simulators first, so you can keep learning while the account is sorted out.
+If you cannot sign in
+A workshop facilitator is the instructor, co-host, or designated university lead helping participants during the session. If you cannot sign in after trying the account troubleshooting steps, ask a workshop facilitator or your university lead for help. You can continue following the projected demonstration while the account issue is being resolved. You can keep learning from the projected demonstration and the Bell lab on the simulator.
+Who to ask
+Ask your local university lead first, then the workshop instructor or designated co-host, then Kevin Robinson at kevin@quantumglobalgroup.io for unresolved program questions. Do not send basic account troubleshooting to IBM unless official IBM account support is required.
+API key
+What may have happened: a key was pasted into chat or git. This site never asks for the key. Revoke it in the IBM dashboard and create a replacement. Tell a facilitator without sending the key itself. The simulator lab does not need one, so you can keep going.
+Qiskit import
+What may have happened: Jupyter is using a different Python than the one where Qiskit was installed. Activate the virtual environment, then start Jupyter from that same shell. The Bell lab pins qiskit>=2.3.0,<2.4.0. Ask in Discord with the error text, not a key. Composer in the browser is available while the kernel is fixed.
+An older tutorial
+What may have happened: the tutorial uses IBMQ.load_account(), execute(), qiskit.Aer, or channel="ibm_quantum". Those are not the current API. Use the handbook examples instead. Discord can help if you paste the error text and leave out any API key. You can keep learning from the Bell lab while you compare the two.
+Handbook troubleshooting
+Account and tools
+Facilitator guide
+Discord
+Kevin Robinson, kevin@quantumglobalgroup.io
+Qiskit-approved website
+Qiskit Slack
+Florida Qiskit Fallfest Hackathon
+For ParticipantsFor Facilitators and Local HostsParticipant handbookDomain/Industry Expert and Builder/Developer ExpertNotebook catalogDiscordQiskit-approved websiteRobert Loredo, rloredo2026@fau.eduKevin Robinson, kevin@quantumglobalgroup.ioGrant Kurz, grant@deepstation.aiAyse Torres, atorre58@fau.eduSupport

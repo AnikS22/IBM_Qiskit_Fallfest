@@ -1,0 +1,36 @@
+<section id="cf7959ec" data-transition="fade" style="background:#F7F8FA">
+  <div id="a20f8d6d" style="position:absolute; top:0; right:0; bottom:0; left:0; display:flex; flex-direction:column; gap:32px; padding:128px 128px 170px">
+    <div style="display:flex; flex-direction:column; gap:10px">
+      <h2 style="font-family:Inter, Arial, sans-serif; font-size:60px; font-weight:600; line-height:1.1; letter-spacing:-1px; color:#05070B">Quantum vs Classical: Speed</h2>
+      <p style="width:1664px; font-family:Inter, Arial, sans-serif; font-size:30px; font-weight:500; line-height:1.4; color:#3B5B9F">Same accuracy, growing head: where quantum overtakes classical.</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:28px; align-items:start">
+      <div style="width:900px; display:flex; flex-direction:row; justify-content:center; padding:12px; background:#ffffff; border-radius:16px">
+        <img src="/_blob/64c72d21d35ae98562e246dc715e396d" alt="Time for one answer at 5% accuracy vs voxels: classical rises steeply, quantum slowly; crossover near 283 cubed voxels, before the full 440 cubed head" style="width:872px; height:540px; object-fit:contain">
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px; flex:1">
+        <div style="display:flex; flex-direction:row; gap:22px; align-items:center; padding:20px 26px; background:#FFFFFF; border-radius:20px">
+          <p style="width:230px; font-family:Inter, Arial, sans-serif; font-size:48px; font-weight:700; letter-spacing:-1px; color:#3B5B9F">110×</p>
+          <p style="flex:1; font-family:Inter, Arial, sans-serif; font-size:22px; line-height:1.35; color:#45516A">faster per circuit run: 6.3 µs on IBM’s chip (gate + readout time) vs 695 µs classical, same problem</p>
+        </div>
+        <div style="display:flex; flex-direction:row; gap:22px; align-items:center; padding:20px 26px; background:#FFFFFF; border-radius:20px">
+          <p style="width:230px; font-family:Inter, Arial, sans-serif; font-size:48px; font-weight:700; letter-spacing:-1px; color:#3B5B9F">283³</p>
+          <p style="flex:1; font-family:Inter, Arial, sans-serif; font-size:22px; line-height:1.35; color:#45516A">voxels: crossover at matched 5% accuracy (projected)</p>
+        </div>
+        <div style="display:flex; flex-direction:row; gap:22px; align-items:center; padding:20px 26px; background:#EEF1F6; border-radius:20px">
+          <p style="width:230px; font-family:Inter, Arial, sans-serif; font-size:48px; font-weight:700; letter-spacing:-1px; color:#05070B">~3.3×</p>
+          <p style="flex:1; font-family:Inter, Arial, sans-serif; font-size:22px; line-height:1.35; color:#45516A">faster for a full 440³ head: ~3.1 h vs ~10.2 h, one wave simulation (projected)</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px; padding:18px 24px; background:#FFFFFF; border-radius:20px">
+          <p style="font-family:Inter, Arial, sans-serif; font-size:22px; font-weight:700; letter-spacing:3px; color:#3B5B9F">CAVEATS</p>
+          <p style="font-family:Inter, Arial, sans-serif; font-size:20px; line-height:1.4; color:#45516A">One run is one shot; an answer needs ~4,000 shots, so at today’s size classical still wins the full answer. Measured to 135 qubits; beyond is a noise-free projection. Classical = our solver on one laptop core.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="4a6f29b9" style="position:absolute; right:128px; bottom:56px; left:128px; display:flex; flex-direction:row; gap:48px; align-items:center; justify-content:space-between">
+    <p style="width:1480px; font-family:Inter, Arial, sans-serif; font-size:24px; color:#6B7591">Team results §4b · scaling/crossover.py · 135-qubit circuit compiled to IBM Heron layout</p>
+    <svg xmlns="http://www.w3.org/2000/svg" aria-label="aperion ring mark" viewBox="0 0 100 100" style="width:44px; height:44px"><circle cx="50.0" cy="12.0" r="7" fill="#05070B"/><circle cx="69.0" cy="17.1" r="7" fill="#3B5B9F"/><circle cx="82.9" cy="31.0" r="5.5" fill="#05070B"/><circle cx="88.0" cy="50.0" r="7" fill="#05070B"/><circle cx="82.9" cy="69.0" r="7" fill="#3B5B9F"/><circle cx="69.0" cy="82.9" r="5.5" fill="#05070B"/><circle cx="50.0" cy="88.0" r="7" fill="#05070B"/><circle cx="31.0" cy="82.9" r="7" fill="#3B5B9F"/><circle cx="17.1" cy="69.0" r="5.5" fill="#05070B"/><circle cx="12.0" cy="50.0" r="7" fill="#05070B"/><circle cx="17.1" cy="31.0" r="7" fill="#3B5B9F"/><circle cx="31.0" cy="17.1" r="5.5" fill="#05070B"/></svg>
+  </div>
+  <aside>One run of our circuit is about 110 times faster than the classical solve, but one run is one shot. Past about 283 cubed voxels quantum pulls ahead; about 3.3 times faster for a full head. That part is a projection on error-free hardware.</aside>
+</section>

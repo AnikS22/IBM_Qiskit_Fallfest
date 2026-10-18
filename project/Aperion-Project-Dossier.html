@@ -1,0 +1,210 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Aperion Project Dossier</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+@page{size:Letter;margin:0.6in 0.65in}
+body{font-family:Inter,Arial,sans-serif;color:#05070B;font-size:10.5pt;line-height:1.5}
+h1{font-size:30pt;letter-spacing:-.02em;margin:0 0 4pt}
+h2{font-size:17pt;margin:22pt 0 6pt;padding-top:8pt;border-top:2px solid #0F2747;color:#0F2747;page-break-after:avoid}
+h3{font-size:12.5pt;margin:14pt 0 4pt;page-break-after:avoid}
+.sub{color:#3B5B9F;font-weight:600;font-size:13pt}
+.meta{color:#45516A}
+table{border-collapse:collapse;width:100%;margin:6pt 0 10pt;font-size:9.5pt;page-break-inside:avoid}
+th,td{border:1px solid #DCE2EC;padding:4pt 6pt;text-align:left;vertical-align:top}
+th{background:#EEF1F6}
+.slide{border:1px solid #DCE2EC;border-radius:8pt;padding:10pt 12pt;margin:10pt 0;page-break-inside:avoid}
+.slide .n{display:inline-block;background:#0F2747;color:#fff;border-radius:4pt;padding:1pt 7pt;font-weight:700;margin-right:6pt}
+.tag{display:inline-block;font-size:8.5pt;font-weight:600;color:#3B5B9F;border:1px solid #C7CFDD;border-radius:10pt;padding:0 6pt;margin-left:4pt}
+.say{background:#F7F8FA;border-left:3px solid #3B5B9F;padding:6pt 9pt;margin-top:6pt}
+.warn{background:#FFF6EC;border-left:3px solid #E07A3F;padding:6pt 9pt}
+ul{margin:4pt 0;padding-left:16pt} li{margin:2pt 0}
+.small{font-size:9pt;color:#45516A}
+.pb{page-break-before:always}
+</style></head><body>
+
+<p class="meta">Florida Qiskit Fall Fest 2026 · Team Quantum Entanglers · Project dossier for script writing · 18 Oct 2026</p>
+<h1>aperion</h1>
+<p class="sub">Imaging beyond what’s visible. Quantum-assisted ultrasound brain imaging.</p>
+<p><b>One-sentence pitch:</b> A team at Imperial College London showed a helmet of ultrasound sensors can image a stroke through the skull without radiation, but one image takes 32 hours of computing; we broke their reconstruction algorithm apart, found the step that is quantum-shaped (the wave simulation, over 95% of the compute), built and tested it as a Qiskit circuit, and show honestly what a quantum computer can and cannot do for it today.</p>
+<p><b>Team:</b> Anik Sahai (clinical &amp; product, presenter lead) · Aaron Loh (math &amp; numerics) · Charan Jarugula (quantum).</p>
+<p><b>Deck:</b> https://claude.ai/artifact/JLxHdho2TspyzNZR7qVURJ (24 presented slides + hidden backups). For a PDF of the slides themselves, open the deck and use Share → Export → PDF. This dossier is the script source behind it.</p>
+
+<h2>1. How we are judged</h2>
+<table><tr><th>Criterion</th><th>Weight</th><th>What a 5 looks like</th><th>Where we hit it</th></tr>
+<tr><td>Problem Definition &amp; Relevance</td><td>15%</td><td>Compelling, specific problem; realistic scope; impact clearly argued</td><td>Slides 3, 4, 7, 8, 21–23</td></tr>
+<tr><td>Quantum Rationale &amp; Understanding</td><td>20% (tie-break)</td><td>Nuanced near-term vs future; realistic about advantage; what scale/hardware is needed</td><td>Slides 8–17, 21–22</td></tr>
+<tr><td>Technical Implementation (Qiskit)</td><td>20%</td><td>Polished, reproducible; advanced techniques (error mitigation, hybrid)</td><td>Slides 16–18 (data coming)</td></tr>
+<tr><td>Results &amp; Validation</td><td>10%</td><td>Baselines, error bars/repeats, simulator vs hardware, clear conclusions</td><td>Slide 19 (data coming)</td></tr>
+<tr><td>Innovation &amp; Creativity</td><td>10%</td><td>“I hadn’t thought of that”</td><td>Slides 4–6, 20</td></tr>
+<tr><td>Presentation &amp; Communication</td><td>15%</td><td>Accessible, accurate, within ~5 min</td><td>Whole deck; cover and close</td></tr>
+<tr><td>Q&amp;A, Teamwork &amp; Learning</td><td>10%</td><td>Shared ownership, growth story, realistic roadmap</td><td>Slide 2; Q&amp;A section below</td></tr>
+<tr><td>Hardware bonus</td><td>+3 / +5</td><td>+5 = real IBM device AND noise analysis or mitigation</td><td>Needs tonight’s hardware run</td></tr></table>
+<p class="warn"><b>Judges are told:</b> “A team that clearly explains why quantum may NOT yet beat classical shows more understanding than one that overclaims.” Our honesty is a scoring strategy, not a weakness.</p>
+
+<h2>2. Story arc (what the audience should feel)</h2>
+<ol>
+<li><b>A huge problem:</b> no stroke can be treated until someone sees inside the head, and the scanners are in hospitals.</li>
+<li><b>A huge breakthrough:</b> researchers built an ultrasound helmet that sees through the skull, cheaply and without radiation.</li>
+<li><b>One HUGE problem:</b> one image takes 32 hours; every minute kills 1.9 million neurons.</li>
+<li><b>Our work:</b> we read the literature, broke their algorithm apart, found the quantum-shaped step, built it in Qiskit on top of a 1D quantum algorithm, and tested it.</li>
+<li><b>Honest result + future:</b> what works, what doesn’t yet, how it scales with quantum hardware, and the lives it could save.</li>
+</ol>
+
+<h2>3. Slide by slide</h2>
+
+<div class="slide"><span class="n">1</span><b>Cover</b><span class="tag">Presentation</span><span class="tag">Anik</span>
+<p>aperion wordmark (the “o” is a ring of transducer dots) · “Imaging beyond what’s visible.” · “Quantum-assisted ultrasound brain imaging: a clearer picture of a stroke, before the hospital.” · Team names.</p>
+<div class="say">We tested whether a quantum computer can speed up the slowest step of a portable brain scanner, and we will show exactly where it works and where it does not.</div></div>
+
+<div class="slide"><span class="n">2</span><b>The Team</b><span class="tag">Q&amp;A/Teamwork</span><span class="tag">Anik</span>
+<p>Three photo slots. Anik Sahai, clinical &amp; product (Founder AuthAI; smartphone retinopathy screener; AI researcher FAU CA-AI, 2 papers submitted). Aaron Loh, math &amp; numerics (FAU research on PDE surrogates and computer-assisted proofs; 1st nationally Mu Alpha Theta Matrices &amp; Vectors; 2nd Florida State Science Fair). Charan Jarugula, quantum (FAU quantum research assistant on error mitigation; founder Q-Beam; computational neuroscience at UF Scripps).</p>
+<div class="say">Optional chain of questions: Anik asked why stroke patients wait for scanners; Aaron asked what math takes 32 hours; Charan asked whether a quantum computer can run it and survive the noise. Each presents the part they asked about.</div></div>
+
+<div class="slide"><span class="n">3</span><b>Problem</b><span class="tag">Problem 15%</span><span class="tag">Anik</span>
+<p>Top row: <b>795K</b> US strokes/yr (11.9M worldwide) · <b>1.9M</b> neurons lost per untreated minute · <b>1 in 8 is a bleed</b> (pictogram). Bottom row: <b>113M</b> Americans lack 60-min access to clot removal; CT per million US 44.6 vs Tanzania 0.17 · <b>25%</b> of patients arrive within 3 h · <b>$56.2B</b> US cost per year.</p>
+<div class="say">Picture someone collapsing at home. Paramedics arrive fast, but there are two kinds of stroke. A clot is treated with a clot-busting drug; a bleed is made worse by that same drug. So the guideline says brain imaging is essential first, and that scanner lives in a hospital. Every minute of that wait costs about 1.9 million neurons.</div>
+<p class="small">Sources: AHA Heart Disease &amp; Stroke Statistics 2026 (87% ischemic, 10% intracerebral, 3% subarachnoid); GBD 2021 (Lancet Neurol 2024); Saver, Stroke 2006; 2026 AHA/ASA guideline §3.2; J NeuroIntervent Surg 2022; Stroke 2012; CDC; WHO medical devices data.</p></div>
+
+<div class="slide"><span class="n">4</span><b>Competitive advantage</b><span class="tag">Innovation 10%</span><span class="tag">Anik</span>
+<table><tr><th>Category</th><th>aperion helmet</th><th>Hospital CT</th><th>Hospital MRI</th><th>CT ambulance</th><th>Portable MRI</th></tr>
+<tr><td>Goes to the patient</td><td>✓</td><td>✗</td><td>✗</td><td>✓</td><td>✓</td></tr>
+<tr><td>No ionizing radiation</td><td>✓</td><td>✗</td><td>✓</td><td>✗</td><td>✓</td></tr>
+<tr><td>No magnet, no shielding</td><td>✓</td><td>✓</td><td>✗</td><td>✓</td><td>✗</td></tr>
+<tr><td>Sees through the skull</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+<tr><td>Image in minutes</td><td>✗ (32 h today)</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+<tr><td>Proven in patients</td><td>✗ (simulation)</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr></table>
+<div class="say">The helmet is the only option that goes to the patient with no radiation and no magnet. Its two gaps are time and clinical proof. Time is the one we attack. Context: CT ambulances (BEST-MSU, NEJM 2021) got treatment 36 minutes sooner (72 vs 108 min) and better outcomes (55.0% vs 44.4% little or no disability), but cost ~$1M each and cost-effectiveness is borderline; portable MRI (Hyperfine) weighs ~1,400 lb and caught 80.4% of bleeds; head CT ~1.6 mSv.</div></div>
+
+<div class="slide"><span class="n">5</span><b>How it works (high level)</b><span class="tag">Innovation</span><span class="tag">Anik</span>
+<p>Guasch Fig. 1 (helmet geometry and 1,024-transducer prototype) + live 2D wave simulation through a real brain slice (MNI152 template) with a speed-of-sound key and a speed profile graph.</p>
+<div class="say">1,024 transducers, each a speaker and a microphone. One fires, all listen. Sound speeds up in skull (2,814 m/s) and slows in brain (~1,505 m/s grey matter, 1,552.5 white); blood is 1,578. Those speed changes are the image. Keep the hardware high level; the interesting part is the algorithm.</div></div>
+
+<div class="slide"><span class="n">6</span><b>The real breakthrough is the algorithm</b><span class="tag">Innovation</span><span class="tag">Anik</span>
+<p>Reconstruction animation (blur sharpening into anatomy) + falling mismatch curve (illustrative).</p>
+<div class="say">Full-waveform inversion: guess the head, simulate the sound, compare with the recordings, adjust. About 80 rounds, low frequencies first. Using the whole wave instead of just arrival time sharpens resolution from ~19 mm to ~0.9 mm. More than 95% of the work is simulating the wave.</div></div>
+
+<div class="slide"><span class="n">7</span><b>“It works in simulation. But one image takes 32 hours.”</b><span class="tag">Problem</span><span class="tag">Anik → Aaron</span>
+<p>Guasch Figs. 8–9: true vs reconstructed haemorrhage; 3D bleed segmentation. Big “32 h” on 128 CPU nodes × 24 cores.</p>
+<div class="say">Be precise: the bleed result is a simulation, and the inversion started from the known skull. No in-vivo brain image has been published as of October 2026.</div></div>
+
+<div class="slide"><span class="n">8</span><b>“Every minute kills 1.9 million neurons. A 32-hour image is no image at all.”</b><span class="tag">Problem · Quantum</span><span class="tag">Aaron</span>
+<p>Cards: 1.9M neurons/min · 4.5 h clot-busting window vs 32 h image · ~$1.2M of GPUs to get under 10 min. Banner: &gt;95% of compute is the wave simulation.</p>
+<div class="say">The device is cheap; the computer behind it is not, and the clock is brutal. The authors’ own route is 12 GPU servers (~$1.2M capital, ~$2M installed) projected to reach under 10 minutes and ~$15 to a few tens of dollars per scan at full use. That is a projection; no measured sub-10-minute 3D brain FWI has been published.</div></div>
+
+<div class="slide"><span class="n">9</span><b>Literature review</b><span class="tag">Quantum Rationale</span><span class="tag">Anik/Aaron</span>
+<p>“132 sources across stroke medicine, ultrasound imaging and quantum computing.” Front pages: Guasch 2020, Cueto 2022 (Stride), Costa 2019, Schade 2024, Bösch 2025, Babbush 2023, Harrow 2009 (HHL), Nguyen 2026 (hybrid quantum-classical FWI).</p>
+<div class="say">We read the paper behind the device, the software its authors use, the quantum algorithms that could replace the slow step, and the papers that limit those claims. Four research reports: clinical statistics, ultrasound/FWI, quantum algorithms, and an audit of our own code. Every number in the deck links to a source.</div></div>
+
+<div class="slide"><span class="n">10</span><b>The science: a brain image is a map of how fast sound travels</b><span class="tag">Quantum Rationale</span><span class="tag">Aaron</span>
+<p>Flow: (1) Voxels c = (c₁…c_N), ~10⁸ cubes of 0.5 mm · (2) Travel time t ≈ Σ ℓᵢ/cᵢ, crossing paths triangulate · (3) Full waveform 19 mm → 0.9 mm. Guasch Fig. 2 (true · start · travel-time · FWI).</p></div>
+
+<div class="slide"><span class="n">11</span><b>Overview: guess, simulate, compare, repeat</b> (your slide)<span class="tag">Quantum Rationale</span><span class="tag">Aaron</span>
+<p>1 Guess c_j · 2 Send q(t) · 3 Simulate p(x,t) (marked Quantum) · 4 Record d_pred · 5 Compare and update E = ½Σ(d_pred − d_meas)², c ← c − α∇E, ~80 rounds. Side card: step 3 and its adjoint are &gt;95% of compute; wave equation → Schrödinger; 29 qubits could hold a head; readout is the hard part.</p></div>
+
+<div class="slide"><span class="n">12</span><b>How a computer simulates sound (derivation, 5 clicks)</b><span class="tag">Quantum Rationale</span><span class="tag">Aaron</span>
+<ol><li>Wave equation: (1/c²) ∂²p/∂t² = ∂²p/∂x² + q</li><li>Grid: x_j = jh, t_n = nΔt</li><li>Differences: ∂²p/∂x² ≈ (p_{j+1} − 2p_j + p_{j−1})/h²</li><li>Update rule: p_j^{n+1} = 2p_j^n − p_j^{n−1} + (c_j²Δt²/h²)(p_{j+1}^n − 2p_j^n + p_{j−1}^n) + c_j²Δt² q_j^n</li><li>Stability: c_max Δt/h ≤ 1 (1D), ≤ 1/√3 (3D); skull sets the clock</li></ol></div>
+
+<div class="slide"><span class="n">13</span><b>How the image is found (derivation, 5 clicks)</b><span class="tag">Quantum Rationale</span><span class="tag">Aaron</span>
+<ol><li>Residual r = F(c) − d (predicted minus measured)</li><li>Error E = ½‖r‖² (one number)</li><li>Gradient ∇E = J_Fᵀ r, computed with one extra backward (“adjoint”) simulation</li><li>Update c_{k+1} = Π[c_k − η(∇E + λ∇R)]</li><li>Cost ≈ O(I·S·N_t·V) ≈ 80 × 100 × 2 × 2400 × 10⁸ ≈ 4×10¹⁵ updates (our estimate)</li></ol>
+<div class="say">Forward = “what would I hear?” Misfit = “how wrong was I?” Adjoint = “play the error backwards to see where it came from.” E = 0 does not prove the anatomy is right (non-convex, local minima).</div></div>
+
+<div class="slide"><span class="n">14</span><b>Breaking their algorithm apart</b><span class="tag">Quantum Rationale</span><span class="tag">Aaron</span>
+<p>5-box flow: Guess (classical) → Forward sim (quantum candidate) → Misfit E (quantum candidate, one number) → Adjoint sim (quantum candidate) → Update (classical). &gt;95% of compute in the two wave simulations; anything needing a full vector stays classical.</p></div>
+
+<div class="slide"><span class="n">15</span><b>Why quantum: sound becomes a Schrödinger equation (5 clicks)</b><span class="tag">Quantum Rationale</span><span class="tag">Charan</span>
+<ol><li>Grid wave equation: d²φ/dt² = −B B† φ (B = which cells touch, weighted by speed)</li><li>Stack ψ = (φ̇, −i B†φ): velocity and stretch</li><li>i dψ/dt = Hψ, H = [[0, B],[B†, 0]], the equation a quantum computer runs</li><li>‖ψ‖² = wave energy, conserved = probability conserved</li><li>ψ(t) = e^{−iHt}ψ(0) ≈ (e^{−iH_even Δt} e^{−iH_odd Δt})ⁿ ψ(0): Trotter steps</li></ol>
+<div class="say">Plain English: the wave becomes a packet hopping along a chain of cells and links. n qubits hold 2ⁿ amplitudes, so 29 qubits could hold a whole head (~341M sites). But you can only read it out one sample at a time. Realistic gain is polynomial, at best quartic in 3D (Bösch 2025), not exponential. Costa’s H carries a 1/a factor, absorbed into B here.</div></div>
+
+<div class="slide"><span class="n">16</span><b>The 1D quantum algorithm we build on (Schade et al. 2024)</b><span class="tag">Quantum Rationale</span><span class="tag">Charan</span>
+<p>Five steps: discretize the 1D elastic wave (varying ρ, μ) → rewrite as Schrödinger → load 2ⁿ grid points into n qubits → evolve with e^{−iHt} → measure. Their Qiskit circuit (state prep · time evolution · observable · measure). “64 grid points → 6 qubits; a head’s 341M sites → 29.”</p></div>
+
+<div class="slide"><span class="n">17</span><b>It runs on a real IBM quantum computer, at toy scale</b><span class="tag">Quantum Rationale</span><span class="tag">Charan</span>
+<p>Their figures: 64-point simulator matches the classical ODE solver; 9-point run on IBM Brisbane (blue) drifts from classical (black). Stats: 4–5 qubits · ~870 gates, no error mitigation · up to 60% error. Our addition: tissue speeds, Trotter steps, error mitigation, skull and bleed.</p>
+<div class="say">Note: Schade compiled the exact unitary (not Trotterized) and read out by state tomography at 1,000 shots. IBM Brisbane was retired in Nov 2025.</div></div>
+
+<div class="slide"><span class="n">18–20</span><b>Technical steps &amp; tests · Results · Innovation</b><span class="tag">Technical · Results · Innovation</span>
+<p><b>Left blank for the team’s experiment data.</b> See section 5 for what the code already shows and what to run tonight.</p></div>
+
+<div class="slide"><span class="n">21</span><b>Conclusion · Lives saved</b><span class="tag">Problem · Quantum</span><span class="tag">Anik</span>
+<p>36 min faster treatment when imaging comes to the patient (BEST-MSU) · ~68M neurons in those 36 min (our calc: 36 × 1.9M) · 49M Americans 60+ min from advanced stroke care (CDC 2025). Scaling: today 15 noisy qubits on one line through the head → IBM Starling 2029 targets 200 error-corrected qubits and 10⁸ operations → a head needs 29 logical qubits and ~10⁸+ reliable operations, asked for one number at a time. Must be true: error-corrected qubits, efficient loading, one-number readout.</p></div>
+
+<div class="slide"><span class="n">22</span><b>Conclusion · Making the technique useful</b><span class="tag">Problem · Quantum</span><span class="tag">Anik</span>
+<p>Path: Today 32 h CPU → GPUs ~10 min (projected) → hybrid quantum for the wave step via the cloud → every clinic (helmet + cloud compute). Unlocks: triage in the ambulance; repeat scans (no radiation, so a bleed can be watched hour by hour); reach where CT never does (0.17 scanners per million).</p>
+<div class="say">The technique only becomes useful when the image is fast and cheap. Quantum is the last step on that path, not the first.</div></div>
+
+<div class="slide"><span class="n">23</span><b>Conclusion · Imaging beyond what’s visible</b><span class="tag">Presentation</span><span class="tag">Anik</span>
+<p>Uses: stroke in the ambulance; low-income clinics; breast and limb (ultrasound tomography already FDA-approved for breast: Delphinus SoftVue, 2021); beyond medicine (seismic, non-destructive testing). Belief: “We believe the wall is compute, not physics. Classical hardware will get there first; quantum is how the same scan could reach every clinic on the cloud. Every minute we save is 1.9 million neurons.” Theme tie-in: “A decade of quantum on the cloud.”</p></div>
+
+<div class="slide"><span class="n">24</span><b>References</b> (backup)</div>
+
+<h2 class="pb">4. The ideas in plain English (for the script)</h2>
+<h3>Ultrasound tomography / full-waveform inversion</h3>
+<ul><li>The image is a list of sound speeds in ~10⁸ tiny cubes (0.5 mm). Sound is faster in skull, slower in brain, slightly faster in blood than brain (~5% vs grey matter, ~1.7% vs white).</li>
+<li>FWI guesses that list, simulates the sound through it, compares predicted and measured recordings, and nudges the guess. Analogy: guessing what’s in a dark room by clapping and listening to echoes.</li>
+<li>Each round needs a forward and an adjoint wave simulation for every transmitter: that is &gt;95% of the compute and why it took 32 h.</li></ul>
+<h3>Why the wave fits a quantum computer</h3>
+<ul><li>Quantum computers only rotate a vector while keeping its length fixed. Lossless sound keeps total energy fixed. Build a vector whose length is the energy, and the wave becomes a quantum evolution.</li>
+<li>Picture: a packet of amplitude hopping along a chain of cells and the links between them; hops are faster through skull. Our 7 cells + 8 links = 15 sites.</li>
+<li><b>Two encodings:</b> one qubit per site (15 qubits, cheap neighbour gates, 238 two-qubit gates, but only 15 numbers in play, so a laptop can do it) vs compact binary (4 qubits for 15 sites; n qubits hold 2ⁿ amplitudes, 29 for a head; but neighbours aren’t neighbouring bits, so 1,414 gates for 7 cells).</li>
+<li><b>Readout wall:</b> each shot reveals one site with probability = its energy share. Reading a full FWI round (~10⁹ numbers) would take ~10¹³ shots (~114 years at IBM’s rate). So ask for one number only (misfit, or bleed yes/no). Amplitude estimation could cut shots from 1/ε² to ~1/ε but needs deep circuits.</li>
+<li><b>Time steps don’t shrink:</b> sound still crosses ~440 cells, so quantum saves memory per step, not the number of steps.</li></ul>
+
+<h2>5. Our code and results (team-quantum-ultrasound repo)</h2>
+<table><tr><th>Item</th><th>Result</th><th>Status</th></tr>
+<tr><td>7-cell line</td><td>scalp 1600 · skull 2800 · brain 1546 · brain 1546 (bleed 1578) · brain 1546 · skull 2800 · scalp 1600 m/s</td><td>—</td></tr>
+<tr><td>Hamiltonian</td><td>H = [[0, iK], [−iKᵀ, 0]], K = diag(c)·B (reproduces p_tt = c²∇²p)</td><td>Done</td></tr>
+<tr><td>Classical solver vs Stride (researchers’ code)</td><td>0.993 mean trace correlation</td><td>Measured</td></tr>
+<tr><td>Two classical solvers (3D 7³)</td><td>agree to 7×10⁻⁸; energy drift 4×10⁻⁶</td><td>Measured</td></tr>
+<tr><td>Our 2D FWI</td><td>bleed recovered 1,576 vs 1,578 m/s; brain 1,546 vs 1,546; misfit 1.9×10⁻⁵ → 1.3×10⁻⁶ in 40 rounds</td><td>Measured</td></tr>
+<tr><td>Exact target</td><td>energy at first brain cell, t = 1.5: 0.1040 (bleed 0.1041)</td><td>—</td></tr>
+<tr><td>Unary (one per site)</td><td>15 qubits, 238 CZ, depth 130 (Kingston layout); noiseless error 2.4% on signal-bearing cell at 8 steps</td><td>Simulator</td></tr>
+<tr><td>Compact</td><td>4 qubits, 336/694/1,414 CZ at 2/4/8 steps</td><td>Simulator</td></tr>
+<tr><td>2D 3×3</td><td>33 / 6 qubits; 882 / 36,416 CZ</td><td>Simulator</td></tr>
+<tr><td>3D 3×3×3</td><td>135 qubits, error 0.0057, 4,374 CZ (grid too small to contain brain)</td><td>MPS simulator</td></tr>
+<tr><td>IBM noise model (FakeKingston), 8 steps, 4,000 shots, 1 seed</td><td>raw 0.047 ± 0.003 · post-selected 0.096 ± 0.007 (48.8% kept) · + ZNE 0.103 ± 0.011</td><td>Noise model</td></tr>
+<tr><td>Full head 440³</td><td>341M sites → 29 compact qubits; unary 3.4×10⁸ qubits, ≥2×10¹³ CZ (extrapolated)</td><td>Estimate</td></tr>
+<tr><td>Hybrid one-number misfit (7³, emulated)</td><td>correct bleed location: 50% at 10¹⁰ shots, 95% at 10¹¹</td><td>Emulated</td></tr>
+<tr><td>Timing</td><td>laptop exact solve 23 µs, finite difference 1.8 ms; QPU ~3 s per 4,000-shot circuit (estimate)</td><td>Measured / estimate</td></tr>
+<tr><td>Real IBM hardware</td><td>not yet run (RUN_ON_IBM = False)</td><td><b>Tonight</b></td></tr></table>
+<h3>To run tonight (≈30–60 s of the 10-min Open Plan quota)</h3>
+<ol><li>Set RUN_ON_IBM = True; run the 6 circuits (2/4/6/8 steps, fold-3 at 8, bleed at 8) × 3 repeats; record backend name and job IDs.</li>
+<li>Add healthy vs bleed at t = 5.5 on the bleed cell (~20k shots each): bleed effect there is −0.014, ~300× larger than at the current receiver (4.7×10⁻⁵).</li>
+<li>Repeat noise-model runs over 5 seeds for real error bars; add a third ZNE noise level.</li>
+<li>Screenshot pytest (35 tests) and draw one Trotter step of the circuit.</li>
+<li>Be ready to explain 06_stride_validation.png (no plotting script in repo; its “1.000” bar is 0.9997).</li></ol>
+<p class="small">Qiskit notes: SamplerV2 supports twirling and dynamical decoupling; TREX/ZNE/PEA are EstimatorV2 options. PEA needs an extra noise-learning job that uses quota.</p>
+
+<h2>6. Claims: say this, not that</h2>
+<table><tr><th>Avoid</th><th>Say instead</th></tr>
+<tr><td>“Published in Nature”</td><td>“Published in npj Digital Medicine, a Nature Portfolio journal”</td></tr>
+<tr><td>“Quantum reconstructs brain images”</td><td>“We turned the slowest step into a quantum circuit, ran it, and measured what a full head would need”</td></tr>
+<tr><td>“Exponential speedup”</td><td>“Memory saving is exponential on paper; realistic net gain is polynomial, at best quartic in 3D”</td></tr>
+<tr><td>“First quantum wave simulation / first quantum FWI”</td><td>“To our knowledge, the first scalp–skull–brain wave model run on IBM hardware with error mitigation” (only after tonight’s run)</td></tr>
+<tr><td>“The helmet costs $2–3K”</td><td>No source found; say “cheap sensors, expensive compute”</td></tr>
+<tr><td>“A stroke every 40 seconds”</td><td>“795,000 strokes a year” (40 s is our arithmetic)</td></tr>
+<tr><td>“Two-thirds of the world lacks imaging”</td><td>“CT scanners per million: US 44.6, Tanzania 0.17”</td></tr>
+<tr><td>Noise-model numbers as hardware</td><td>Always label FakeKingston results “IBM noise model”</td></tr>
+<tr><td>“The helmet detects bleeds in patients”</td><td>“In simulation, starting from the known skull”</td></tr></table>
+
+<h2>7. Q&amp;A prep</h2>
+<table><tr><th>Question</th><th>Owner</th><th>Answer core</th></tr>
+<tr><td>Why quantum instead of classical?</td><td>Charan</td><td>The slow step is an energy-conserving wave simulation, which maps exactly onto unitary evolution; we ruled out annealing/QAOA (optimization), VQE (ground states), QML (needs data), HHL (readout).</td></tr>
+<tr><td>What would need to improve to beat classical?</td><td>Charan</td><td>Error-corrected qubits (~29 logical for a head), ≥10⁸ reliable operations, efficient state loading, one-number readout.</td></tr>
+<tr><td>Walk me through your circuit.</td><td>Charan</td><td>X on qubit 0 (the kick), Trotter steps of neighbour hops (even links, odd links, even), measure; probability on receiver qubit = energy there (0.104).</td></tr>
+<tr><td>How do you know it worked?</td><td>Aaron</td><td>Classical baseline validated against Stride (0.993); circuit matches exact; noise model + mitigation recovers 0.103 vs 0.104.</td></tr>
+<tr><td>What surprised you?</td><td>Aaron</td><td>The readout, not the simulation, is the wall; and the receiver we first chose barely sees the bleed.</td></tr>
+<tr><td>Is this clinically real?</td><td>Anik</td><td>No. The helmet’s bleed result is simulation; no in-vivo brain image yet. We make no clinical claim.</td></tr>
+<tr><td>What did each of you do?</td><td>All</td><td>Anik: problem, product, story. Aaron: the PDE math and classical baseline. Charan: quantum circuits and error mitigation.</td></tr>
+<tr><td>What would you do with another month?</td><td>Anik</td><td>Hardware runs with repeats, bleed-sensitive readout, a one-number misfit circuit, block-encoded compact circuits, absorption.</td></tr></table>
+
+<h2>8. Key sources</h2>
+<ol class="small">
+<li>Guasch, Calderón Agudo, Tang, Nachev &amp; Warner. Full-waveform inversion imaging of the human brain. npj Digital Medicine 3, 28 (2020). CC BY 4.0.</li>
+<li>Schade, Bösch, Hapla &amp; Fichtner. A quantum computing concept for 1-D elastic wave simulation. Geophys. J. Int. 238 (2024); arXiv:2312.14747v2. CC BY 4.0.</li>
+<li>Costa, Jordan &amp; Ostrander. Quantum algorithm for simulating the wave equation. Phys. Rev. A 99, 012323 (2019).</li>
+<li>Bösch et al. Quantum wave simulation with sources and loss functions. Phys. Rev. Research 7, 033225 (2025).</li>
+<li>Cueto et al. Stride. Comput. Methods Programs Biomed. 221 (2022). Babbush et al. PRX 13 (2023). Harrow, Hassidim &amp; Lloyd 2009. Nguyen et al. arXiv:2606.01110 (2026).</li>
+<li>AHA Heart Disease &amp; Stroke Statistics 2026; 2026 AHA/ASA AIS guideline; Saver, Stroke 37:263 (2006); GBD 2021 (Lancet Neurol 2024); CDC 2025; BEST-MSU (NEJM 2021); Hyperfine (Nat Commun 2021); WHO devices data.</li>
+<li>IBM Quantum roadmap (Starling 2029, Blue Jay 2033+). Brain anatomy: MNI152 ICBM 2009 template.</li>
+<li>Full source list with links and exact quotes: research/R1–R4 in the project folder (132 unique sources).</li></ol>
+</body></html>

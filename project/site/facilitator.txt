@@ -1,0 +1,137 @@
+Facilitator guide · Florida Qiskit Fallfest Hackathon
+Skip to contentQFFFlorida Qiskit Fallfest HackathonFor ParticipantsFor Facilitators and Local HostsHandbookPathwaysRegisterResourcesSupportGlossary0/12 done
+For Facilitators and Local Hosts
+Facilitator Guide — Florida Qiskit Fallfest Hackathon
+A public run-of-show for instructors, co-hosts, and university leads. Participant instructions stay on the participant pages.
+Contents
+Outcomes
+Run of show
+Workshop 1, about two hours
+Workshop 2, about 75 to 90 minutes
+Workshop lesson
+Room and tech checklist
+Account-support procedure
+Composer and Bell teaching notes
+Common questions
+Knowledge-check guidance
+Handoff between Workshop 1 and Workshop 2
+Local lead directory
+Escalation
+Submission-support checklist
+Post-session follow-up
+Co-host notes
+Florida Qiskit Fallfest Hackathon. For facilitators and local hosts. This page is public. It has no passwords, API keys, private phone numbers, or private meeting links.
+Part of Qiskit Fall Fest 2026. Theme: A decade of quantum on the cloud. The 2026 theme recognizes ten years since IBM placed its first quantum processor on the cloud. Announcement: https://www.ibm.com/quantum/blog/qiskit-fall-fest-2026 (opens in a new tab)
+Outcomes
+By the end of Workshop 1, a participant can sign in on their own account or follow the projected demonstration, build one Bell state in Composer and again in Python, and name the Qiskit workflow in plain language.
+By the end of Workshop 2, a team can name a problem, a classical baseline, a limitation, and the pull-request path. Coding is optional for the Domain/Industry Expert.
+You are not expected to prove that quantum computing is better than classical computing. Do not promise that a quantum result will outperform the classical one. Do not say that IBM sponsors local prizes.
+Run of show
+Times are a guide for a two-hour Workshop 1 and a 75 to 90 minute Workshop 2. Shift a block rather than skipping the Bell state or the baseline.
+Workshop 1, about two hours
+Time
+Block
+Where to point
+0:00
+Welcome and the theme
+Home page
+0:10
+Own IBM account, Open Plan, API key, and CRN
+Account page
+0:25
+Words the Bell lab needs, then the workshop lesson Quantum from Zero to One. Open the PDF. Do not paste the slides.
+Quantum from Zero to One and the vocabulary page
+0:40
+Bell state in Composer
+Composer lab
+0:55
+The same Bell state in Python
+Python lab
+1:20
+Map, transpile, execute, and interpret
+Workflow page
+1:45
+Simulator versus hardware, API safety, jobs, shots, and noise
+Account and workflow pages
+1:55
+Resource map
+Handbook and resource list
+Workshop 2, about 75 to 90 minutes
+Block
+Point people to
+Two pathways and shared responsibilities
+Pathways page and Domain/Industry Expert and Builder/Developer Expert
+Problem and classical baseline
+Project frame
+Benchmarking sequence and the decision guide
+Benchmarking page
+Hetionet as a finished example, not the minimum bar
+Hetionet page
+Deliverables and the pull request
+Submission page
+Workshop lesson
+Quantum from Zero to One is the lesson for the workshops. Andrew Chen, Qolour (andrew@qolour.com), wrote this 0-to-1 introduction. It uses Qolour's handheld Qubi.
+Lesson page: Quantum from Zero to One
+PDF: Open or download the lesson (opens in a new tab)
+Educator course: https://www.qolour.com/educator-course (opens in a new tab)
+Point the room at the lesson page. Do not paste the slides into this guide.
+Room and tech checklist
+Projector or a shared screen that can show Composer without showing anyone’s API key or CRN.
+Current Chrome, Edge, or Firefox. Test Composer once before people arrive.
+Power and guest Wi-Fi, or a plan for phone hotspots. Details that are not confirmed stay “Details coming soon.”
+The Bell lab runs on the local simulator first. A hardware job is optional and spends Open Plan time.
+Do not create a shared login. Each person uses their own IBM Quantum account.
+Loaner laptops are not confirmed. Do not promise a machine.
+Name tents, printed handouts, and extra rooms are not confirmed.
+Account-support procedure
+A workshop facilitator is the instructor, co-host, or designated university lead helping participants during the session.
+If someone cannot sign in after trying the account troubleshooting steps, they can keep following the projected demonstration while the account issue is being resolved. Do not tell them to create a second account until they know which email they already used.
+Contact order: local university lead, then the workshop instructor or designated co-host, then Kevin Robinson at kevin@quantumglobalgroup.io for unresolved program questions. Do not send basic account troubleshooting to IBM unless official IBM account support is required.
+Open Plan is up to 10 minutes of QPU execution time per rolling 28-day window. Say that sentence. Do not shorten the window, and do not promise extra minutes. The limit page is https://quantum.cloud.ibm.com/docs/en/guides/max-execution-time (opens in a new tab).
+Never ask a participant to paste an API key, a CRN, or a password into chat, a form, a slide, or a photograph. On a projected or lab computer, do not call save_account().
+Composer and Bell teaching notes
+One Bell state, twice. In Composer: H on qubit 0, CX with control 0 and target 1, then measure. In Python, the same gates, then StatevectorSampler and 1024 shots. The ideal simulator piles on 00 and 11. Hardware can show 01 and 10. Qubit 0 is the rightmost bit.
+If the histogram is flat, check the H target and the CX direction. Ideal simulation is enough for the workshop. Open Plan hardware is later.
+Restart a kernel on purpose if the room hits a NameError, so people see that the notebook and the virtual environment must match.
+Common questions
+Do I have to code? No, if you are the Domain/Industry Expert. Yes, if you are the Builder/Developer Expert and the team is running a circuit. Both roles share the problem, the comparison, and the write-up.
+Will the quantum result win? Do not promise that. The comparison can also show that the classical method is the better fit.
+Is Hetionet the assignment? No. It is one finished example. Do not train that model in the room.
+Where is registration? Use the link on the university card when one is listed. Otherwise say details are coming soon.
+Knowledge-check guidance
+The checks on the participant pages are practice. Ask people to choose an answer and read the explanation the page shows after they choose. Do not keep a separate answer key, and do not read correct options aloud from a private sheet. An unexpected choice is a chance to restate the idea in plain language. Unexpected results are part of learning. The participant-facing welcome is: Here are two simple ways to prepare: create your IBM Quantum account and start thinking about a problem or topic that interests you. No prior quantum experience is required—we’ll guide you through the rest together. Bring your curiosity. We’ll help with the qubits.
+Handoff between Workshop 1 and Workshop 2
+Close Workshop 1 when the room has seen one Bell state and can point at map, transpile, execute, and interpret. People who are still stuck on sign-in leave with the simulator demonstration and a named local lead.
+Open Workshop 2 from the pathways page, not from a second account lecture. Carry forward the same Bell circuit as the example of a result that still needs a classical comparison. Collect no secrets between the two sessions.
+Local lead directory
+Local cards, with only confirmed public contacts:
+Miami Dade College: Kevin Robinson and Grant Kurz. Wolfson Campus, AI Center, Building 2, Room 2104, 300 N.E. Second Ave., Miami, FL 33132. Kevin Robinson, kevin@quantumglobalgroup.io. Grant Kurz, grant@deepstation.ai. Registration: https://deepstation.ai/hackathons/dj31ld8d96fuj1yi97ph4c4c (opens in a new tab)
+Florida Atlantic University: Robert Loredo, Ayse Torres, and Kateryna Tsekhmayster. Venue: details coming soon. Robert Loredo, rloredo2026@fau.edu. Ayse Torres, atorre58@fau.edu. Kateryna Tsekhmayster, ktsekhmayste2022@fau.edu. Registration: https://deepstation.ai/hackathons/mtrxfkxet400k68imrz4y5wn (opens in a new tab)
+Embry-Riddle Aeronautical University: November 7–8, 2026. Laxima Niure Kandel. niurekal@erau.edu. Registration: https://deepstation.ai/hackathons/d8cgiq1fhghq7eaw63wghaht (opens in a new tab). Venue: details coming soon.
+Florida Institute of Technology: Dr. Robert Usselman. russelman@fit.edu. Registration: https://deepstation.ai/hackathons/ttbgxh2i2x685vbdp7euzusn (opens in a new tab). Venue: details coming soon.
+Florida Gulf Coast University: Dr. Chengyi Qu. cqu@fgcu.edu. Registration: https://deepstation.ai/hackathons/rg6zdiyur46esnnd8qa26s0h (opens in a new tab). Venue: details coming soon.
+The same directory is on the participant home page.
+Escalation
+Local university lead.
+Workshop instructor or designated co-host.
+Kevin Robinson, kevin@quantumglobalgroup.io, for unresolved program questions.
+Use Discord for errors that are safe to share: https://discord.gg/vz6uTbtJzR (opens in a new tab). Do not post secrets. Official IBM account support is only for an IBM account problem you cannot resolve locally.
+Submission-support checklist
+The project repository is private. Ask participants to join https://github.com/robertloredo/FAU-Qiskit-Fallfest-2026 (opens in a new tab). Their submission goes there.
+The branch is team-<name> and the pull request title is [SUBMISSION] Team <name> — <project title>.
+README, USE-CASE, and LIMITATIONS are present.
+A classical baseline sits next to any quantum number.
+No API key, CRN, or password is in the diff.
+The first-place local packet date on this site is October 31, 2026. The statewide judging rubric, with weights, is in the participant handbook.
+Post-session follow-up
+Send people back to the handbook checklist and the submission page. Remind them of the October 18, 2026 local ceremony, the October 31, 2026 local packet date, the November 8, 2026 final, and the November 14, 2026 state championship ceremony. Do not collect API keys after the session. If a key was shown on a shared screen, tell that person to revoke it and create a replacement in the IBM dashboard.
+Co-host notes
+Earlier drafts hid these notes behind a Co-Host control on the participant pages. They live here instead.
+Read the welcome once. Point at the twelve-step rail and at Quantum from Zero to One, the Qolour lesson for the room. Do not read from a book, and do not paste the Qolour slides into this guide.
+Registration, the code of conduct, and unconfirmed rooms stay “Coming soon” or “Details coming soon.” The statewide judging rubric is published in the participant handbook.
+Do not introduce Kevin Robinson as the lead. Robert Loredo, rloredo2026@fau.edu, is the lead contact.
+The attendance form on this site does not collect passwords, API keys, or CRNs. The static GitHub Pages build does not include the response API.
+Status labels you may use in the room, out loud: Registered, Simulator first, Open Plan visible, Connection verified, Needs assistance.
+Recheck IBM’s instance guide the morning of the workshop. Do not ask the room to open a paid plan.
+Florida Qiskit Fallfest Hackathon
+For ParticipantsFor Facilitators and Local HostsParticipant handbookDomain/Industry Expert and Builder/Developer ExpertNotebook catalogDiscordQiskit-approved websiteRobert Loredo, rloredo2026@fau.eduKevin Robinson, kevin@quantumglobalgroup.ioGrant Kurz, grant@deepstation.aiAyse Torres, atorre58@fau.eduSupport

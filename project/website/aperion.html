@@ -1,0 +1,482 @@
+<title>Aperion</title>
+<meta name="description" content="Aperion: portable ultrasound brain imaging, and what quantum computing can and cannot do for it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* Layout: near-black ink with soft cyan glow; floating glass nav pill; huge tight Geist headlines with Instrument Serif italic accents; bento cards with hairline gradient borders; one luminous "pulse" accent. Single dark look by choice (brand kit v2). */
+:root{
+  --bg:#07080A; --bg2:#0D1013; --bg3:#14191E; --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+  --fg:#F4F7F8; --fg2:#B4BEC5; --muted:#7A8790;
+  --accent:#6EE7F9; --accent2:#0E6F7E; --warn:#FFB86B;
+  --sans:"Geist",-apple-system,"Segoe UI",Arial,sans-serif; --serif:"Instrument Serif",Georgia,serif; --mono:"Geist Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;line-height:1.6;margin:0;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(1000px 520px at 80% -8%,rgba(110,231,249,.11),transparent 60%),radial-gradient(800px 480px at -10% 40%,rgba(34,184,207,.05),transparent 60%)}
+header,section,footer{position:relative;z-index:1}
+a{color:var(--accent)}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{margin:0;text-wrap:balance;font-weight:600;letter-spacing:-0.04em}
+em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-0.01em;color:var(--accent)}
+p{margin:0}
+.eyebrow{font:500 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.lede{font-size:clamp(17px,1.8vw,20px);color:var(--fg2);max-width:60ch}
+.muted{color:var(--muted)}
+.mono{font-family:var(--mono)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+#progress{position:fixed;left:0;top:env(safe-area-inset-top,0px);height:2px;width:0;background:var(--accent);box-shadow:0 0 12px var(--accent);z-index:40}
+nav.top{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:30;padding-inline:16px}
+nav.top .wrap{display:flex;align-items:center;gap:20px;height:56px;max-width:1080px;border:1px solid var(--line2);border-radius:999px;background:rgba(13,16,19,.72);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);padding-inline:10px 8px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:18px;letter-spacing:-.04em;color:var(--fg);text-decoration:none;padding-left:8px}
+.brand svg{width:24px;height:24px}
+.navlinks{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.navlinks a{color:var(--fg2);text-decoration:none;font-size:14px;padding:8px 12px;border-radius:999px;white-space:nowrap}
+.navlinks a:hover{color:var(--fg);background:var(--bg3)}
+.navlinks a.on{color:var(--bg);background:var(--fg)}
+@media (max-width:760px){.navlinks a:not(.keep){display:none}}
+
+section{padding-block:clamp(80px,11vw,140px)}
+.sechead{display:grid;gap:16px;margin-bottom:48px}
+.sechead h2{font-size:clamp(34px,5vw,64px);line-height:1}
+
+.rv{transform:translateY(26px);opacity:.5;filter:blur(2px);transition:transform .9s cubic-bezier(.16,1,.3,1),opacity .9s,filter .9s}
+.rv.in{transform:none;opacity:1;filter:none}
+@media (prefers-reduced-motion:reduce){.rv{transform:none;opacity:1;filter:none;transition:none}html{scroll-behavior:auto}}
+
+.hero{padding-block:72px 40px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px;align-items:center}
+@media (max-width:960px){.hero .wrap{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(56px,8.4vw,120px);line-height:.9;letter-spacing:-0.055em;font-weight:600}
+.hero h1 em{font-size:1.06em}
+.hero .lede{margin-top:26px}
+.ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 20px;border-radius:999px;font:500 15px var(--sans);text-decoration:none;border:1px solid var(--line2);color:var(--fg);background:rgba(255,255,255,.04);cursor:pointer;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.08)}
+.btn.primary{background:var(--accent);color:var(--bg);border-color:var(--accent);box-shadow:0 0 0 6px rgba(110,231,249,.12),0 10px 40px rgba(110,231,249,.25)}
+.herofig{position:relative;border:1px solid var(--line2);border-radius:28px;overflow:hidden;background:var(--bg2);aspect-ratio:1/1;max-width:100%;box-shadow:0 40px 120px rgba(110,231,249,.08)}
+.herofig canvas{width:100%;height:100%;display:block}
+.chip{position:absolute;left:16px;bottom:16px;display:inline-flex;align-items:center;gap:8px;font:500 12px var(--mono);background:rgba(7,8,10,.75);backdrop-filter:blur(8px);border:1px solid var(--line2);padding:8px 12px;border-radius:999px;color:var(--fg2)}
+.chip::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.chip b{color:var(--accent);font-weight:500}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:860px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stat,.callout div,.big,.node,.card,.person,.step,.tool{border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,var(--bg2),rgba(13,16,19,.4))}
+.stat{padding:26px 22px;display:grid;gap:8px;align-content:start}
+.stat .n{font-size:clamp(40px,4.6vw,60px);font-weight:300;letter-spacing:-0.05em;line-height:1;font-variant-numeric:tabular-nums}
+.stat .l{color:var(--fg2);font-size:15px}
+.stat .s{font:11px var(--mono);letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.callout{margin-top:14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.callout{grid-template-columns:1fr}}
+.callout div{padding:24px}
+.callout h3{font-size:24px;margin-bottom:6px}
+
+.scrolly{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px}
+@media (max-width:900px){.scrolly{grid-template-columns:1fr}}
+.sticky{position:sticky;top:96px;align-self:start}
+@media (max-width:900px){.sticky{position:relative;top:0}}
+.stage{border:1px solid var(--line2);border-radius:28px;overflow:hidden;background:var(--bg2);aspect-ratio:1/1;max-width:100%}
+.stage canvas{width:100%;height:100%;display:block}
+.steps{display:grid;gap:24vh;padding-block:8vh 26vh}
+@media (max-width:900px){.steps{gap:16px;padding-block:20px}}
+.step{padding:28px;transition:border-color .5s,background .5s,transform .5s;opacity:.6}
+.step.on{border-color:rgba(110,231,249,.5);background:linear-gradient(180deg,rgba(110,231,249,.08),var(--bg2));opacity:1}
+.step .k{font:500 11px var(--mono);color:var(--accent);letter-spacing:.16em}
+.step h3{font-size:30px;margin-block:10px 10px;letter-spacing:-.04em}
+.step p{color:var(--fg2)}
+
+.catch{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:860px){.catch{grid-template-columns:1fr}}
+.big{padding:30px;display:grid;gap:10px}
+.big .n{font-size:clamp(56px,6vw,88px);font-weight:300;letter-spacing:-0.055em;line-height:1;color:var(--fg)}
+.big:first-child .n{color:var(--accent);text-shadow:0 0 40px rgba(110,231,249,.35)}
+.big p{color:var(--fg2)}
+
+.pipe{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+@media (max-width:900px){.pipe{grid-template-columns:1fr}}
+.node{padding:20px;display:grid;gap:6px}
+.node.q{border-color:rgba(110,231,249,.6);background:linear-gradient(180deg,rgba(110,231,249,.12),var(--bg2));box-shadow:0 0 50px rgba(110,231,249,.12)}
+.node .t{font:500 11px var(--mono);letter-spacing:.14em;color:var(--muted)}
+.node.q .t{color:var(--accent)}
+.node h3{font-size:19px;letter-spacing:-.03em}
+.node p{font-size:14px;color:var(--fg2)}
+.flow{height:2px;margin-top:22px;border-radius:2px;background:repeating-linear-gradient(90deg,var(--accent) 0 12px,transparent 12px 24px);background-size:24px 2px;animation:flow 1s linear infinite;opacity:.6}
+@keyframes flow{to{background-position:24px 0}}
+@media (prefers-reduced-motion:reduce){.flow{animation:none}}
+
+.tool{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:28px;padding:24px;border-radius:28px}
+@media (max-width:900px){.tool{grid-template-columns:1fr}}
+.toolfig{position:relative;border-radius:20px;overflow:hidden;background:var(--bg);aspect-ratio:1/1;max-width:100%;cursor:crosshair;border:1px solid var(--line)}
+.toolfig canvas{width:100%;height:100%;display:block}
+.panel{display:grid;gap:18px;align-content:start;min-width:0}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.seg{display:inline-flex;justify-self:start;border:1px solid var(--line2);border-radius:999px;padding:3px;background:var(--bg)}
+.seg button{font:500 14px var(--sans);color:var(--fg2);background:transparent;border:0;padding:8px 16px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.switch{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-size:15px;color:var(--fg)}
+.switch input{appearance:none;width:44px;height:26px;border-radius:13px;background:var(--bg3);border:1px solid var(--line2);position:relative;cursor:pointer;transition:background .2s}
+.switch input::after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:var(--fg);top:3px;left:3px;transition:left .2s}
+.switch input:checked{background:var(--accent2)}
+.switch input:checked::after{left:21px}
+.readout{font:600 22px var(--sans);letter-spacing:-.03em;color:var(--accent)}
+.legend{display:grid;gap:4px}
+.legend div{display:grid;grid-template-columns:14px 1fr auto;gap:10px;align-items:center;font-size:14px;color:var(--fg2);padding:6px 10px;border-radius:10px;transition:background .3s}
+.legend div.on{background:rgba(110,231,249,.1);color:var(--fg)}
+.legend i{width:14px;height:14px;border-radius:4px;display:block}
+.legend span:last-child{font:12px var(--mono);font-variant-numeric:tabular-nums}
+.profile{width:100%;height:150px;display:block;border-radius:14px;background:var(--bg);border:1px solid var(--line)}
+.hint{font-size:13px;color:var(--muted)}
+
+.chainfig{border-radius:20px;background:var(--bg);overflow:hidden;width:100%;aspect-ratio:2.6/1;max-width:100%;border:1px solid var(--line)}
+.chainfig canvas{width:100%;height:100%;display:block}
+.bars{display:grid;gap:12px}
+.bar{display:grid;grid-template-columns:150px minmax(0,1fr) 120px;gap:12px;align-items:center;font-size:14px;color:var(--fg2)}
+@media (max-width:520px){.bar{grid-template-columns:110px minmax(0,1fr) 92px}}
+.track{height:12px;background:var(--bg3);border-radius:6px;position:relative}
+.fill{height:100%;border-radius:6px;background:var(--accent2);transition:width .7s cubic-bezier(.16,1,.3,1)}
+.fill.q{background:var(--accent);box-shadow:0 0 14px rgba(110,231,249,.4)}
+.err{position:absolute;top:-5px;height:22px;border-left:2px solid var(--fg);border-right:2px solid var(--fg);transition:left .7s,width .7s}
+.exactline{position:absolute;top:-7px;bottom:-7px;width:2px;background:var(--warn)}
+.val{font:12px var(--mono);text-align:right;font-variant-numeric:tabular-nums;color:var(--fg)}
+.kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.kv div{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:14px}
+.kv b{display:block;font:500 28px var(--sans);letter-spacing:-.04em;color:var(--fg)}
+.kv span{font-size:12px;color:var(--muted)}
+
+.tchart{display:grid;gap:16px}
+.trow{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:18px;align-items:center}
+@media (max-width:700px){.trow{grid-template-columns:1fr}}
+.trow .lab{font-size:15px}
+.trow .lab small{display:block;font:11px var(--mono);letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+.tbar{position:relative;height:28px}
+.tfill{height:100%;border-radius:999px;transform-origin:left center}
+.tfill.c{background:var(--accent2)}.tfill.qq{background:var(--accent);box-shadow:0 0 18px rgba(110,231,249,.35)}
+.tbar b{position:absolute;top:4px;font:500 14px var(--mono);white-space:nowrap}
+.grow .tfill{animation:grow 1.4s cubic-bezier(.16,1,.3,1) both}
+@keyframes grow{from{transform:scaleX(.02)}to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.grow .tfill{animation:none}}
+.axis{display:flex;justify-content:space-between;font:11px var(--mono);color:var(--muted);margin-left:318px}
+@media (max-width:700px){.axis{margin-left:0}}
+
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:860px){.grid3{grid-template-columns:1fr}}
+.card{padding:26px;display:grid;gap:10px;align-content:start}
+.card .n{font-size:56px;font-weight:300;letter-spacing:-0.055em;line-height:1;color:var(--fg)}
+.card h3{font-size:19px;letter-spacing:-.03em}
+.card p{color:var(--fg2);font-size:15px}
+.tag{display:inline-flex;align-items:center;gap:8px;height:26px;padding:0 11px;border-radius:999px;font:500 11px var(--mono);border:1px solid var(--line2);color:var(--fg2);justify-self:start}
+.tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--muted)}
+.tag.ok::before{background:var(--accent);box-shadow:0 0 8px var(--accent)}
+.tag.pend::before{background:var(--warn);box-shadow:0 0 8px var(--warn)}
+
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+.list{margin:0;padding-left:20px;color:var(--fg2);display:grid;gap:8px}
+
+.team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:860px){.team{grid-template-columns:1fr}}
+.person{padding:26px;display:grid;gap:10px;align-content:start}
+.person h3{font-size:24px}
+.av{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font:600 18px var(--sans);letter-spacing:-.03em;color:var(--bg);background:linear-gradient(140deg,var(--fg),var(--accent))}
+.person q{font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.25;color:var(--accent)}
+.person ul{margin:0;padding-left:18px;color:var(--fg2);font-size:15px;display:grid;gap:4px}
+
+footer{padding-block:64px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+footer ol{padding-left:20px;display:grid;gap:6px}
+</style>
+
+<div id="progress"></div>
+<nav class="top" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="ga" x1="0.2" y1="0" x2="0.8" y2="1"><stop offset="0" stop-color="#F7FAFC"/><stop offset="1" stop-color="#6EE7F9"/></linearGradient></defs><path d="M6 86 C 24 58, 36 14, 50 14 C 63 14, 74 56, 90 88 C 74 62, 63 30, 50 30 C 38 30, 26 60, 6 86 Z" fill="url(#ga)"/><path d="M24 66 C 34 46, 42 36, 52 36 C 64 36, 78 66, 92 90 C 76 72, 66 52, 55 52 C 45 52, 36 58, 24 66 Z" fill="#6EE7F9" opacity=".75"/></svg>Aperion</a>
+    <div class="navlinks">
+      <a href="#problem">Problem</a><a href="#breakthrough">Breakthrough</a><a href="#approach">Approach</a><a href="#simulator" class="keep">Simulator</a><a href="#quantum" class="keep">Quantum</a><a href="#results">Results</a><a href="#team">Team</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Florida Qiskit Fall Fest 2026 · Quantum Entanglers</p>
+      <h1 style="margin-top:18px">Waves into <em>vision.</em></h1>
+      <p class="lede">A helmet of ultrasound sensors can see a stroke through the skull, cheaply and without radiation. It takes 32 hours of computing to turn the sound into an image. We broke that computation apart and tested what a quantum computer can and cannot do for it.</p>
+      <div class="ctas"><a class="btn primary" href="#simulator">Try the simulator</a><a class="btn" href="#breakthrough">How it works</a></div>
+    </div>
+    <div class="herofig"><canvas id="heroCanvas" width="720" height="720" aria-label="Live wave simulation: an ultrasound pulse crossing a real axial brain slice with skull and a bleed"></canvas><span class="chip">live · real anatomy · <b id="heroTissue">water</b></span></div>
+  </div>
+</header>
+
+<section id="problem"><div class="wrap">
+  <div class="sechead rv"><p class="eyebrow">The problem</p><h2>No stroke can be treated until someone <em>sees inside</em> the head.</h2><p class="lede">A clot-busting drug saves a brain with a clot and worsens a brain with a bleed. Guidelines require imaging first, and the scanners live in hospitals.</p></div>
+  <div class="stats rv">
+    <div class="stat"><span class="n" data-count="795000" data-fmt="k">795K</span><span class="l">strokes a year in the US</span><span class="s">AHA 2026</span></div>
+    <div class="stat"><span class="n" data-count="1.9" data-fmt="m1">1.9M</span><span class="l">neurons lost per untreated minute</span><span class="s">Saver, Stroke 2006</span></div>
+    <div class="stat"><span class="n" data-count="113" data-fmt="m0">113M</span><span class="l">Americans without 60-min access to clot removal</span><span class="s">J NeuroIntervent Surg 2022</span></div>
+    <div class="stat"><span class="n" data-count="56.2" data-fmt="b">$56.2B</span><span class="l">US cost of stroke each year</span><span class="s">CDC</span></div>
+  </div>
+  <div class="callout rv">
+    <div><h3>87% are clots</h3><p class="muted">Treated with clot-busting drugs within 4.5 hours, or clot removal within 24.</p></div>
+    <div><h3>13% are bleeds</h3><p class="muted">The same drug makes them worse. “Brain imaging is essential to exclude hemorrhage.” (AHA/ASA 2026)</p></div>
+  </div>
+</div></section>
+
+<section id="breakthrough"><div class="wrap">
+  <div class="sechead rv"><p class="eyebrow">The breakthrough</p><h2>Seeing through the skull with <em>sound.</em></h2><p class="lede">Researchers at Imperial College London showed that a ring of ultrasound sensors and a method borrowed from seismic imaging can map the brain through bone (Guasch et al., npj Digital Medicine, 2020).</p></div>
+  <div class="scrolly">
+    <div class="sticky"><div class="stage"><canvas id="storyCanvas" width="720" height="720" aria-label="Diagram of the helmet, the pulse, the reconstruction and the bleed, changing with each step"></canvas></div></div>
+    <div class="steps">
+      <article class="step on" data-step="0"><p class="k">01 · THE HELMET</p><h3>1,024 sensors around the head</h3><p>Each transducer is both a speaker and a microphone. No radiation, no magnet, small enough to imagine in an ambulance.</p></article>
+      <article class="step" data-step="1"><p class="k">02 · FIRE AND LISTEN</p><h3>One speaks, all listen</h3><p>Each sensor fires a short pulse in turn. Sound speeds up in skull (2,814 m/s) and slows in brain (about 1,505 m/s). Those changes are the image. About a million recordings in seconds.</p></article>
+      <article class="step" data-step="2"><p class="k">03 · COMPUTE</p><h3>Guess, simulate, compare, adjust</h3><p>Full-waveform inversion guesses the head, simulates the sound through it, compares with the recordings, and corrects the guess. About 80 rounds, from blurry to sharp.</p></article>
+      <article class="step" data-step="3"><p class="k">04 · RESULT</p><h3>In simulation, it found the bleed</h3><p>The method recovered a haemorrhage in a simulated head. No in-vivo brain image has been published yet, and one 3D image took 32 hours.</p></article>
+    </div>
+  </div>
+</div></section>
+
+<section id="catch"><div class="wrap">
+  <div class="sechead rv"><p class="eyebrow">The catch</p><h2>A beautiful device hospitals <em>can’t afford</em> to use.</h2></div>
+  <div class="catch rv">
+    <div class="big"><span class="n">32 h</span><p>for one 3D image on 128 CPU nodes × 24 cores.</p></div>
+    <div class="big"><span class="n">~$1.2M</span><p>of GPU servers the authors say would bring it under 10 minutes.</p></div>
+    <div class="big"><span class="n">&gt;95%</span><p>of that compute is one step: simulating the sound wave.</p></div>
+  </div>
+</div></section>
+
+<section id="approach"><div class="wrap">
+  <div class="sechead rv"><p class="eyebrow">Our approach</p><h2>Find the slow step. Test the quantum route. Keep the rest <em>classical.</em></h2><p class="lede">The wave simulation conserves energy, the same rule a quantum computer obeys, so it can be rewritten as a quantum circuit. Reading results out is expensive, so the quantum part is asked for one number only.</p></div>
+  <div class="pipe rv">
+    <div class="node"><p class="t">HELMET</p><h3>Record</h3><p>About a million pressure traces</p></div>
+    <div class="node"><p class="t">CLASSICAL</p><h3>Starting guess</h3><p>Skull known, brain blank</p></div>
+    <div class="node q"><p class="t">QUANTUM</p><h3>Wave simulation</h3><p>Return one number: the mismatch</p></div>
+    <div class="node"><p class="t">CLASSICAL / GPU</p><h3>Update</h3><p>Gradient, step, repeat</p></div>
+    <div class="node"><p class="t">CLINICIAN</p><h3>Decide</h3><p>Clot or bleed</p></div>
+  </div>
+  <div class="flow" aria-hidden="true"></div>
+</div></section>
+
+<section id="simulator"><div class="wrap">
+  <div class="sechead rv"><p class="eyebrow">Try it</p><h2>Fire a sensor. Watch sound cross a <em>real brain.</em></h2><p class="lede">A 2D finite-difference wave simulation on an axial slice of the MNI152 brain template, with skull, scalp and a bleed. Click any sensor on the ring to fire it.</p></div>
+  <div class="tool rv">
+    <div class="toolfig" id="simFig"><canvas id="simCanvas" width="720" height="720" aria-label="Interactive wave simulation. Click a sensor around the head to fire it."></canvas></div>
+    <div class="panel">
+      <div class="row">
+        <button class="btn primary" id="simPlay" type="button">Pause</button>
+        <button class="btn" id="simRestart" type="button">Restart pulse</button>
+        <label class="switch" for="simBleed"><input type="checkbox" id="simBleed" checked> Bleed present</label>
+      </div>
+      <p class="readout" id="simNow">Sensor fires…</p>
+      <div><p class="hint">Speed of sound along the dashed path, filling as the wave advances</p><canvas class="profile" id="simProfile" width="560" height="150"></canvas></div>
+      <div class="legend" id="simLegend"></div>
+      <p class="hint">Real tissue speeds (Guasch et al. 2020 supplement; IT’IS database). CSF and grey matter share a speed, so they share a colour.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="quantum"><div class="wrap">
+  <div class="sechead rv"><p class="eyebrow">The quantum part</p><h2>The wave becomes a packet hopping along a <em>chain of qubits.</em></h2><p class="lede">Each cell holds velocity and each link between cells holds stretch. Their squared amplitudes are shares of the wave’s energy, so they always add to one, just like quantum probability. Below: the team’s 7-cell ear-to-ear line, exactly as their circuits run it.</p></div>
+  <div class="tool rv" style="grid-template-columns:1fr">
+    <div class="chainfig"><canvas id="chainCanvas" width="1200" height="460" aria-label="Animation of wave energy hopping along 7 cells and 8 links: scalp, skull, brain, brain, brain, skull, scalp"></canvas></div>
+    <div class="two">
+      <div class="panel">
+        <p class="eyebrow">Circuit depth (Trotter steps)</p>
+        <div class="seg" role="group" aria-label="Trotter steps" id="stepSeg"><button type="button" data-s="2">2</button><button type="button" data-s="4">4</button><button type="button" data-s="6">6</button><button type="button" data-s="8" aria-pressed="true">8</button></div>
+        <div class="kv"><div><b id="kvGates">238</b><span>two-qubit gates</span></div><div><b id="kvDepth">130</b><span>circuit depth</span></div><div><b id="kvKept">48.8%</b><span>shots kept by post-selection</span></div></div>
+        <p class="hint">15 qubits, one per cell or link. A compact 4-qubit encoding needs 1,414 gates at 8 steps.</p>
+      </div>
+      <div class="panel">
+        <p class="eyebrow">Energy reaching the first brain cell</p>
+        <div class="bars" id="qbars"></div>
+        <p class="hint">Yellow line: exact answer 0.104. IBM noise model (FakeKingston), 4,000 shots, one seed. Real-hardware run pending.</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="results"><div class="wrap">
+  <div class="sechead rv"><p class="eyebrow">Results</p><h2>What we built and <em>measured.</em></h2></div>
+  <div class="grid3 rv">
+    <div class="card"><span class="tag ok">Measured</span><span class="n">0.993</span><h3>Matches the researchers’ software</h3><p>Our wave solver vs Stride, the paper group’s own code, on a 2D head slice.</p></div>
+    <div class="card"><span class="tag ok">Measured</span><span class="n">1,576</span><h3>Our FWI finds the bleed</h3><p>Recovered bleed speed in m/s against a true 1,578, on a 2D slice after 40 rounds.</p></div>
+    <div class="card"><span class="tag ok">Noise model</span><span class="n">0.103</span><h3>Mitigation recovers the signal</h3><p>Exact 0.104; raw 0.047. Post-selection plus zero-noise extrapolation brings it back.</p></div>
+    <div class="card"><span class="tag ok">Simulator</span><span class="n">135</span><h3>Qubits in our 3D run</h3><p>A 3×3×3 grid matched classical to 0.0057 at 8 Trotter steps.</p></div>
+    <div class="card"><span class="tag">Estimate</span><span class="n">29</span><h3>Qubits to hold a whole head</h3><p>341M sites in compact storage, but far too deep for today’s chips.</p></div>
+    <div class="card"><span class="tag pend">Pending</span><span class="n">+5</span><h3>Real IBM hardware</h3><p>The same 15-qubit circuits on an IBM Heron processor with error mitigation.</p></div>
+  </div>
+
+  <div class="sechead rv" style="margin-top:72px"><p class="eyebrow">Time to answer</p><h2>Today, classical wins <em>by a mile.</em></h2><p class="lede">Log scale. Dark bars are classical, light bars quantum.</p></div>
+  <div class="tchart rv" id="tchart"></div>
+  <p class="hint rv" style="margin-top:18px">Where quantum could still win: per time step, classical work grows with every cell; a fault-tolerant compact circuit grows roughly with the logarithm of the cell count. The best published net gain is polynomial, at best quartic in 3D, and only when one number is read out (Bösch et al., Phys. Rev. Research 2025).</p>
+</div></section>
+
+<section id="honest"><div class="wrap">
+  <div class="sechead rv"><p class="eyebrow">Limits</p><h2>What we can claim, and what we <em>can’t.</em></h2></div>
+  <div class="two rv">
+    <div class="card"><h3>We showed</h3><ul class="list"><li>The wave simulation runs as a quantum circuit and matches classical</li><li>Error mitigation recovers the signal on an IBM noise model</li><li>Our classical reconstruction finds a bleed</li><li>What a full head would need: 29 qubits, 10¹³ gates, 10¹³ shots</li></ul></div>
+    <div class="card"><h3>We don’t claim</h3><ul class="list"><li>Any speed-up over GPUs today</li><li>That a quantum run detected the bleed</li><li>Any clinical result</li><li>Realism: no absorption, toy grids, energy rather than pressure</li></ul></div>
+  </div>
+</div></section>
+
+<section id="team"><div class="wrap">
+  <div class="sechead rv"><p class="eyebrow">Team</p><h2>Three people, three <em>questions.</em></h2></div>
+  <div class="team rv">
+    <div class="person"><div class="av">AS</div><h3>Anik Sahai</h3><p class="muted">Clinical and product</p><q>Why does a stroke patient wait for a scanner?</q><ul><li>Founder, AuthAI</li><li>Built a smartphone diabetic-retinopathy screener</li><li>AI researcher, FAU CA-AI</li></ul></div>
+    <div class="person"><div class="av">AL</div><h3>Aaron Loh</h3><p class="muted">Math and numerics</p><q>What exactly is the math that takes 32 hours?</q><ul><li>FAU researcher: PDE surrogates, computer-assisted proofs</li><li>1st nationally, Mu Alpha Theta Matrices &amp; Vectors</li><li>2nd, Florida State Science Fair</li></ul></div>
+    <div class="person"><div class="av">CJ</div><h3>Charan Jarugula</h3><p class="muted">Quantum</p><q>Can a quantum computer run that math and survive the noise?</q><ul><li>Quantum research assistant, FAU: error mitigation</li><li>Founder, Q-Beam</li><li>Computational neuroscience, UF Scripps</li></ul></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <p class="eyebrow" style="margin-bottom:14px">Sources</p>
+  <ol>
+    <li>Guasch et al. Full-waveform inversion imaging of the human brain. npj Digital Medicine 3, 28 (2020).</li>
+    <li>Costa, Jordan &amp; Ostrander. Quantum algorithm for simulating the wave equation. Phys. Rev. A 99, 012323 (2019).</li>
+    <li>Schade et al. A quantum computing concept for 1-D elastic wave simulation. arXiv:2312.14747 (2024).</li>
+    <li>Bösch et al. Phys. Rev. Research (2025). Cueto et al. Stride (2022).</li>
+    <li>AHA Heart Disease &amp; Stroke Statistics 2026 · AHA/ASA acute ischemic stroke guideline 2026 · Saver, Stroke 2006 · CDC.</li>
+    <li>Brain anatomy: MNI152 ICBM 2009 template (McConnell Brain Imaging Centre).</li>
+  </ol>
+  <p style="margin-top:20px">Aperion is a student hackathon project, not a medical device.</p>
+</div></footer>
+
+<script>
+var SP=[1480,1624,2814,2118,1504.5,1505,1552.5,1578],NM=['Water','Scalp','Skull, cortical','Skull, diploë','CSF','Grey matter','White matter','Blood (bleed)'],LH=224,LW=188,LB=new Uint8Array(LH*LW);
+(function(){const A='()*+,-./0123456789:;=?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{|}',E='0}0}0}0}0}0}0}0}0}0}0}0}0}0}0}0}0}0}0}0D1,081,0}0u160.160}0k1@0(1@0}0a1d0}0W1j0}0R1;2,182,1;0}0O18241024180}0M13213,2.1*2.3,21130}0J1121332,1(2,3321110}0G1/2.3=2,3=2.1/0}0E1/2,342,3.2*3.2,342,1/0}0A112*33233,2(3,23332*110}0:112+3.214,2,3.2,4,213.2+110}06122+3,20432*3,2*43203,2+120}03122*3,2,415,4+2*3*2*4+5,412,3,2*120}01122*3,2*41524)2.4)52412*3,2*120}0/1/2-3,2*4+5:4)2,4)5:4+2*3,2-1/0}0-1.2-3,2+4)5@4.5@4)2+3,2-1.0}0+1.2+3.2*4*5B4,5B4*2*3.2+1.0}0)1.2*3/2*4*5C4,5C4*2*3/2*1.0}1.2*3-2,4*5-6*5/6)5/4,5/6)5/6*5-4*2,3-2*1.0{1.2*3,2-4*5-6-5,6*504*506*5,6-5-4*2-3,2*1.0y1.2*3+2+4.5,66504*50665,4.2+3+2*1.0x1-2*3+2*4/5-66504*50665-4/2*3+2*1-0w1-2*3+2*4*5366504*5066534*2*3+2*1-0u1-2*3+2*4)5665514(5165564)2*3+2*1-0s1.2)3+2*4)5766504(5066574)2*3+2)1.0q1.2*3*2*4)5965504(5065594)2*3*2*1.0o1.2*3+2)4*5965504(5065594*2)3+2*1.0n1-2*3+2)4*5:65504(50655:4*2)3+2*1-0m1-2*3+2*4)5;65504(50655;4)2*3+2*1-0l1,2*3+2*4)5/6)5265504(5065526)5/4)2*3+2*1,0k1-2)3+2*4)506)5264514(5164526)504)2*3+2)1-0j1,2*3*2*4)516)52645=64526)514)2*3*2*1,0i1-2)3+2)4)526*50655=65506*524)2)3+2)1-0g1-2*3*2)4)536*5/665=665/6*534)2)3*2*1-0f1-2)3+2)4)536*5.685:685.6*534)2)3+2)1-0e1-2*3*2)4)546+5-665@665-6+544)2)3*2*1-0d1,2*3+2)4)526.5,64544(54645,6.524)2)3+2*1,0c1-2)3+2)4)5.645*645F645*645.4)2)3+2)1-0b1,2*3*2*4)5/6D5H6D5/4)2*3*2*1,0a1-2)3+2)4)516C5H6C514)2)3+2)1-0^1-2*3*2)4)536B5H6B534)2)3*2*1-0]1-2)3+2)4)556@5H6@554)2)3+2)1-0[1-2*3*2)4)586=5H6=584)2)3*2*1-0Z1,2*3+2)4)596=5F6=594)2)3+2*1,0Y1-2)3+2)4*5:6E546E5:4*2)3+2)1-0X1,2*3*2*4)5;6E546E5;4)2*3*2*1,0W1-2)3+2)4)5=6E546E5=4)2)3+2)1-0V1,2*3*2)4)5=6F546F5=4)2)3*2*1,0U1-2)3+2)4)5;6G546G5;4)2)3+2)1-0T1,2*3*2)4)5;6H546H5;4)2)3*2*1,0T1,2)3+2)4)506R566R504)2)3+2)1,0T1,2)3*2)4)5,6W5.4(5.6W5,4)2)3*2)1,0S1-2)3*2)4)5+6Z5,4(5,6Z5+4)2)3*2)1-0R1,2)3*2)4)5,6a5(6a5,4)2)3*2)1,0R1,2)3*2)4)5,6}6D5,4)2)3*2)1,0R1,2)3*2)4)5,6}6D5,4)2)3*2)1,0R1,2)3*2)4)5+6N5*6H5*6N5+4)2)3*2)1,0Q1,2)3*2)4*5,6?5*625)4(5)6D5)4(5)625*6?5,4*2)3*2)1,0P1,2)3*2)4)56625-615)4*5(6B5(4*5)615-62564)2)3*2)1,0P1,2)3*2)4)5I615)4,5(6=5(4,5)615I4)2)3*2)1,0P1,2)3*2)4)5J605)4-5(6:5(4-5)605J4)2)3*2)1,0P1,2)3*2)4)5J605+4-5(665(4-5+605J4)2)3*2)1,0P1,2)3*2)4)5I605.4-5(625(4-5.605I4)2)3*2)1,0P1,2)3*2)4*5H60504-5)6,5)4-50605H4*2)3*2)1,0P1,2)3*2)4*5H60514-5.4-51605H4*2)3*2)1,0P1,2)3*2)4)5H60534-5,4-53605H4)2)3*2)1,0O1,2)3*2)4*5H61534-5*4-53615H4*2)3*2)1,0N1,2)3*2)4)5J60534-5*4-53605J4)2)3*2)1,0N1,2)3*2)4)586+5360544-5(4-5460536+584)2)3*2)1,0N1,2)3*2)4)5-6*5.6-5261534-5(4-5361526-5.6*5-4)2)3*2)1,0M1-2)3*2)4)5-675163524-5(4-526351675-4)2)3*2)1-0L1,2*3*2)4)5/635363534,5(4,536353635/4)2)3*2*1,0K1-2)3+2)4*506/556+5(6/524,5(4,526/5(6+556/504*2)3+2)1-0J1,2*3*2)4+526,556+5*6/514,5(4,516/5*6+556,524+2)3*2*1,0J1,2)3+2)4)546,556*5,6.514,5(4,516.5,6*556,544)2)3+2)1,0J1,2)3*2)4)566+546+5,6/504,5(4,506/5,6+546+564)2)3*2)1,0J1,2)3*2)4)566+546*5-6/5/4-5(4-5/6/5-6*546+564)2)3*2)1,0I1,2)3*2)4)576+536+5.6/5.4,5*4,5.6/5.6+536+574)2)3*2)1,0H1,2)3*2)4)566-526*5/605-4,5*4,5-605/6*526-564)2)3*2)1,0H1,2)3*2)4)5-6(5.6.526*50605+4-5*4-5+60506*526.5.6(5-4)2)3*2)1,0H1,2)3*2)4)5-63556*50605+4-5*4-5+60506*55635-4)2)3*2)1,0G1-2)3*2)4)5.60576*50605+4,5,4,5+60506*57605.4)2)3*2)1-0F1,2*3*2)4)506-586)51615*4,5,4,5*61516)586-504)2)3*2*1,0F1,2)3*2)4)526,576*51615+4*5.4*5+61516*576,524)2)3*2)1,0E1-2)3*2)4)536*586*50635+4(5*6*5*4(5+63506*586*534)2)3*2)1-0D1,2*3*2)4)546*576)51645.6*5.64516)576*544)2)3*2*1,0D1,2)3*2)4*556)566*51665-6(5-66516*566)554*2)3*2)1,0D1,2)3*2)4)576(546,51665466516)7,526(574)2)3*2)1,0D1,2)3*2)4)5F6)5(6*5)6)5,635*6(546(5*635,6)5)7.5E4)2)3*2)1,0C1,2)3*2)4*5H6+5(6*5,625+6(546(5+625,6)715D4*2)3*2)1,0B1,2)3*2)4)5J6*5(6*5+635+6)526)5+635+6(725E4)2)3*2)1,0B1,2)3*2)4)5J6.5+625,6)526)5,625+735E4)2)3*2)1,0B1,2)3*2)4)5J6.5*635-6(526(5-635*735E4)2)3*2)1,0B1,2)3*2)4)5J6.5*625D625*725F4)2)3*2)1,0A1-2)3*2)4)5J6-5*625F625)725F4)2)3*2)1-0@1,2*3*2)4)5J6.5)615H615)745D4)2)3*2*1,0?1-2)3*2)4*5J6.5(625H625(765B4*2)3*2)1-0=1,2*3*2)4)5?4(506;5J61795(4(5?4)2)3*2*1,0=1,2)3+2)4)5I6=5H607;5A4)2)3+2)1,0;1-2)3*2)4)5L6:5H607;5B4)2)3*2)1-0:1,2*3*2)4)5L6+5)655F607=5B4)2)3*2*1,0:1,2)3*2)4)5N6*5)645H6/7=5C4)2)3*2)1,0:1,2)3*2)4)5N6*5)655F607;5D4)2)3*2)1,0:1,2)3*2)4)5?6(556*5)655F60795-6(5?4)2)3*2)1,091,2)3*2)4*5,6)566*546*5(665D627,6*5(7-5-6*566)5,4*2)3*2)1,081,2)3*2)4)5,6,546+53695F695)7*5.6+546,5,4)2)3*2)1,081,2)3*2)4)5,6.536,5168564(5668516,536.5,4)2)3*2)1,081,2)3*2)4)5,60526,5166564*5666516,52605,4)2)3*2)1,081,2)3*2)4)5,62516,5065564,5665506,51625,4)2)3*2)1,081,2)3*2)4)5,64506,5/64564.56645/6,50645,4)2)3*2)1,081,2)3*2)4)5+665/6-5-64574.57645-6-5/665+4)2)3*2)1,081,2)3*2)4)5+675/6,5-64564056645-6,5/675+4)2)3*2)1,071,2)3*2)4*5+695.6.5(66564)5(4*5(4)56665(6.5.695+4*2)3*2)1,061,2)3*2)4*5+6:5.6@554(5)4*5)4(556@5.6:5+4*2)3*2)1,061,2)3*2)4*5+6;5.6?544*5(4*5(4*546?5.6;5+4*2)3*2)1,061,2)3*2)4*5+6?5,6=5542556=5,6?5+4*2)3*2)1,061,2)3*2)4*5+6A5)6?5444546?5)6A5+4*2)3*2)1,061,2)3*2)4*5+6Y5444546Y5+4*2)3*2)1,061,2)3*2)4*5+6W5T6W5+4*2)3*2)1,071,2)3*2)4)5+6Q5.6)5266526)5.6Q5+4)2)3*2)1,081,2)3*2)4)5,6O5.6*5.6@5.6*5.6O5,4)2)3*2)1,081,2)3*2)4)5,6O5/6)5+6F5+6)5/6O5,4)2)3*2)1,081,2)3*2)4)5,6N506R506N5,4)2)3*2)1,081,2)3*2)4)5.6L5)4(5-6R5-4(5)6L5.4)2)3*2)1,081,2)3*2)4*596?5)4-5)6R5)4-5)6?594*2)3*2)1,081,2)3*2)4*5A675(4/5)6P5)4/5(675A4*2)3*2)1,091,2)3*2)4)5C655(405)6550655)405(655C4)2)3*2)1,0:1,2)3*2)4)5C655(415(605:605(415(655C4)2)3*2)1,0:1,2)3*2)4*5B645(425(6.5@6.5(425(645B4*2)3*2)1,0:1,2)3*2)4*5B645(415)6-524*526-5)415(645B4*2)3*2)1,0:1-2)3*2)4)5B645(415(6.534(536.5(415(645B4)2)3*2)1-0;1,2)3*2)4)5A645(415(61504*50615(415(645A4)2)3*2)1,0=1,2)3*2)4)5?665(405(645,4.5,645(405(665?4)2)3*2)1,0=1,2)3*2)4)5:695(4.5)645-4.5-645)4.5(695:4)2)3*2)1,0=1,2)3*2)4)576=5(4-5)655-4.5-655)4-5(6=574)2)3*2)1,0=1,2)3*2)4*546@5(4,5)6-5.6)5-4.5-6)5.6-5)4,5(6@544*2)3*2)1,0?1,2)3*2)4)506D5(4+5)6*5:4.5:6*5)4+5(6D504)2)3*2)1,0@1,2)3*2)4)5-6G5(4+5B4,5B4+5(6G5-4)2)3*2)1,0@1,2)3*2)4*5,6G5(4*5C4,5C4*5(6G5,4*2)3*2)1,0@1,2)3*2)4*5,6G5(4)5E4*5E4)5(6G5,4*2)3*2)1,0@1-2)3*2)4)5-6F5l6F5-4)2)3*2)1-0A1,2)3*2)4*5,6G5j6G5,4*2)3*2)1,0B1,2)3+2)4)5-6F5H4(5H6F5-4)2)3+2)1,0B1,2*3*2)4*5,605-655G4*5G655-605,4*2)3*2*1,0B1-2)3*2)4*5-6,52635F4,5F63526,5-4*2)3*2)1-0C1,2*3*2)4*5,6+54635E4,5E63546+5,4*2)3*2*1,0D1-2)3*2)4*5-6(57625F4*5F62576(5-4*2)3*2)1-0E1,2)3+2)4)5A615F4*5F615A4)2)3+2)1,0F1,2*3*2)4*5@625F4(5F625@4*2)3*2*1,0F1-2)3+2)4)5@625F4(5F625@4)2)3+2)1-0G1,2*3*2)4*5@615f615@4*2)3*2*1,0H1-2)3+2)4*5=635d635=4*2)3+2)1-0I1,2*3*2*4)5=635d635=4)2*3*2*1,0J1-2)3+2*4)5:645d645:4)2*3+2)1-0K1,2*3+2)4*59655b65594*2)3+2*1,0L1-2*3+2)4*57665b66574*2)3+2*1-0M1-2*3*2*4*55685_68554*2*3*2*1-0N1.2)3+2*4)54695_69544)2*3+2)1.0O1-2*3+2)4)526=5]6=524)2)3+2*1-0Q1-2*3+2)4)506?5]6?504)2)3+2*1-0S1-2*3*2)4)5,6D5Z6D5,4)2)3*2*1-0T1.2)3*2)4*5+605-645-6*5F6*5-645-605+4*2)3*2)1.0U1-2*3*2)4)5,6-50635-6)5H6)5-63506-5,4)2)3*2*1-0W1-2)3*2)4*5,6*53635,6(5J6(5,63536*5,4*2)3*2)1-0Y1,2)3+2)4*5,6(54645+6(5J6(5+64546(5,4*2)3+2)1,0Z1,2*3*2*4)5:645T645:4)2*3*2*1,0Z1-2)3+2)4*59655)6(5L6(5)65594*2)3+2)1-0[1,2*3+2)4*58695J69584*2)3+2*1,0]1-2*3*2*4*57695J69574*2*3*2*1-0^1-2)3+2*4*56695J69564*2*3+2)1-0_1-2*3+2*4*556:5H6:554*2*3+2*1-0a1-2*3+2*4*546:5H6:544*2*3+2*1-0c1-2*3+2*4*536+5,625F625,6+534*2*3+2*1-0d1.2*3+2*4*526*5.625D625.6*524*2*3+2*1.0e1.2*3+2*4*5=625B625=4*2*3+2*1.0g1.2*3+2*4*5;635@635;4*2*3+2*1.0i1.2*3+2*4*5;635=635;4*2*3+2*1.0k1.2*3+2*4+5:635:635:4+2*3+2*1.0m1.2*3+2*4+59645*6(506(5*64594+2*3+2*1.0o1.2*3+2*4+58685068584+2*3+2*1.0q1.2*3+2+4*56695+4(5+69564*2+3+2*1.0s1.2*3,2*4+54695+4(5+69544+2*3,2*1.0u1.2*3,2*4*546)5)60504(50605)6)544*2*3,2*1.0w1.2*3,2*4+516)5+6/5/4*5/6/5+6)514+2*3,2*1.0y1.2+3+2*4+506(5-6-5/4,5/6-5-6(504+2*3+2+1.0{1.2+3+2+4+5.6(5-6,504,506,5-6(5.4+2+3+2+1.0}1/2*3,2*4,5-6(5,6-5.4.5.6-5,6(5-4,2*3,2*1/0}0)1/2*3,2+4+536-5,4*2*4*5,6-534+2+3,2*1/0}0+1/2*3-2*4,536+5,4*2*4*5,6+534,2*3-2*1/0}0-1/2+3,2+4,594*2)3(2)4*594,2+3,2+1/0}001.2+3-2+4-554*2*3(2*4*554-2+3-2+1.0}031/2+3-2+4/5/4+2*3*2*4+5/4/2+3-2+1/0}051/2+3.2+482*3,2*482+3.2+1/0}07102+3.2,432+3.2+432,3.2+100}09102,3.204)2-3,2(3,2-4)203.2,100}0=102,3/233-2*3-233/2,100}0A112,332)302,302)332,110}0D112-392+1(2+392-110}0G122.332-1*2-332.120}0J13213)2/1.2/3)21130}0N15231623150}0R192)1@2)190}0V1f0}0Z1D0(1D0}0a1?0,1?0}0i1404140}0t1)0@1)0}0}0}0}0}0}0}0}0}0}0}0}0}0}0}0}0}0)';let p=0;for(let i=0;i<E.length;i+=2){const t=+E[i],r=A.indexOf(E[i+1])+1;LB.fill(t,p,p+r);p+=r;}})();
+function lab(y,x){y=Math.floor(y);x=Math.floor(x);return(y<0||x<0||y>=LH||x>=LW)?0:LB[y*LW+x];}
+var HB=(function(){let a=1e9,b=-1,c=1e9,d=-1,sy=0,sx=0,n=0;for(let y=0;y<LH;y++)for(let x=0;x<LW;x++)if(LB[y*LW+x]){a=Math.min(a,y);b=Math.max(b,y);c=Math.min(c,x);d=Math.max(d,x);sy+=y;sx+=x;n++;}return{cy:(a+b)/2,cx:(c+d)/2,ry:(b-a)/2,rx:(d-c)/2};})();
+function col(c){if(c>=2000){const t=Math.min(1,(c-2118)/(2814-2118));return[184+63*t,200+50*t,210+42*t];}const S=[[11,26,34],[31,78,95],[47,143,166],[144,224,239],[216,243,248]];let t=Math.max(0,Math.min(1,(c-1470)/(1640-1470)))*4;const k=Math.min(3,Math.floor(t)),f=t-k,A=S[k],B=S[k+1];return[A[0]+(B[0]-A[0])*f,A[1]+(B[1]-A[1])*f,A[2]+(B[2]-A[2])*f];}
+
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const TIS_COL=SP.map(s=>col(s));
+// base brain image at 1 mm with tissue edges
+function brainImage(bleed){const o=document.createElement('canvas');o.width=LW;o.height=LH;const g=o.getContext('2d'),im=g.createImageData(LW,LH),d=im.data;
+for(let y=0;y<LH;y++)for(let x=0;x<LW;x++){let t=lab(y,x);if(t===7&&!bleed)t=6;const tr=lab(y,x+1),td=lab(y+1,x),e=((tr!==lab(y,x))||(td!==lab(y,x)))&&t>3?0.62:1,q=TIS_COL[t],p=(y*LW+x)*4;d[p]=q[0]*e;d[p+1]=q[1]*e;d[p+2]=q[2]*e;d[p+3]=t?255:0;}
+g.putImageData(im,0,0);return o;}
+const BRAIN=brainImage(true),BRAIN_H=brainImage(false);
+function fit(cv,w,h){const r=Math.min(cv.width/w,cv.height/h)*0.92;return{s:r,ox:(cv.width-w*r)/2,oy:(cv.height-h*r)/2};}
+
+// ---------- wave simulator ----------
+class WaveSim{
+  constructor(cv,opt={}){this.cv=cv;this.x=cv.getContext('2d');this.opt=opt;this.F=1.5;this.PAD=12;
+    this.GW=Math.ceil(LW/this.F)+2*this.PAD;this.GH=Math.ceil(LH/this.F)+2*this.PAD;const n=this.n=this.GW*this.GH;
+    this.T=new Uint8Array(n);this.P=new Float32Array(n);this.Q=new Float32Array(n);this.K=new Float32Array(n);this.D=new Float32Array(n);this.E=new Uint8Array(n);this.B=new Float32Array(n*3);this.G=new Float32Array(n);
+    for(let j=0;j<this.GH;j++)for(let i=0;i<this.GW;i++){const k=j*this.GW+i,t=lab((j-this.PAD)*this.F,(i-this.PAD)*this.F),e=Math.min(i,j,this.GW-1-i,this.GH-1-j);this.T[k]=t;this.D[k]=e<6?0.94+0.01*e:1;}
+    for(let j=0;j<this.GH-1;j++)for(let i=0;i<this.GW-1;i++){const k=j*this.GW+i,T=this.T;this.E[k]=(T[k]!==T[k+1]||T[k]!==T[k+this.GW])&&Math.max(T[k],T[k+1],T[k+this.GW])>3?1:0;}
+    this.cx=HB.cx/this.F+this.PAD;this.cy=HB.cy/this.F+this.PAD;this.rx=HB.rx/this.F+4;this.ry=HB.ry/this.F+4;
+    this.sens=[];for(let s=0;s<32;s++){const th=s/32*Math.PI*2;this.sens.push([Math.round(this.cx+this.rx*Math.cos(th)),Math.round(this.cy+this.ry*Math.sin(th))]);}
+    this.img=new ImageData(this.GW,this.GH);this.off=document.createElement('canvas');this.off.width=this.GW;this.off.height=this.GH;
+    this.lit=new Float32Array(32);this.setBleed(true);this.fire(16);}
+  speed(t){return t===7&&!this.bleed?SP[6]:SP[t];}
+  setBleed(b){this.bleed=b;const cm=2814;for(let k=0;k<this.n;k++){const t=this.T[k],q=0.5*this.speed(t)/cm;this.K[k]=q*q;this.B.set(TIS_COL[t===7&&!b?6:t],k*3);}this.path&&this.buildPath();}
+  fire(s){this.src=s;this.P.fill(0);this.Q.fill(0);this.lit.fill(0);this.step=0;const [i0,j0]=this.sens[s];
+    for(let j=0;j<this.GH;j++)for(let i=0;i<this.GW;i++)this.G[j*this.GW+i]=10*(1+Math.hypot(i-i0,j-j0)/12);this.buildPath();}
+  buildPath(){const [i0,j0]=this.sens[this.src],[i1,j1]=this.sens[(this.src+16)%32],L=Math.hypot(i1-i0,j1-j0),N=Math.ceil(L*2);this.path=[];let acc=0;
+    for(let m=0;m<=N;m++){const i=Math.round(i0+(i1-i0)*m/N),j=Math.round(j0+(j1-j0)*m/N),t=this.T[j*this.GW+i];acc+=(L/N)*2*2814/this.speed(t);this.path.push({i,j,t,acc});}}
+  tick(){const {GW,GH,P,Q,K,D}=this;for(let j=1;j<GH-1;j++)for(let i=1;i<GW-1;i++){const k=j*GW+i;Q[k]=(2*P[k]-Q[k]+K[k]*(P[k-1]+P[k+1]+P[k-GW]+P[k+GW]-4*P[k]))*D[k];}
+    this.P=Q;this.Q=P;const [i0,j0]=this.sens[this.src],a=((this.step-30)/9)**2;this.P[j0*GW+i0]+=(1-2*a)*Math.exp(-a)*3;
+    this.sens.forEach(([i,j],s)=>{if(Math.abs(this.P[j*GW+i])>0.03)this.lit[s]=1;this.lit[s]*=0.99;});this.step++;}
+  front(){let m=0;while(m<this.path.length&&this.path[m].acc<=this.step-30)m++;return Math.max(0,m-1);}
+  done(){return this.step>this.path[this.path.length-1].acc+160;}
+  draw(){const {GW,GH,n,P,B,E,G}=this,d=this.img.data;for(let k=0;k<n;k++){const w=Math.tanh(P[k]*G[k]),p=k*4,b=k*3,m=E[k]?0.6:1;for(let c=0;c<3;c++){const v=B[b+c];d[p+c]=(w>0?v+(200-v*0.6)*w*0.6:v*(1+w*0.45))*m;}d[p+3]=255;}
+    this.off.getContext('2d').putImageData(this.img,0,0);const x=this.x,cv=this.cv,f=fit(cv,GW,GH);this.f=f;x.fillStyle='#0B1A22';x.fillRect(0,0,cv.width,cv.height);x.imageSmoothingEnabled=true;x.drawImage(this.off,f.ox,f.oy,GW*f.s,GH*f.s);
+    const X=i=>f.ox+(i+0.5)*f.s,Y=j=>f.oy+(j+0.5)*f.s,pa=this.path,a=pa[0],b=pa[pa.length-1];
+    if(this.opt.path){x.setLineDash([6,6]);x.strokeStyle='rgba(247,250,252,.35)';x.lineWidth=2;x.beginPath();x.moveTo(X(a.i),Y(a.j));x.lineTo(X(b.i),Y(b.j));x.stroke();x.setLineDash([]);}
+    this.sens.forEach(([i,j],s)=>{x.fillStyle=s===this.src?'#F7FAFC':`rgba(110,231,249,${0.3+0.7*this.lit[s]})`;x.beginPath();x.arc(X(i),Y(j),s===this.src?8:5.5,0,7);x.fill();});
+    if(this.opt.path&&this.step>30){const fp=pa[this.front()];x.fillStyle='#6EE7F9';x.beginPath();x.arc(X(fp.i),Y(fp.j),7,0,7);x.fill();}}
+  nearest(px,py){const f=this.f;let best=-1,bd=1e9;this.sens.forEach(([i,j],s)=>{const d=Math.hypot(f.ox+(i+.5)*f.s-px,f.oy+(j+.5)*f.s-py);if(d<bd){bd=d;best=s;}});return bd<40?best:-1;}
+}
+function visibleRunner(el,fn){let vis=false,raf=0;const loop=()=>{if(!vis){raf=0;return;}fn();raf=requestAnimationFrame(loop);};
+  new IntersectionObserver(es=>{vis=es[0].isIntersecting;if(vis&&!raf)raf=requestAnimationFrame(loop);},{threshold:0.05}).observe(el);}
+
+// hero
+const hero=new WaveSim(document.getElementById('heroCanvas'),{});const heroT=document.getElementById('heroTissue');
+hero.draw();
+if(!RM)visibleRunner(hero.cv,()=>{for(let r=0;r<4;r++)hero.tick();if(hero.done())hero.fire((hero.src+7)%32);hero.draw();const fp=hero.path[hero.front()];heroT.textContent=hero.step>30?NM[fp.t===7&&!hero.bleed?6:fp.t].toLowerCase():'sensor firing';});
+
+// simulator
+const sim=new WaveSim(document.getElementById('simCanvas'),{path:true});let simPlaying=true;
+const legend=document.getElementById('simLegend');legend.innerHTML=SP.map((s,t)=>`<div data-t="${t}"><i style="background:rgb(${TIS_COL[t].map(Math.round)})"></i><span>${NM[t]}</span><span>${Math.round(s).toLocaleString('en-US')} m/s</span></div>`).join('');
+const prof=document.getElementById('simProfile'),px=prof.getContext('2d'),now=document.getElementById('simNow');
+function yS(c){const f=c<=1640?(c-1460)/180*0.68:0.68+(c-1640)/(2900-1640)*0.32;return prof.height-10-f*(prof.height-24);}
+function drawProfile(){const W=prof.width,H=prof.height,pa=sim.path,fi=sim.front(),st=sim.step>30;px.clearRect(0,0,W,H);px.strokeStyle='#1A2027';px.lineWidth=1;px.fillStyle='#7D8994';px.font='12px Geist Mono, monospace';px.textAlign='right';
+  for(const v of[1500,1600,2800]){px.beginPath();px.moveTo(0,yS(v));px.lineTo(W,yS(v));px.stroke();px.fillText(v.toLocaleString('en-US'),W-4,yS(v)-3);}
+  const X=m=>m/(pa.length-1)*W;const line=(to,fill)=>{px.beginPath();px.moveTo(0,H);for(let m=0;m<=to;m++)px.lineTo(X(m),yS(sim.speed(pa[m].t)));if(fill){px.lineTo(X(to),H);px.closePath();px.fillStyle='rgba(110,231,249,.32)';px.fill();}else{px.strokeStyle='rgba(247,250,252,.45)';px.lineWidth=1.5;px.stroke();}};
+  line(pa.length-1,false);if(st)line(fi,true);}
+function simFrame(){if(simPlaying){for(let r=0;r<4;r++)sim.tick();if(sim.done())sim.fire(sim.src);}sim.draw();drawProfile();const fp=sim.path[sim.front()],t=fp.t===7&&!sim.bleed?6:fp.t,st=sim.step>30;
+  now.textContent=st?`Wave is in: ${NM[t]} · ${Math.round(SP[t]).toLocaleString('en-US')} m/s`:'Sensor fires…';legend.querySelectorAll('div').forEach(d=>d.classList.toggle('on',st&&+d.dataset.t===t));}
+sim.draw();drawProfile();visibleRunner(sim.cv,simFrame);
+sim.cv.addEventListener('click',e=>{const r=sim.cv.getBoundingClientRect(),s=sim.nearest((e.clientX-r.left)*sim.cv.width/r.width,(e.clientY-r.top)*sim.cv.height/r.height);if(s>=0){sim.fire(s);if(!simPlaying){simPlaying=true;playBtn.textContent='Pause';}}});
+const playBtn=document.getElementById('simPlay');playBtn.addEventListener('click',()=>{simPlaying=!simPlaying;playBtn.textContent=simPlaying?'Pause':'Play';});
+document.getElementById('simRestart').addEventListener('click',()=>sim.fire(sim.src));
+document.getElementById('simBleed').addEventListener('change',e=>{sim.setBleed(e.target.checked);sim.fire(sim.src);});
+
+// story canvas
+const sc=document.getElementById('storyCanvas'),sx=sc.getContext('2d');let storyStep=0,storyT=0;
+function drawStory(){const W=sc.width,H=sc.height,f=fit(sc,LW+40,LH+40),ox=f.ox+20*f.s,oy=f.oy+20*f.s,s=f.s;sx.fillStyle='#0D1013';sx.fillRect(0,0,W,H);
+  const cx=ox+HB.cx*s,cy=oy+HB.cy*s,rx=(HB.rx+11)*s,ry=(HB.ry+11)*s;sx.fillStyle='#0B1A22';sx.beginPath();sx.ellipse(cx,cy,rx+12,ry+12,0,0,7);sx.fill();
+  if(storyStep===2){const blur=Math.max(0,10*(1-((storyT%300)/220)));sx.filter=`blur(${blur.toFixed(1)}px)`;}
+  sx.imageSmoothingEnabled=true;sx.drawImage(BRAIN,ox,oy,LW*s,LH*s);sx.filter='none';
+  const N=48,act=storyStep===0?(storyT/4)%N:storyStep===1?12:-1;
+  for(let k=0;k<N;k++){const th=k/N*Math.PI*2,px=cx+rx*Math.cos(th),py=cy+ry*Math.sin(th),d=act>=0?((act-k+N)%N):99,g=d<1?1:Math.max(0,1-d/8);
+    sx.fillStyle=storyStep===1&&k===12?'#F7FAFC':`rgba(110,231,249,${0.35+0.65*g})`;sx.beginPath();sx.arc(px,py,storyStep===1&&k===12?8:5,0,7);sx.fill();}
+  if(storyStep===1){const th=12/N*Math.PI*2,px=cx+rx*Math.cos(th),py=cy+ry*Math.sin(th);sx.save();sx.beginPath();sx.ellipse(cx,cy,rx+12,ry+12,0,0,7);sx.clip();
+    for(let r=0;r<5;r++){const R=((storyT*2.2+r*90)%450);sx.strokeStyle=`rgba(247,250,252,${0.7*(1-R/450)})`;sx.lineWidth=3;sx.beginPath();sx.arc(px,py,R,0,7);sx.stroke();}sx.restore();}
+  if(storyStep===3){let by=0,bx=0,bn=0;for(let y=0;y<LH;y++)for(let x=0;x<LW;x++)if(lab(y,x)===7){by+=y;bx+=x;bn++;}const R=18+6*Math.sin(storyT/12);
+    sx.strokeStyle='#FFB86B';sx.lineWidth=3;sx.beginPath();sx.arc(ox+bx/bn*s,oy+by/bn*s,R*s/2.2,0,7);sx.stroke();}
+  storyT++;}
+drawStory();visibleRunner(sc,()=>{if(!RM)drawStory();});
+const steps=[...document.querySelectorAll('.step')];
+const stepObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){steps.forEach(s=>s.classList.remove('on'));e.target.classList.add('on');storyStep=+e.target.dataset.step;storyT=0;drawStory();}});},{rootMargin:'-45% 0px -45% 0px'});steps.forEach(s=>stepObs.observe(s));
+</script>
+<script>
+// quantum chain
+const cc=document.getElementById('chainCanvas'),cx2=cc.getContext('2d');
+const cS=[1600,2800,1546,1546,1546,2800,1600].map(v=>v/1500),NS=15,hop=[];for(let i=0;i<7;i++){hop[2*i]=cS[i];hop[2*i+1]=cS[i];}
+const tis=['scalp','skull','brain','brain','brain','skull','scalp'],tcol={scalp:'#5C8C99',skull:'#E6ECF0',brain:'#2F8FA6'};
+let re=new Float64Array(NS),im=new Float64Array(NS),ct=0,hold=0;function creset(){re.fill(0);im.fill(0);re[1]=1;ct=0;}creset();
+function fdot(r,m){const dr=new Float64Array(NS),dm=new Float64Array(NS);for(let k=0;k<NS-1;k++){const h=hop[k];dr[k]+=h*m[k+1];dr[k+1]+=h*m[k];dm[k]-=h*r[k+1];dm[k+1]-=h*r[k];}return[dr,dm];}
+function cstep(dt){const[a1,b1]=fdot(re,im),r2=re.map((v,k)=>v+dt/2*a1[k]),m2=im.map((v,k)=>v+dt/2*b1[k]),[a2,b2]=fdot(r2,m2),r3=re.map((v,k)=>v+dt/2*a2[k]),m3=im.map((v,k)=>v+dt/2*b2[k]),[a3,b3]=fdot(r3,m3),r4=re.map((v,k)=>v+dt*a3[k]),m4=im.map((v,k)=>v+dt*b3[k]),[a4,b4]=fdot(r4,m4);
+  for(let k=0;k<NS;k++){re[k]+=dt/6*(a1[k]+2*a2[k]+2*a3[k]+a4[k]);im[k]+=dt/6*(b1[k]+2*b2[k]+2*b3[k]+b4[k]);}ct+=dt;}
+function cdraw(){const W=cc.width,H=cc.height,X=k=>70+k*(W-140)/(NS-1),base=H*0.66;cx2.fillStyle='#07080A';cx2.fillRect(0,0,W,H);
+  cx2.strokeStyle='#1A2027';cx2.lineWidth=3;cx2.beginPath();cx2.moveTo(X(0),base);cx2.lineTo(X(NS-1),base);cx2.stroke();
+  for(let k=0;k<NS;k++){const p=re[k]*re[k]+im[k]*im[k],cell=k%2===1;cx2.fillStyle=cell?'#6EE7F9':'#7D8994';cx2.fillRect(X(k)-20,base-34-p*(base-90),40,p*(base-90));
+    if(cell){cx2.fillStyle=tcol[tis[(k-1)/2]];cx2.beginPath();cx2.arc(X(k),base,24,0,7);cx2.fill();if(k===5){cx2.strokeStyle='#F7FAFC';cx2.lineWidth=3;cx2.beginPath();cx2.arc(X(k),base,31,0,7);cx2.stroke();}}
+    else{cx2.fillStyle='#7D8994';cx2.fillRect(X(k)-10,base-10,20,20);}}
+  cx2.font='26px Geist, -apple-system, Arial, sans-serif';cx2.textAlign='center';for(let i=0;i<7;i++){cx2.fillStyle='#B3BEC8';cx2.fillText(tis[i],X(2*i+1),base+66);}
+  cx2.textAlign='left';const r=re[5]*re[5]+im[5]*im[5];cx2.fillStyle='#F7FAFC';cx2.fillText('t = '+ct.toFixed(2),70,48);cx2.fillStyle='#6EE7F9';cx2.fillText('first brain cell: '+r.toFixed(3)+(hold>0?'   ← exact 0.104 at t = 1.5':''),260,48);
+  cx2.fillStyle='#7D8994';cx2.font='22px Geist, -apple-system, Arial, sans-serif';cx2.fillText('circles = cells (velocity) · squares = links (stretch) · bar height = share of wave energy',70,H-24);}
+cdraw();
+function cframe(){if(hold>0)hold--;else{for(let s=0;s<4;s++){const b=ct;cstep(0.004);if(b<1.5&&ct>=1.5){hold=110;break;}}if(ct>6)creset();}cdraw();}
+if(!RM)visibleRunner(cc,cframe);
+
+// quantum results explorer (team data, FakeKingston noise model)
+const QD={2:{ideal:.0633,raw:[.0383,.0030],post:[.0548,.0043],kept:69.8,cz:70,depth:45},4:{ideal:.0923,raw:[.0478,.0034],post:[.0823,.0057],kept:58.0,cz:126,depth:75},6:{ideal:.1073,raw:[.0473,.0034],post:[.0923,.0064],kept:51.2,cz:182,depth:104},8:{ideal:.1013,raw:[.0468,.0033],post:[.0958,.0067],zne:[.1028,.0111],kept:48.8,cz:238,depth:130}};
+const qb=document.getElementById('qbars'),MAX=0.13;
+const rowsQ=[['Noiseless circuit','ideal',false],['Noise model, raw','raw',true],['+ post-selection','post',true],['+ ZNE','zne',true]];
+qb.innerHTML=rowsQ.map(([l,k])=>`<div class="bar" data-k="${k}"><span>${l}</span><div class="track"><div class="fill${k==='ideal'?'':' q'}"></div><div class="err"></div><div class="exactline" style="left:${(.104/MAX*100).toFixed(1)}%"></div></div><span class="val"></span></div>`).join('');
+function setSteps(s){const d=QD[s];document.querySelectorAll('#stepSeg button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.s===s));
+  document.getElementById('kvGates').textContent=d.cz;document.getElementById('kvDepth').textContent=d.depth;document.getElementById('kvKept').textContent=d.kept+'%';
+  qb.querySelectorAll('.bar').forEach(r=>{const k=r.dataset.k,v=d[k],fill=r.querySelector('.fill'),err=r.querySelector('.err'),val=r.querySelector('.val');
+    if(v===undefined){fill.style.width='0%';err.style.width='0';err.style.borderWidth='0';val.textContent=k==='zne'?'8 steps only':'';return;}
+    const m=Array.isArray(v)?v[0]:v,se=Array.isArray(v)?v[1]:0;fill.style.width=(m/MAX*100)+'%';
+    if(se){err.style.borderWidth='2px';err.style.left=((m-se)/MAX*100)+'%';err.style.width=(2*se/MAX*100)+'%';}else{err.style.borderWidth='0';err.style.width='0';}
+    val.textContent=m.toFixed(3)+(se?' ± '+se.toFixed(3):'');});}
+document.querySelectorAll('#stepSeg button').forEach(b=>b.addEventListener('click',()=>setSteps(+b.dataset.s)));setSteps(8);
+
+// time chart (log seconds 1e-5..1e12)
+const TR=[['Our 7 cells · classical exact solver','measured, laptop','23 µs',2.3e-5,'c'],['Our 7 cells · classical finite difference','measured, laptop','1.8 ms',1.8e-3,'c'],['Our 7 cells · IBM quantum, 4,000 shots','estimate, IBM timing rule','~3 s',3.4,'qq'],['Full head · CPU cluster, 128 nodes','measured, Guasch 2020','32 h',1.15e5,'c'],['Full head · 96-GPU array','projected, Guasch 2020','~10 min',600,'c'],['Full head · quantum, full read-out','our estimate, 80 rounds','~9,000 years',2.88e11,'qq']];
+const pct=s=>(Math.log10(s)+5)/17*100;
+document.getElementById('tchart').innerHTML=TR.map(([l,st,v,s,c])=>`<div class="trow"><div class="lab">${l}<small>${st}</small></div><div class="tbar"><div class="tfill ${c}" style="width:${Math.max(1,pct(s)*0.82).toFixed(1)}%"></div><b style="left:calc(${Math.max(1,pct(s)*0.82).toFixed(1)}% + 10px)">${v}</b></div></div>`).join('')+`<div class="axis"><span>10 µs</span><span>1 s</span><span>1 day</span><span>30 yr</span><span>30,000 yr</span></div>`;
+
+// reveal, counters, progress, nav
+const rvObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');if(e.target.id==='tchart')e.target.classList.add('grow');e.target.querySelectorAll('[data-count]').forEach(countUp);rvObs.unobserve(e.target);}}),{threshold:0.15});
+document.querySelectorAll('.rv').forEach(el=>rvObs.observe(el));
+function fmt(v,f){return f==='k'?Math.round(v/1000)+'K':f==='m1'?v.toFixed(1)+'M':f==='m0'?Math.round(v)+'M':'$'+v.toFixed(1)+'B';}
+function countUp(el){if(RM)return;const end=+el.dataset.count,f=el.dataset.fmt,t0=performance.now();const go=t=>{const p=Math.min(1,(t-t0)/1200),e=1-Math.pow(1-p,3);el.textContent=fmt(end*e,f);if(p<1)requestAnimationFrame(go);};requestAnimationFrame(go);}
+const bar=document.getElementById('progress');addEventListener('scroll',()=>{const h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';},{passive:true});
+const navA=[...document.querySelectorAll('.navlinks a')];const navObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)navA.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));}),{rootMargin:'-40% 0px -55% 0px'});document.querySelectorAll('section[id]').forEach(s=>navObs.observe(s));
+</script>

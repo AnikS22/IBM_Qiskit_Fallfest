@@ -1,0 +1,23 @@
+Registration and Team Access · Florida Qiskit Fallfest Hackathon
+Skip to contentQFFFlorida Qiskit Fallfest HackathonFor ParticipantsFor Facilitators and Local HostsHandbookPathwaysRegisterResourcesSupportGlossary0/12 done
+Registration and Team Access
+Registration, team creation, and team management for the Florida Qiskit Fallfest Hackathon are handled through DeepStation. Choose your campus below to register, create a team, or join an existing team.
+Your campus
+Miami Dade College
+ (opens in a new tab)Kevin Robinson, kevin@quantumglobalgroup.ioGrant Kurz, grant@deepstation.ai
+Florida Atlantic University
+ (opens in a new tab)Robert Loredo, rloredo2026@fau.eduAyse Torres, atorre58@fau.eduKateryna Tsekhmayster, ktsekhmayste2022@fau.edu
+Embry-Riddle Aeronautical University
+ (opens in a new tab)November 7–8, 2026Laxima Niure Kandel, niurekal@erau.edu
+Florida Institute of Technology
+ (opens in a new tab)Dr. Robert Usselman, russelman@fit.edu
+Florida Gulf Coast University
+ (opens in a new tab)Dr. Chengyi Qu, cqu@fgcu.edu
+If you have trouble with registration, contact Grant Kurz at grant@deepstation.ai.
+DeepStation Hackathons Organizer Guide
+This guide is for campus leads, facilitators, and event organizers managing their local hackathon through DeepStation. Scroll through the complete guide below, open it full screen, or download a copy.
+Open Guide Full Screen (opens in a new tab)Download Organizer Guide
+Your browser may not support an embedded PDF viewer. Open the guide full screen or download a copy to continue.
+Support
+Florida Qiskit Fallfest Hackathon
+For ParticipantsFor Facilitators and Local HostsParticipant handbookDomain/Industry Expert and Builder/Developer ExpertNotebook catalogDiscordQiskit-approved websiteRobert Loredo, rloredo2026@fau.eduKevin Robinson, kevin@quantumglobalgroup.ioGrant Kurz, grant@deepstation.aiAyse Torres, atorre58@fau.eduSupport

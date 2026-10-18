@@ -1,0 +1,6 @@
+{
+  "config": "classical/configs/pulse_1d.json",
+  "observations": "runs/pulse_1d/obs/observations.npz",
+  "output": "runs/pulse_1d/classical",
+  "execute": true
+}

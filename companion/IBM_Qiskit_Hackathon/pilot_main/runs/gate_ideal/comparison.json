@@ -1,0 +1,16 @@
+{
+  "acquisition_signature": "e193397a36c242fb61516d53efa74e0ff094b472560148683254d485b86fffe8",
+  "parameters": [
+    1.0,
+    1.1
+  ],
+  "base_speed_ratio": [
+    1.0,
+    1.0
+  ],
+  "region_ids": [
+    0,
+    1
+  ],
+  "scope": "Fixed-map forward pressure; no inversion or speedup claim"
+}

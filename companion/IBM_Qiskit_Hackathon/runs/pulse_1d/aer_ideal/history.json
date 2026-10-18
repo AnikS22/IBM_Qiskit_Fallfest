@@ -1,0 +1,48 @@
+[
+  {
+    "iteration": 0,
+    "parameters": [
+      1.0,
+      1.0
+    ],
+    "relative_pressure_loss": 0.0011698042896742882,
+    "plugin_pressure_loss": 0.002648370005687898,
+    "estimated_sampling_loss_contribution": 0.0014785657160136096,
+    "gradient": [
+      0.01593769381122711,
+      0.01691316154956007
+    ],
+    "step": [
+      -0.001593769381122656,
+      -0.0016913161549559907
+    ]
+  },
+  {
+    "iteration": 1,
+    "parameters": [
+      0.9984062306188773,
+      0.998308683845044
+    ],
+    "relative_pressure_loss": 0.005410853309930405,
+    "plugin_pressure_loss": 0.006883772867576416,
+    "estimated_sampling_loss_contribution": 0.0014729195576460104,
+    "gradient": [
+      -0.01613479516367524,
+      -0.029599495093354338
+    ],
+    "step": [
+      0.0016134795163674776,
+      0.0029599495093354244
+    ]
+  },
+  {
+    "iteration": 2,
+    "parameters": [
+      1.0000197101352448,
+      1.0012686333543794
+    ],
+    "relative_pressure_loss": 0.007565117551142282,
+    "plugin_pressure_loss": 0.00904950463333123,
+    "estimated_sampling_loss_contribution": 0.001484387082188948
+  }
+]

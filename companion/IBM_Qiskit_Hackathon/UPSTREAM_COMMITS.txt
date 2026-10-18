@@ -1,0 +1,3 @@
+efa99b9 Parallel density-matrix noisy simulator, HPC scripts
+121bb3a Add raw IBM hardware execution adapter (#3)
+d5dc2a6 Add gate-based simulator with optional noise (#2)

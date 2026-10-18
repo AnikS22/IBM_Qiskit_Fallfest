@@ -1,0 +1,11 @@
+{
+  "wall_seconds": 37.0900050419732,
+  "forward_calls": 11,
+  "circuits": 88,
+  "shots": 720896,
+  "maximum_depth": 21076,
+  "maximum_gates": 27090,
+  "noise": "ideal",
+  "noise_probability": 0.0,
+  "gradient": "classical finite differences of gate-sampled pressure loss"
+}

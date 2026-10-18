@@ -1,0 +1,7 @@
+method,run_directory,complete,completed_repeats,requested_repeats,all_repeats_within_target,relative_l2_target,rmse_of_mean_pa,relative_l2_of_mean,mean_forward_wall_seconds
+gate_ideal,/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon_main_pilot/runs/gate_ideal,True,3,3,False,0.01,0.003258959571291537,0.005828064977104994,0.12460194466014703
+classical_exact,/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon_main_pilot/runs/gate_ideal,True,3,3,True,0.01,5.556533489592038e-17,9.936864056269506e-17,0.0023497223252585777
+gate_depolarizing,/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon_main_pilot/runs/gate_noisy,True,3,3,False,0.01,0.04950975342183921,0.08853931864781417,0.1738076526671648
+classical_exact,/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon_main_pilot/runs/gate_noisy,True,3,3,True,0.01,5.556533489592038e-17,9.936864056269506e-17,0.002800583344651386
+sa,/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon_main_pilot/runs/annealing,True,3,3,False,0.01,0.008815297383800342,0.015764579099989115,0.18778490299397768
+sqa,/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon_main_pilot/runs/annealing,True,3,3,False,0.01,0.008659385806634936,0.015485759193658457,1.8926744029934828

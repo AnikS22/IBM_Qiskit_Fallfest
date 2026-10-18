@@ -1,0 +1,13 @@
+.venv*/
+__pycache__/
+.pytest_cache/
+*.pyc
+.DS_Store
+runs/
+data/
+*.h5
+*.npz
+*.npy
+*.log
+.env*
+mosaic-workspace/

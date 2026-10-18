@@ -1,0 +1,13 @@
+{
+  "config": "classical/configs/matched_2d.json",
+  "observations": "runs/matched_2d/obs/observations.npz",
+  "output": "runs/matched_2d/aer_ideal",
+  "execute": true,
+  "shots": 8192,
+  "seed": 7,
+  "max_circuits": 10000,
+  "max_total_shots": 100000000,
+  "max_data_qubits": 7,
+  "max_gates": 10000000,
+  "noise_probability": 0.0
+}

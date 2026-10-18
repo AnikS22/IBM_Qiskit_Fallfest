@@ -1,0 +1,17 @@
+{
+  "state_components": 5,
+  "binary_variables_per_bqm": 30,
+  "time_steps_per_repeat": 6,
+  "bqm_calls_per_repeat_at_most": 18,
+  "annealing_reads_per_repeat_at_most": 288,
+  "sweeps_per_read": 200,
+  "scope": "One fixed sound-speed map; forward prediction only, no inversion",
+  "time_step_s": 1e-06,
+  "repetitions_per_algorithm": 3,
+  "algorithms": [
+    "sa",
+    "sqa"
+  ],
+  "workers": 2,
+  "total_bqm_calls_at_most": 108
+}

@@ -1,0 +1,11 @@
+{
+  "parameters": [
+    1.0,
+    0.9791833300464227
+  ],
+  "sound_speed_m_s": [
+    1500.0,
+    1468.774995069634
+  ],
+  "meaning": "Estimated sound speed; not a diagnostic image"
+}

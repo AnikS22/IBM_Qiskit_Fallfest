@@ -1,0 +1,17 @@
+{
+  "wall_seconds": 0.4053563750057947,
+  "forward_calls": 3,
+  "circuits": 24,
+  "shots": 196608,
+  "maximum_depth": 391,
+  "maximum_gates": 457,
+  "noise": "ideal",
+  "noise_probability": 0,
+  "aer_method": "statevector",
+  "compilation_seconds": 0.11944508310989477,
+  "execution_seconds": 0.14126050294726156,
+  "time_budget_note": "Checked between compilation/execution calls, not a hard interrupt",
+  "status": "completed",
+  "scope": "Fixed-map forward prediction",
+  "quantum_hardware_jobs": 0
+}

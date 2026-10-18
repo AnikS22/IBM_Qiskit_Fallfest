@@ -1,0 +1,6 @@
+{
+  "inverse_problem_signature": "175d7fb5b12686d92090fa4604f4862bff8efb043a1d105778deabae68c3eacc",
+  "observations_sha256": "12fcfc873a22d53deca60187dcf18af35c6d4bd5796dfa16d553aeda8f2bf029",
+  "objective": "variance_corrected_pressure_l2_v1",
+  "requirement": "Match both signatures before pairing runs from different solvers"
+}

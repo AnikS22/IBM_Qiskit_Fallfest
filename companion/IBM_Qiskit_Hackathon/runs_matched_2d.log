@@ -1,0 +1,66 @@
+=== matched_2d 00:47:05
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon/simulator/run.py", line 68, in <module>
+    main()
+    ~~~~^^
+  File "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon/simulator/run.py", line 55, in main
+    parameters, _ = invert(problem, observed, solver.predict,
+                    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                           lambda history: evidence.write('history.json', history))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon/classical/_core/inversion.py", line 29, in invert
+    value, noise_floor = loss(theta)
+                         ~~~~^^^^^^^
+  File "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon/classical/_core/inversion.py", line 16, in loss
+    result = predict(parameters)
+  File "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon/simulator/forward.py", line 58, in predict
+    raise RuntimeError('Compiled circuit exceeds gate limit')
+RuntimeError: Compiled circuit exceeds gate limit
+FAIL aer_ideal matched_2d
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon/simulator/run.py", line 68, in <module>
+    main()
+    ~~~~^^
+  File "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon/simulator/run.py", line 55, in main
+    parameters, _ = invert(problem, observed, solver.predict,
+                    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                           lambda history: evidence.write('history.json', history))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon/classical/_core/inversion.py", line 29, in invert
+    value, noise_floor = loss(theta)
+                         ~~~~^^^^^^^
+  File "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon/classical/_core/inversion.py", line 16, in loss
+    result = predict(parameters)
+  File "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon/simulator/forward.py", line 58, in predict
+    raise RuntimeError('Compiled circuit exceeds gate limit')
+RuntimeError: Compiled circuit exceeds gate limit
+FAIL aer_noisy matched_2d
+=== stride 2D 00:47:36
+=== stride 3D 00:47:36
+Exception ignored in atexit callback: <bound method IndirectForker._quit of <pytools.prefork.IndirectForker object at 0x10bb98970>>
+Traceback (most recent call last):
+  File "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon/.venv-stride/lib/python3.10/site-packages/pytools/prefork.py", line 228, in _quit
+    self._remote_invoke("quit")
+  File "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon/.venv-stride/lib/python3.10/site-packages/pytools/prefork.py", line 215, in _remote_invoke
+    _send_packet(self.socket, (name, args, kwargs))
+  File "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon/.venv-stride/lib/python3.10/site-packages/pytools/prefork.py", line 137, in _send_packet
+    sock.sendall(pack("I", len(packet)))
+BrokenPipeError: [Errno 32] Broken pipe
+Traceback (most recent call last):
+  File "/Users/aniksahai/.local/share/uv/python/cpython-3.10.19-macos-aarch64-none/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/Users/aniksahai/.local/share/uv/python/cpython-3.10.19-macos-aarch64-none/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon/classical/stride_baseline.py", line 169, in <module>
+    main()
+  File "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon/classical/stride_baseline.py", line 46, in main
+    with np.load(args.input, allow_pickle=False) as source:
+  File "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon/.venv-stride/lib/python3.10/site-packages/numpy/lib/_npyio_impl.py", line 451, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+FileNotFoundError: [Errno 2] No such file or directory: 'runs/stride_3d/forward/inversion_input.npz'
+FAIL invert 3D
+=== DONE 00:48:26

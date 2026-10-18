@@ -1,0 +1,20 @@
+{
+  "config": "ibm_hardware/pilot_1d.json",
+  "parameters": [
+    1.0,
+    1.1
+  ],
+  "reference": "runs/pilot_reference.json",
+  "output": "runs/gate_noisy",
+  "repetitions": 3,
+  "shots": 8192,
+  "seed": 7,
+  "noise_probability": 0.001,
+  "method": "density_matrix",
+  "threads": 1,
+  "max_seconds": 900.0,
+  "max_circuits": 192,
+  "max_total_shots": 2000000,
+  "max_gates": 500000,
+  "execute": true
+}

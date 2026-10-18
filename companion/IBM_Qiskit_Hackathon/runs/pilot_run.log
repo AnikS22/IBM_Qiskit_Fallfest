@@ -1,0 +1,112 @@
+Cloning into 'IBM_Qiskit_Hackathon_main_pilot'...
+Collecting numpy==2.4.6 (from -r /Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon_main_pilot/classical/requirements.txt (line 2))
+  Downloading numpy-2.4.6-cp312-cp312-macosx_14_0_arm64.whl.metadata (6.6 kB)
+Collecting scipy==1.17.1 (from -r /Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon_main_pilot/classical/requirements.txt (line 3))
+  Downloading scipy-1.17.1-cp312-cp312-macosx_14_0_arm64.whl.metadata (62 kB)
+Collecting qiskit==2.6.0 (from -r simulator/requirements.txt (line 2))
+  Using cached qiskit-2.6.0-cp310-abi3-macosx_11_0_arm64.whl.metadata (14 kB)
+Collecting qiskit-aer==0.17.2 (from -r simulator/requirements.txt (line 3))
+  Downloading qiskit_aer-0.17.2-cp312-cp312-macosx_11_0_arm64.whl.metadata (8.3 kB)
+Collecting dimod==0.12.22 (from -r annealing/requirements.txt (line 2))
+  Downloading dimod-0.12.22-cp312-cp312-macosx_11_0_arm64.whl.metadata (3.1 kB)
+Collecting dwave-samplers==1.8.0 (from -r annealing/requirements.txt (line 3))
+  Downloading dwave_samplers-1.8.0-cp312-abi3-macosx_11_0_arm64.whl.metadata (24 kB)
+Collecting rustworkx>=0.15.0 (from qiskit==2.6.0->-r simulator/requirements.txt (line 2))
+  Using cached rustworkx-0.18.1-cp310-abi3-macosx_11_0_arm64.whl.metadata (10 kB)
+Collecting dill>=0.3 (from qiskit==2.6.0->-r simulator/requirements.txt (line 2))
+  Using cached dill-0.4.1-py3-none-any.whl.metadata (10 kB)
+Collecting stevedore>=3.0.0 (from qiskit==2.6.0->-r simulator/requirements.txt (line 2))
+  Using cached stevedore-5.9.1-py3-none-any.whl.metadata (2.3 kB)
+Collecting typing-extensions (from qiskit==2.6.0->-r simulator/requirements.txt (line 2))
+  Using cached typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting psutil>=5 (from qiskit-aer==0.17.2->-r simulator/requirements.txt (line 3))
+  Using cached psutil-7.2.2-cp36-abi3-macosx_11_0_arm64.whl.metadata (22 kB)
+Collecting python-dateutil>=2.8.0 (from qiskit-aer==0.17.2->-r simulator/requirements.txt (line 3))
+  Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting networkx<4,>=3 (from dwave-samplers==1.8.0->-r annealing/requirements.txt (line 3))
+  Using cached networkx-3.7-py3-none-any.whl.metadata (6.7 kB)
+Collecting six>=1.5 (from python-dateutil>=2.8.0->qiskit-aer==0.17.2->-r simulator/requirements.txt (line 3))
+  Using cached six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Downloading numpy-2.4.6-cp312-cp312-macosx_14_0_arm64.whl (5.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 20.8 MB/s  0:00:00
+Downloading scipy-1.17.1-cp312-cp312-macosx_14_0_arm64.whl (20.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 20.3/20.3 MB 20.5 MB/s  0:00:00
+Using cached qiskit-2.6.0-cp310-abi3-macosx_11_0_arm64.whl (9.0 MB)
+Downloading qiskit_aer-0.17.2-cp312-cp312-macosx_11_0_arm64.whl (2.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 1.9 MB/s  0:00:00
+Downloading dimod-0.12.22-cp312-cp312-macosx_11_0_arm64.whl (5.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 7.0 MB/s  0:00:00
+Downloading dwave_samplers-1.8.0-cp312-abi3-macosx_11_0_arm64.whl (988 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 988.4/988.4 kB 8.1 MB/s  0:00:00
+Using cached networkx-3.7-py3-none-any.whl (2.1 MB)
+Using cached dill-0.4.1-py3-none-any.whl (120 kB)
+Using cached psutil-7.2.2-cp36-abi3-macosx_11_0_arm64.whl (129 kB)
+Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Using cached rustworkx-0.18.1-cp310-abi3-macosx_11_0_arm64.whl (2.1 MB)
+Using cached six-1.17.0-py2.py3-none-any.whl (11 kB)
+Using cached stevedore-5.9.1-py3-none-any.whl (54 kB)
+Using cached typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Installing collected packages: typing-extensions, stevedore, six, psutil, numpy, networkx, dill, scipy, rustworkx, python-dateutil, dimod, qiskit, dwave-samplers, qiskit-aer
+
+Successfully installed dill-0.4.1 dimod-0.12.22 dwave-samplers-1.8.0 networkx-3.7 numpy-2.4.6 psutil-7.2.2 python-dateutil-2.9.0.post0 qiskit-2.6.0 qiskit-aer-0.17.2 rustworkx-0.18.1 scipy-1.17.1 six-1.17.0 stevedore-5.9.1 typing-extensions-4.16.0
+
+[notice] A new release of pip is available: 26.1 -> 26.2.1
+[notice] To update, run: pip install --upgrade pip
+Passed: all 64 QUBO energies, Ising scaling, signed encoding, CN norm, sampler APIs, refinement.
+Circuit 1/24: 0.01s simulation (statevector)
+Circuit 2/24: 0.00s simulation (statevector)
+Circuit 3/24: 0.01s simulation (statevector)
+Circuit 4/24: 0.01s simulation (statevector)
+Circuit 5/24: 0.00s simulation (statevector)
+Circuit 6/24: 0.00s simulation (statevector)
+Circuit 7/24: 0.01s simulation (statevector)
+Circuit 8/24: 0.01s simulation (statevector)
+Circuit 9/24: 0.00s simulation (statevector)
+Circuit 10/24: 0.01s simulation (statevector)
+Circuit 11/24: 0.01s simulation (statevector)
+Circuit 12/24: 0.01s simulation (statevector)
+Circuit 13/24: 0.00s simulation (statevector)
+Circuit 14/24: 0.00s simulation (statevector)
+Circuit 15/24: 0.01s simulation (statevector)
+Circuit 16/24: 0.01s simulation (statevector)
+Circuit 17/24: 0.00s simulation (statevector)
+Circuit 18/24: 0.00s simulation (statevector)
+Circuit 19/24: 0.01s simulation (statevector)
+Circuit 20/24: 0.01s simulation (statevector)
+Circuit 21/24: 0.00s simulation (statevector)
+Circuit 22/24: 0.00s simulation (statevector)
+Circuit 23/24: 0.01s simulation (statevector)
+Circuit 24/24: 0.01s simulation (statevector)
+Circuit 1/24: 0.01s simulation (density_matrix)
+Circuit 2/24: 0.01s simulation (density_matrix)
+Circuit 3/24: 0.01s simulation (density_matrix)
+Circuit 4/24: 0.01s simulation (density_matrix)
+Circuit 5/24: 0.01s simulation (density_matrix)
+Circuit 6/24: 0.01s simulation (density_matrix)
+Circuit 7/24: 0.01s simulation (density_matrix)
+Circuit 8/24: 0.01s simulation (density_matrix)
+Circuit 9/24: 0.01s simulation (density_matrix)
+Circuit 10/24: 0.01s simulation (density_matrix)
+Circuit 11/24: 0.01s simulation (density_matrix)
+Circuit 12/24: 0.01s simulation (density_matrix)
+Circuit 13/24: 0.01s simulation (density_matrix)
+Circuit 14/24: 0.01s simulation (density_matrix)
+Circuit 15/24: 0.01s simulation (density_matrix)
+Circuit 16/24: 0.01s simulation (density_matrix)
+Circuit 17/24: 0.01s simulation (density_matrix)
+Circuit 18/24: 0.01s simulation (density_matrix)
+Circuit 19/24: 0.01s simulation (density_matrix)
+Circuit 20/24: 0.01s simulation (density_matrix)
+Circuit 21/24: 0.01s simulation (density_matrix)
+Circuit 22/24: 0.01s simulation (density_matrix)
+Circuit 23/24: 0.01s simulation (density_matrix)
+Circuit 24/24: 0.01s simulation (density_matrix)
+sa seed=8: completed
+sa seed=7: completed
+sa seed=9: completed
+sqa seed=7: completed
+sqa seed=8: completed
+sqa seed=9: completed
+All repeats within 1% of exact pressure: False. Completed does not mean accuracy validated.
+Complete: True; all repeats within target: False
+exit 0

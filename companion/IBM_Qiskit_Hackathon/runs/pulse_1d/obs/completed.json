@@ -1,0 +1,7 @@
+{
+  "wall_seconds": 0.02201262500602752,
+  "forward_calls": 1,
+  "sparse_evolutions": 8,
+  "quantum_shots": 0,
+  "reference": "exact discrete evolution, midpoint source quadrature"
+}

@@ -1,0 +1,9 @@
+{
+  "wall_seconds": 4.768022500007646,
+  "status": "completed",
+  "accuracy_checks_passed": false,
+  "relative_l2_target": 0.01,
+  "quantum_hardware_jobs": 0,
+  "total_repeats": 6,
+  "scope": "Forward-wave experiment; inspect accuracy, including failed repeats"
+}

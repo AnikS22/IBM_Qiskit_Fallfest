@@ -1,0 +1,6 @@
+{
+  "config": "classical/configs/matched_2d.json",
+  "observations": "runs/matched_2d/obs/observations.npz",
+  "output": "runs/matched_2d/classical",
+  "execute": true
+}

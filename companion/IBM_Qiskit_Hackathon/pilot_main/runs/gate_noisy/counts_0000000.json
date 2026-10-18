@@ -1,0 +1,35 @@
+{
+  "forward_call": 0,
+  "parameters": [
+    1.0,
+    1.1
+  ],
+  "source": 0,
+  "receiver": 0,
+  "time_s": 1e-06,
+  "evolution_time_s": 1e-06,
+  "physical_scale_pa": 1.0,
+  "counts": {
+    "1": 648,
+    "0": 7544
+  },
+  "shots": 8192,
+  "seed_simulator": 7,
+  "signed_overlap": 0.841796875,
+  "overlap_standard_error": 0.005967480859380628,
+  "unbiased_overlap_variance": 3.557294850936813e-05,
+  "data_qubits": 3,
+  "ancillas": 1,
+  "depth": 197,
+  "gates": 240,
+  "operations": {
+    "cx": 108,
+    "rz": 97,
+    "sx": 34,
+    "measure": 1
+  },
+  "pauli_terms": 12,
+  "aer_method": "density_matrix",
+  "compilation_seconds": 0.011997166002402082,
+  "execution_seconds": 0.011800584004959092
+}

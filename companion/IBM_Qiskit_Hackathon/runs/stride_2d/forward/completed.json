@@ -1,0 +1,6 @@
+{
+  "wall_seconds": 122.24536270799581,
+  "mode": "forward",
+  "backend": "Stride/Devito CPU",
+  "method": "upstream forward and discrete-adjoint FWI"
+}

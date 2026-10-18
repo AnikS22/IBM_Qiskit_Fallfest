@@ -1,0 +1,11 @@
+{
+  "wall_seconds": 37.710502750007436,
+  "forward_calls": 11,
+  "circuits": 176,
+  "shots": 1441792,
+  "maximum_depth": 23708,
+  "maximum_gates": 30472,
+  "noise": "generic_depolarizing_stress",
+  "noise_probability": 0.001,
+  "gradient": "classical finite differences of gate-sampled pressure loss"
+}

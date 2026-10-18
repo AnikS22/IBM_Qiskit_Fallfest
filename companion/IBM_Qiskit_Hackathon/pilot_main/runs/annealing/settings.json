@@ -1,0 +1,35 @@
+{
+  "config": "ibm_hardware/pilot_1d.json",
+  "parameters": [
+    1.0,
+    1.1
+  ],
+  "output": "runs/annealing",
+  "gate_reference": "runs/pilot_reference.json",
+  "algorithms": [
+    "sa",
+    "sqa"
+  ],
+  "repetitions": 3,
+  "workers": 2,
+  "seed": 7,
+  "bits": 6,
+  "refinements": 3,
+  "reads": 16,
+  "sweeps": 200,
+  "max_variables": 512,
+  "max_bqm_calls": 2000,
+  "max_seconds": 600.0,
+  "execute": true,
+  "annealing": {
+    "bits": 6,
+    "refinements": 3,
+    "reads": 16,
+    "sweeps": 200,
+    "beta_end": 128.0,
+    "transverse_start": 2.0,
+    "max_variables": 512,
+    "max_bqm_calls": 2000,
+    "max_seconds": 600.0
+  }
+}

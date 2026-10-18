@@ -1,0 +1,1202 @@
+{
+  "scope": "Matched fixed-map forward waves, not full reconstruction or the paper benchmark",
+  "parameters": [
+    1.0,
+    1.1
+  ],
+  "acquisition_signature": "e193397a36c242fb61516d53efa74e0ff094b472560148683254d485b86fffe8",
+  "ideal_circuit_error_vs_exact": {
+    "rmse_pa": 0.0008547024275508555,
+    "relative_l2": 0.0015284820737686132
+  },
+  "methods": [
+    {
+      "method": "gate_ideal",
+      "run_directory": "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon_main_pilot/runs/gate_ideal",
+      "complete": true,
+      "completed_repeats": 3,
+      "requested_repeats": 3,
+      "all_repeats_within_target": false,
+      "relative_l2_target": 0.01,
+      "mean_pressure_pa": [
+        [
+          [
+            0.91259765625,
+            0.054069010416666674
+          ],
+          [
+            0.66357421875,
+            0.19756673177083336
+          ]
+        ],
+        [
+          [
+            0.04135594223484848,
+            0.89404296875
+          ],
+          [
+            0.15410452178030298,
+            0.6015625
+          ]
+        ]
+      ],
+      "error_of_mean_vs_exact": {
+        "rmse_pa": 0.003258959571291537,
+        "relative_l2": 0.005828064977104994
+      },
+      "repeat_standard_deviation_pa": [
+        [
+          [
+            0.006190782389211898,
+            0.008222043459326521
+          ],
+          [
+            0.00888014330052403,
+            0.012053090208697511
+          ]
+        ],
+        [
+          [
+            0.00899178184436464,
+            0.005044916581975543
+          ],
+          [
+            0.0007794488157590979,
+            0.0104382609015781
+          ]
+        ]
+      ],
+      "mean_forward_wall_seconds": 0.12460194466014703,
+      "all_repeats": [
+        {
+          "repeat": 0,
+          "status": "completed",
+          "pressure_pa": [
+            [
+              [
+                0.9169921875,
+                0.05908203125000001
+              ],
+              [
+                0.6650390625,
+                0.18369140625000002
+              ]
+            ],
+            [
+              [
+                0.03129438920454545,
+                0.892578125
+              ],
+              [
+                0.15403053977272724,
+                0.60498046875
+              ]
+            ]
+          ],
+          "standard_error_pa": [
+            [
+              [
+                0.0044130012702266585,
+                0.01213586325434814
+              ],
+              [
+                0.008252743697957041,
+                0.011982826339619718
+              ]
+            ],
+            [
+              [
+                0.010038180410017661,
+                0.0049864704638947896
+              ],
+              [
+                0.009898979823340653,
+                0.008798535024678724
+              ]
+            ]
+          ],
+          "wall_seconds": 0.1273079999955371,
+          "timing_scope": "Circuit construction, transpilation, Aer and count recording",
+          "error_vs_exact": {
+            "rmse_pa": 0.0060159333540382234,
+            "relative_l2": 0.01075841835968927
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.005879229676181077,
+            "relative_l2": 0.010502716387475176
+          }
+        },
+        {
+          "repeat": 1,
+          "status": "completed",
+          "pressure_pa": [
+            [
+              [
+                0.915283203125,
+                0.058544921875
+              ],
+              [
+                0.671630859375,
+                0.20356445312500002
+              ]
+            ],
+            [
+              [
+                0.04860617897727272,
+                0.899658203125
+              ],
+              [
+                0.15491832386363633,
+                0.58984375
+              ]
+            ]
+          ],
+          "standard_error_pa": [
+            [
+              [
+                0.004456078553032716,
+                0.012136180840277322
+              ],
+              [
+                0.008187352142022996,
+                0.011943581462073407
+              ]
+            ],
+            [
+              [
+                0.01002977058751454,
+                0.0048287340373584535
+              ],
+              [
+                0.00989728934880021,
+                0.008923052742716075
+              ]
+            ]
+          ],
+          "wall_seconds": 0.12466099997982383,
+          "timing_scope": "Circuit construction, transpilation, Aer and count recording",
+          "error_vs_exact": {
+            "rmse_pa": 0.0074514319021097885,
+            "relative_l2": 0.01332555017881319
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.007726622162935278,
+            "relative_l2": 0.013802917334435814
+          }
+        },
+        {
+          "repeat": 2,
+          "status": "completed",
+          "pressure_pa": [
+            [
+              [
+                0.905517578125,
+                0.044580078125000006
+              ],
+              [
+                0.654052734375,
+                0.20544433593750003
+              ]
+            ],
+            [
+              [
+                0.044167258522727265,
+                0.889892578125
+              ],
+              [
+                0.15336470170454544,
+                0.60986328125
+              ]
+            ]
+          ],
+          "standard_error_pa": [
+            [
+              [
+                0.004693201496709623,
+                0.012143417806796133
+              ],
+              [
+                0.008359183873194795,
+                0.011939653490907776
+              ]
+            ],
+            [
+              [
+                0.01003227510357163,
+                0.005044694430955514
+              ],
+              [
+                0.009900241115466056,
+                0.008757309444992931
+              ]
+            ]
+          ],
+          "wall_seconds": 0.12183683400508016,
+          "timing_scope": "Circuit construction, transpilation, Aer and count recording",
+          "error_vs_exact": {
+            "rmse_pa": 0.008753835056929726,
+            "relative_l2": 0.015654664746401706
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.00899678830163064,
+            "relative_l2": 0.01607195519389177
+          }
+        }
+      ],
+      "noise_probability": 0,
+      "shots": 8192,
+      "execution": {
+        "wall_seconds": 0.4053563750057947,
+        "forward_calls": 3,
+        "circuits": 24,
+        "shots": 196608,
+        "maximum_depth": 391,
+        "maximum_gates": 457,
+        "noise": "ideal",
+        "noise_probability": 0,
+        "aer_method": "statevector",
+        "compilation_seconds": 0.11944508310989477,
+        "execution_seconds": 0.14126050294726156,
+        "time_budget_note": "Checked between compilation/execution calls, not a hard interrupt",
+        "status": "completed",
+        "scope": "Fixed-map forward prediction",
+        "quantum_hardware_jobs": 0
+      }
+    },
+    {
+      "method": "classical_exact",
+      "run_directory": "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon_main_pilot/runs/gate_ideal",
+      "complete": true,
+      "completed_repeats": 3,
+      "requested_repeats": 3,
+      "all_repeats_within_target": true,
+      "relative_l2_target": 0.01,
+      "mean_pressure_pa": [
+        [
+          [
+            0.911742492061968,
+            0.05266436334742516
+          ],
+          [
+            0.6671330993103224,
+            0.19013992215296738
+          ]
+        ],
+        [
+          [
+            0.04352426722927697,
+            0.8934622998256719
+          ],
+          [
+            0.15714043153137797,
+            0.6011341180671437
+          ]
+        ]
+      ],
+      "error_of_mean_vs_exact": {
+        "rmse_pa": 5.556533489592038e-17,
+        "relative_l2": 9.936864056269506e-17
+      },
+      "repeat_standard_deviation_pa": [
+        [
+          [
+            1.3597399555105182e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            8.498374721940739e-18,
+            1.3597399555105182e-16
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "mean_forward_wall_seconds": 0.0023497223252585777,
+      "all_repeats": [
+        {
+          "repeat": 0,
+          "pressure_pa": [
+            [
+              [
+                0.9117424920619681,
+                0.05266436334742516
+              ],
+              [
+                0.6671330993103224,
+                0.19013992215296738
+              ]
+            ],
+            [
+              [
+                0.04352426722927698,
+                0.893462299825672
+              ],
+              [
+                0.15714043153137797,
+                0.6011341180671437
+              ]
+            ]
+          ],
+          "wall_seconds": 0.0028573329909704626,
+          "status": "completed",
+          "error_vs_exact": {
+            "rmse_pa": 0.0,
+            "relative_l2": 0.0
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.0008547024275508555,
+            "relative_l2": 0.0015268492109810048
+          }
+        },
+        {
+          "repeat": 1,
+          "pressure_pa": [
+            [
+              [
+                0.9117424920619681,
+                0.05266436334742516
+              ],
+              [
+                0.6671330993103224,
+                0.19013992215296738
+              ]
+            ],
+            [
+              [
+                0.04352426722927698,
+                0.893462299825672
+              ],
+              [
+                0.15714043153137797,
+                0.6011341180671437
+              ]
+            ]
+          ],
+          "wall_seconds": 0.002142499986803159,
+          "status": "completed",
+          "error_vs_exact": {
+            "rmse_pa": 0.0,
+            "relative_l2": 0.0
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.0008547024275508555,
+            "relative_l2": 0.0015268492109810048
+          }
+        },
+        {
+          "repeat": 2,
+          "pressure_pa": [
+            [
+              [
+                0.9117424920619681,
+                0.05266436334742516
+              ],
+              [
+                0.6671330993103224,
+                0.19013992215296738
+              ]
+            ],
+            [
+              [
+                0.04352426722927698,
+                0.893462299825672
+              ],
+              [
+                0.15714043153137797,
+                0.6011341180671437
+              ]
+            ]
+          ],
+          "wall_seconds": 0.002049333998002112,
+          "status": "completed",
+          "error_vs_exact": {
+            "rmse_pa": 0.0,
+            "relative_l2": 0.0
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.0008547024275508555,
+            "relative_l2": 0.0015268492109810048
+          }
+        }
+      ]
+    },
+    {
+      "method": "gate_depolarizing",
+      "run_directory": "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon_main_pilot/runs/gate_noisy",
+      "complete": true,
+      "completed_repeats": 3,
+      "requested_repeats": 3,
+      "all_repeats_within_target": false,
+      "relative_l2_target": 0.01,
+      "mean_pressure_pa": [
+        [
+          [
+            0.8467610677083334,
+            0.051293945312500006
+          ],
+          [
+            0.595947265625,
+            0.15003255208333335
+          ]
+        ],
+        [
+          [
+            0.036991003787878785,
+            0.8309733072916666
+          ],
+          [
+            0.11075106534090907,
+            0.550048828125
+          ]
+        ]
+      ],
+      "error_of_mean_vs_exact": {
+        "rmse_pa": 0.04950975342183921,
+        "relative_l2": 0.08853931864781417
+      },
+      "repeat_standard_deviation_pa": [
+        [
+          [
+            0.005569046911108602,
+            0.008530575288913793
+          ],
+          [
+            0.007858143036831583,
+            0.018701384354754626
+          ]
+        ],
+        [
+          [
+            0.007325339603744415,
+            0.0062973769928883795
+          ],
+          [
+            0.004723854015845341,
+            0.00977477598592168
+          ]
+        ]
+      ],
+      "mean_forward_wall_seconds": 0.1738076526671648,
+      "all_repeats": [
+        {
+          "repeat": 0,
+          "status": "completed",
+          "pressure_pa": [
+            [
+              [
+                0.841796875,
+                0.058544921875
+              ],
+              [
+                0.598388671875,
+                0.129443359375
+              ]
+            ],
+            [
+              [
+                0.02885298295454545,
+                0.832763671875
+              ],
+              [
+                0.11496803977272725,
+                0.556640625
+              ]
+            ]
+          ],
+          "standard_error_pa": [
+            [
+              [
+                0.005967480859380628,
+                0.012136180840277322
+              ],
+              [
+                0.008853363892609543,
+                0.012068998184691778
+              ]
+            ],
+            [
+              [
+                0.010039072791270644,
+                0.0061201667354749386
+              ],
+              [
+                0.009963526516418764,
+                0.0091796206950003
+              ]
+            ]
+          ],
+          "wall_seconds": 0.19252483299351297,
+          "timing_scope": "Circuit construction, transpilation, Aer and count recording",
+          "error_vs_exact": {
+            "rmse_pa": 0.05122815500358533,
+            "relative_l2": 0.09161237182816014
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.05170864602511063,
+            "relative_l2": 0.09237285731195441
+          }
+        },
+        {
+          "repeat": 1,
+          "status": "completed",
+          "pressure_pa": [
+            [
+              [
+                0.852783203125,
+                0.0534423828125
+              ],
+              [
+                0.602294921875,
+                0.1546875
+              ]
+            ],
+            [
+              [
+                0.043057528409090905,
+                0.836181640625
+              ],
+              [
+                0.1056463068181818,
+                0.538818359375
+              ]
+            ]
+          ],
+          "standard_error_pa": [
+            [
+              [
+                0.005774021829901935,
+                0.012139052875321677
+              ],
+              [
+                0.008820986402654092,
+                0.012032687904988699
+              ]
+            ],
+            [
+              [
+                0.010032863693931244,
+                0.0060630390487726215
+              ],
+              [
+                0.00997611029851203,
+                0.009308464966237029
+              ]
+            ]
+          ],
+          "wall_seconds": 0.15980900000431575,
+          "timing_scope": "Circuit construction, transpilation, Aer and count recording",
+          "error_vs_exact": {
+            "rmse_pa": 0.04841727091239366,
+            "relative_l2": 0.08658560952313296
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.048990858268677925,
+            "relative_l2": 0.08751777329936547
+          }
+        },
+        {
+          "repeat": 2,
+          "status": "completed",
+          "pressure_pa": [
+            [
+              [
+                0.845703125,
+                0.041894531250000006
+              ],
+              [
+                0.587158203125,
+                0.16596679687500002
+              ]
+            ],
+            [
+              [
+                0.03906249999999999,
+                0.823974609375
+              ],
+              [
+                0.11163884943181816,
+                0.5546875
+              ]
+            ]
+          ],
+          "standard_error_pa": [
+            [
+              [
+                0.005899708286049356,
+                0.012144584421850516
+              ],
+              [
+                0.008944637120786102,
+                0.012014337072897148
+              ]
+            ],
+            [
+              [
+                0.010034858354076312,
+                0.006263629987102025
+              ],
+              [
+                0.009968144645267497,
+                0.009194034372803809
+              ]
+            ]
+          ],
+          "wall_seconds": 0.16908912500366569,
+          "timing_scope": "Circuit construction, transpilation, Aer and count recording",
+          "error_vs_exact": {
+            "rmse_pa": 0.050662658937974545,
+            "relative_l2": 0.09060108348825269
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.05123755324136883,
+            "relative_l2": 0.0915312923158
+          }
+        }
+      ],
+      "noise_probability": 0.001,
+      "shots": 8192,
+      "execution": {
+        "wall_seconds": 0.5616295830113813,
+        "forward_calls": 3,
+        "circuits": 24,
+        "shots": 196608,
+        "maximum_depth": 391,
+        "maximum_gates": 457,
+        "noise": "generic_depolarizing_stress",
+        "noise_probability": 0.001,
+        "aer_method": "density_matrix",
+        "compilation_seconds": 0.15451904194196686,
+        "execution_seconds": 0.24109641709947027,
+        "time_budget_note": "Checked between compilation/execution calls, not a hard interrupt",
+        "status": "completed",
+        "scope": "Fixed-map forward prediction",
+        "quantum_hardware_jobs": 0
+      }
+    },
+    {
+      "method": "classical_exact",
+      "run_directory": "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon_main_pilot/runs/gate_noisy",
+      "complete": true,
+      "completed_repeats": 3,
+      "requested_repeats": 3,
+      "all_repeats_within_target": true,
+      "relative_l2_target": 0.01,
+      "mean_pressure_pa": [
+        [
+          [
+            0.911742492061968,
+            0.05266436334742516
+          ],
+          [
+            0.6671330993103224,
+            0.19013992215296738
+          ]
+        ],
+        [
+          [
+            0.04352426722927697,
+            0.8934622998256719
+          ],
+          [
+            0.15714043153137797,
+            0.6011341180671437
+          ]
+        ]
+      ],
+      "error_of_mean_vs_exact": {
+        "rmse_pa": 5.556533489592038e-17,
+        "relative_l2": 9.936864056269506e-17
+      },
+      "repeat_standard_deviation_pa": [
+        [
+          [
+            1.3597399555105182e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            8.498374721940739e-18,
+            1.3597399555105182e-16
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "mean_forward_wall_seconds": 0.002800583344651386,
+      "all_repeats": [
+        {
+          "repeat": 0,
+          "pressure_pa": [
+            [
+              [
+                0.9117424920619681,
+                0.05266436334742516
+              ],
+              [
+                0.6671330993103224,
+                0.19013992215296738
+              ]
+            ],
+            [
+              [
+                0.04352426722927698,
+                0.893462299825672
+              ],
+              [
+                0.15714043153137797,
+                0.6011341180671437
+              ]
+            ]
+          ],
+          "wall_seconds": 0.0032672920206096023,
+          "status": "completed",
+          "error_vs_exact": {
+            "rmse_pa": 0.0,
+            "relative_l2": 0.0
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.0008547024275508555,
+            "relative_l2": 0.0015268492109810048
+          }
+        },
+        {
+          "repeat": 1,
+          "pressure_pa": [
+            [
+              [
+                0.9117424920619681,
+                0.05266436334742516
+              ],
+              [
+                0.6671330993103224,
+                0.19013992215296738
+              ]
+            ],
+            [
+              [
+                0.04352426722927698,
+                0.893462299825672
+              ],
+              [
+                0.15714043153137797,
+                0.6011341180671437
+              ]
+            ]
+          ],
+          "wall_seconds": 0.0027586659998632967,
+          "status": "completed",
+          "error_vs_exact": {
+            "rmse_pa": 0.0,
+            "relative_l2": 0.0
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.0008547024275508555,
+            "relative_l2": 0.0015268492109810048
+          }
+        },
+        {
+          "repeat": 2,
+          "pressure_pa": [
+            [
+              [
+                0.9117424920619681,
+                0.05266436334742516
+              ],
+              [
+                0.6671330993103224,
+                0.19013992215296738
+              ]
+            ],
+            [
+              [
+                0.04352426722927698,
+                0.893462299825672
+              ],
+              [
+                0.15714043153137797,
+                0.6011341180671437
+              ]
+            ]
+          ],
+          "wall_seconds": 0.0023757920134812593,
+          "status": "completed",
+          "error_vs_exact": {
+            "rmse_pa": 0.0,
+            "relative_l2": 0.0
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.0008547024275508555,
+            "relative_l2": 0.0015268492109810048
+          }
+        }
+      ]
+    },
+    {
+      "method": "sa",
+      "run_directory": "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon_main_pilot/runs/annealing",
+      "complete": true,
+      "completed_repeats": 3,
+      "requested_repeats": 3,
+      "all_repeats_within_target": false,
+      "relative_l2_target": 0.01,
+      "mean_pressure_pa": [
+        [
+          [
+            0.9146500018020927,
+            0.049828930986739524
+          ],
+          [
+            0.6787156899002893,
+            0.17959244328339571
+          ]
+        ],
+        [
+          [
+            0.040879610787347274,
+            0.8969999536310689
+          ],
+          [
+            0.14804512176065163,
+            0.6171822605425442
+          ]
+        ]
+      ],
+      "error_of_mean_vs_exact": {
+        "rmse_pa": 0.008815297383800342,
+        "relative_l2": 0.015764579099989115
+      },
+      "repeat_standard_deviation_pa": [
+        [
+          [
+            0.0008286407592029699,
+            0.0010525151238521503
+          ],
+          [
+            0.0009057709556428678,
+            0.0015164994859446844
+          ]
+        ],
+        [
+          [
+            0.00047841596538734054,
+            0.0
+          ],
+          [
+            0.0005165531326698549,
+            0.0001408191119698086
+          ]
+        ]
+      ],
+      "mean_forward_wall_seconds": 0.18778490299397768,
+      "all_repeats": [
+        {
+          "algorithm": "sa",
+          "seed": 7,
+          "pressure_pa": [
+            [
+              [
+                0.9154786425612955,
+                0.04922126109665733
+              ],
+              [
+                0.6791361367485019,
+                0.17784134057583023
+              ]
+            ],
+            [
+              [
+                0.04060339720094627,
+                0.8969999536310689
+              ],
+              [
+                0.14830294770639174,
+                0.6172298606873851
+              ]
+            ]
+          ],
+          "wall_seconds": 0.20479716698173434,
+          "bqm_calls": 18,
+          "status": "completed",
+          "quantum_hardware_jobs": 0,
+          "error_vs_exact": {
+            "rmse_pa": 0.009215220542924429,
+            "relative_l2": 0.0164797699780093
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.008440001938271649,
+            "relative_l2": 0.015077306305370769
+          }
+        },
+        {
+          "algorithm": "sa",
+          "seed": 8,
+          "pressure_pa": [
+            [
+              [
+                0.9146500018020925,
+                0.051044270766903904
+              ],
+              [
+                0.6776761056620875,
+                0.18046840880878345
+              ]
+            ],
+            [
+              [
+                0.041432037960149264,
+                0.8969999536310689
+              ],
+              [
+                0.14838201075766627,
+                0.6170238102122172
+              ]
+            ]
+          ],
+          "wall_seconds": 0.2114214170142077,
+          "bqm_calls": 18,
+          "status": "completed",
+          "quantum_hardware_jobs": 0,
+          "error_vs_exact": {
+            "rmse_pa": 0.008380454453925023,
+            "relative_l2": 0.014986940471859797
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.007593898889982645,
+            "relative_l2": 0.013565819113985881
+          }
+        },
+        {
+          "algorithm": "sa",
+          "seed": 9,
+          "pressure_pa": [
+            [
+              [
+                0.9138213610428896,
+                0.04922126109665733
+              ],
+              [
+                0.6793348272902786,
+                0.18046758046557346
+              ]
+            ],
+            [
+              [
+                0.04060339720094628,
+                0.8969999536310689
+              ],
+              [
+                0.1474504068178969,
+                0.6172931107280304
+              ]
+            ]
+          ],
+          "wall_seconds": 0.14713612498599105,
+          "bqm_calls": 18,
+          "status": "completed",
+          "quantum_hardware_jobs": 0,
+          "error_vs_exact": {
+            "rmse_pa": 0.008906943272633777,
+            "relative_l2": 0.015928471343302254
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.008119852213167413,
+            "relative_l2": 0.01450538754228512
+          }
+        }
+      ]
+    },
+    {
+      "method": "sqa",
+      "run_directory": "/Users/aniksahai/Desktop/IBM Quantum Hackathon/code/IBM_Qiskit_Hackathon_main_pilot/runs/annealing",
+      "complete": true,
+      "completed_repeats": 3,
+      "requested_repeats": 3,
+      "all_repeats_within_target": false,
+      "relative_l2_target": 0.01,
+      "mean_pressure_pa": [
+        [
+          [
+            0.9149262153884935,
+            0.05043660087682172
+          ],
+          [
+            0.6783840420996178,
+            0.17931880692564697
+          ]
+        ],
+        [
+          [
+            0.04143203796014926,
+            0.8976076235211511
+          ],
+          [
+            0.1480611163844112,
+            0.6165323431835698
+          ]
+        ]
+      ],
+      "error_of_mean_vs_exact": {
+        "rmse_pa": 0.008659385806634936,
+        "relative_l2": 0.015485759193658457
+      },
+      "repeat_standard_deviation_pa": [
+        [
+          [
+            0.000956831930774661,
+            0.0005262575619260753
+          ],
+          [
+            0.0013791783569477567,
+            0.0022667039087676047
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0005262575619260571
+          ],
+          [
+            0.00045590189070549995,
+            0.0005392820191093332
+          ]
+        ]
+      ],
+      "mean_forward_wall_seconds": 1.8926744029934828,
+      "all_repeats": [
+        {
+          "algorithm": "sqa",
+          "seed": 7,
+          "pressure_pa": [
+            [
+              [
+                0.9138213610428896,
+                0.05013276593178062
+              ],
+              [
+                0.676791557713994,
+                0.1814107364668148
+              ]
+            ],
+            [
+              [
+                0.04143203796014926,
+                0.8969999536310689
+              ],
+              [
+                0.1483333133147956,
+                0.6171507232402527
+              ]
+            ]
+          ],
+          "wall_seconds": 1.8183014999958687,
+          "bqm_calls": 18,
+          "status": "completed",
+          "quantum_hardware_jobs": 0,
+          "error_vs_exact": {
+            "rmse_pa": 0.008148654593758667,
+            "relative_l2": 0.014572407975466172
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.007367374597768994,
+            "relative_l2": 0.01316115378756868
+          }
+        },
+        {
+          "algorithm": "sqa",
+          "seed": 8,
+          "pressure_pa": [
+            [
+              [
+                0.9154786425612955,
+                0.050132765931780614
+              ],
+              [
+                0.6791689683111823,
+                0.17691055741753042
+              ]
+            ],
+            [
+              [
+                0.04143203796014926,
+                0.8979114584661921
+              ],
+              [
+                0.14753478957931293,
+                0.6161596734320307
+              ]
+            ]
+          ],
+          "wall_seconds": 1.819450709008379,
+          "bqm_calls": 18,
+          "status": "completed",
+          "quantum_hardware_jobs": 0,
+          "error_vs_exact": {
+            "rmse_pa": 0.009236166325884847,
+            "relative_l2": 0.01651722775599618
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.008475211478948322,
+            "relative_l2": 0.015140204991121823
+          }
+        },
+        {
+          "algorithm": "sqa",
+          "seed": 9,
+          "pressure_pa": [
+            [
+              [
+                0.9154786425612955,
+                0.051044270766903904
+              ],
+              [
+                0.6791916002736769,
+                0.1796351268925957
+              ]
+            ],
+            [
+              [
+                0.04143203796014926,
+                0.8979114584661921
+              ],
+              [
+                0.148315246259125,
+                0.6162866328784258
+              ]
+            ]
+          ],
+          "wall_seconds": 2.040270999976201,
+          "bqm_calls": 18,
+          "status": "completed",
+          "quantum_hardware_jobs": 0,
+          "error_vs_exact": {
+            "rmse_pa": 0.008689050045800863,
+            "relative_l2": 0.015538808367658152
+          },
+          "error_vs_ideal_circuit": {
+            "rmse_pa": 0.007896979454786826,
+            "relative_l2": 0.014107245353479517
+          }
+        }
+      ]
+    }
+  ],
+  "all_runs_complete": true,
+  "all_methods_within_target": false,
+  "timing_note": "CPU forward wall times. Gate times include compilation and count recording; annealing includes QUBO construction and recording. Classical times include matrix construction/evolution. Excludes CLI startup; no QPU speedup claim.",
+  "uncertainty_note": "Repeat SD describes repeat variability, not systematic error or a confidence interval. Saved gate SE describes shot uncertainty only."
+}

@@ -1,0 +1,6 @@
+{
+  "config": "classical/configs/small_1d.json",
+  "observations": "runs/small_1d/obs/observations.npz",
+  "output": "runs/small_1d/classical",
+  "execute": true
+}

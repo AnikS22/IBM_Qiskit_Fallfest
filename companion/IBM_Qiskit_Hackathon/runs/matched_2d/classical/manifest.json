@@ -1,0 +1,38 @@
+{
+  "engine": "classical",
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 11:23:37) [Clang 14.0.6 ]",
+  "versions": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "qiskit": "2.6.0",
+    "qiskit-aer": "0.17.2"
+  },
+  "source_sha256": {
+    "classical/run.py": "e46096b85be2bb7fdafe3af37df05ae9286616cce34570d90f95a556f5515dfc",
+    "classical/__init__.py": "9f808c19e95be67f2056cddfc904560d728f083ce29a5f2735806dd5d2a58937",
+    "classical/stride_baseline.py": "4993ca9c4eb935ea748514805c1c0f7382406ec93cc3e2b8deb729cb1e362b70",
+    "classical/reference.py": "ab35a38be4e287867278797a09ea995b80ac067a6dec840e7c079cba8e83d6df",
+    "classical/make_stride_input.py": "e4250d12037fbaef117c71541fa4cbc65374d917c138ec7eec5d5d1b6cd378aa",
+    "classical/make_observations.py": "aa47cad2dfc5c3c49fca6d39ae59adc726a34e37f202663fd21b1f03fe8bf17b",
+    "classical/_core/inversion.py": "92a674438f585c4e0d6712a07bf33bf0de9e8379dce2dc3834d7dc87b358344a",
+    "classical/_core/grid.py": "d3617dfaae71823f9ce8274f3ba2670954832aecd833adf429f87fcf46b83607",
+    "classical/_core/phantom.py": "7121f617807b3e09a5facc82d3e4a7f9e7e2605d6e326aeb7504ebe48b978cec",
+    "classical/_core/runner.py": "3d4d4e8ad9e40ec5c48adc2b3c2a53bb3eff52691f837b602db00c33ece8c4c3",
+    "classical/_core/__init__.py": "e0db37a5abab87e2021b2dcc2bddde5adcbe095c7e870f83eb82dd6bcf50d409",
+    "classical/_core/problem.py": "ff456c38b00c98767114a6264eeb3068066e28f78eeeca6f794c80c10131deb2",
+    "classical/_core/evidence.py": "cb882c37c37d05e7ade6add42261edc1072a67b08eda0f21e8baeab98e26cae8",
+    "simulator/circuits.py": "f7eab12dc545a7e780bba2a82cb3bdc478b3175b35207c35b5c52a52ce7f6e78",
+    "simulator/run.py": "58405538f7014ed560cdde18e56ca5f1a42d357213777b2482f8d0dcfa77f43b",
+    "simulator/__init__.py": "3e83aa477c88390e8d6df754a9551f4866910c4e60bd018f3ff84855226abf60",
+    "simulator/forward.py": "f803c7c3a87117bf5458ceb938e170cc27b0defebbb4431deb39b127afd9575a",
+    "simulator/readout.py": "9de374cc544b671b0d5778297536fbc4a1c0dba86fc0a3cfc0651209c64f96d2",
+    "ibm_hardware/collect.py": "a46095f21652e2198fff2e41876224813dd2886204b808037c0112af5c58c690",
+    "ibm_hardware/run.py": "b013e1d3330e4d3cf442c27e08198f886ea536fe6b05d34b4d011b7441b8f258",
+    "ibm_hardware/policy.py": "66db12e2854601be2fdab7248ce4042f410049c41f9baa4139a1565d71d72812",
+    "ibm_hardware/__init__.py": "b9761219b9166e7ebf24220f84427b57957789938ee03aa2c3a2429f79956a9e",
+    "ibm_hardware/compilation.py": "1c7e19219118a16dd0f7a8ba184ba513b8fd947bb9650965651f7d662919132a",
+    "ibm_hardware/forward.py": "de4397080f6dbfebf51730624e4a14229d2b8470662455aa6782fe06ed66df93",
+    "ibm_hardware/artifacts.py": "928f6e2351276de3e9595428a008b582ed5e83d20974c83b90ba5d8d787c9968"
+  },
+  "status": "started"
+}

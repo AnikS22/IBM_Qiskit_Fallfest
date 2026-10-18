@@ -1,0 +1,13 @@
+{
+  "config": "classical/configs/pulse_1d.json",
+  "observations": "runs/pulse_1d/obs/observations.npz",
+  "output": "runs/pulse_1d/aer_ideal",
+  "execute": true,
+  "shots": 8192,
+  "seed": 7,
+  "max_circuits": 10000,
+  "max_total_shots": 100000000,
+  "max_data_qubits": 7,
+  "max_gates": 500000,
+  "noise_probability": 0.0
+}

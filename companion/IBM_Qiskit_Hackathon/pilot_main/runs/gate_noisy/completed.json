@@ -1,0 +1,17 @@
+{
+  "wall_seconds": 0.5616295830113813,
+  "forward_calls": 3,
+  "circuits": 24,
+  "shots": 196608,
+  "maximum_depth": 391,
+  "maximum_gates": 457,
+  "noise": "generic_depolarizing_stress",
+  "noise_probability": 0.001,
+  "aer_method": "density_matrix",
+  "compilation_seconds": 0.15451904194196686,
+  "execution_seconds": 0.24109641709947027,
+  "time_budget_note": "Checked between compilation/execution calls, not a hard interrupt",
+  "status": "completed",
+  "scope": "Fixed-map forward prediction",
+  "quantum_hardware_jobs": 0
+}

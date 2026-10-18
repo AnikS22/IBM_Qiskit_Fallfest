@@ -1,0 +1,13 @@
+{
+  "sha256": "b3deac1246b8f2c9ee29711218c9eebdfe58f313ceb216dc7b20b52487b5da29",
+  "shape": [
+    96,
+    96
+  ],
+  "sources": 32,
+  "receivers": 32,
+  "samples": 3168,
+  "density": "constant",
+  "attenuation": "none",
+  "boundary": "Stride absorbing layer"
+}

@@ -1,0 +1,25 @@
+{
+  "acquisition_signature": "e193397a36c242fb61516d53efa74e0ff094b472560148683254d485b86fffe8",
+  "parameters": [
+    1.0,
+    1.1
+  ],
+  "base_speed_ratio": [
+    1.0,
+    1.0
+  ],
+  "region_ids": [
+    0,
+    1
+  ],
+  "trace_axes": [
+    "source",
+    "time",
+    "receiver"
+  ],
+  "same_physics": "Shared generator, grid, boundaries, source quadrature and pressure scaling",
+  "different_numerics": "Gate path: Strang splitting. Annealing: fixed-point Crank-Nicolson QUBO.",
+  "sqa_meaning": "Classical path-integral simulation; no quantum processor or real-time QA claim",
+  "statistics": "Independent optimization repeats; spread is not quantum shot uncertainty",
+  "scope": "Forward solver only; no tissue reconstruction or speedup claim"
+}

@@ -24,6 +24,40 @@ simulations, and **over 95% of the compute is the wave simulation itself**. We t
 group's own software, **ran it on a real IBM quantum computer** with error mitigation, and measured where quantum
 overtakes classical as the head grid grows.
 
+## ⏱️ Built in 48 hours
+
+Aperion was built at the **Florida Qiskit Fall Fest 2026** hackathon (local event Oct 17–18, 2026), under this
+year's theme, *"A decade of quantum on the cloud"*: ten years since IBM first put a quantum processor online.
+The [event brief](project/00-EVENT-BRIEF.md) has the details. The timeline below comes from this repo's git history:
+
+| When (ET) | What happened |
+|---|---|
+| **Sat Oct 17, 4:08 pm** | First commit: the quantum-encoded wave solver for transcranial ultrasound |
+| **Sat Oct 17, 6:04 pm** | **First real IBM hardware run** pushed (job `db9smd9gv2cc73e60pm0` on `ibm_marrakesh`), two hours after the first commit |
+| **Sun Oct 18, 10:17 am** | Speed crossover benchmark, results and pitch deck |
+| **Sun Oct 18, 10:47 am** | Final docs: README with animations, docstrings across the code, results and project indexes |
+
+<div align="center">
+<img src="docs/aperion_console.gif" width="640" alt="Aperion console mock-up: a speed-of-sound brain map reconstructing while a wave step runs on ibm_marrakesh">
+
+*From our pitch video: a concept mock-up of the Aperion console, sending the wave step to IBM Quantum while the
+speed-of-sound map refines. It's a product concept, not a clinical tool.*
+</div>
+
+## 👥 Team
+
+<div align="center">
+<img src="docs/team.jpg" width="720" alt="Team slide from the Aperion pitch deck">
+</div>
+
+| | Who | Role | On this project |
+|---|---|---|---|
+| 🩺 | **Anik Sahai** (FAU High) · [@AnikS22](https://github.com/AnikS22) | Clinical & product | Project planning; generated data and implemented algorithms |
+| 📐 | **Aaron Loh** (American Heritage) | Math & numerics | Analyzed algorithms for classical image reconstruction |
+| ⚛️ | **Charan Jarugula** (FAU High) · [@Charanjarugula](https://github.com/Charanjarugula) | Algorithm development | Analyzed quantum to optimize current classical methods |
+
+📊 **Pitch deck:** [`project/Aperion-Pitch-Deck.pdf`](project/Aperion-Pitch-Deck.pdf) (34 slides)
+
 ## What we built vs. what we reused
 
 | We came up with / built | We reused |
@@ -61,6 +95,10 @@ Every figure and number file is explained in [`results/README.md`](results/READM
 | 🧠 **Finds the bleed** | Classical FWI recovers the bleed: **1,576 m/s vs true 1,578** | [§ Imaging](#-imaging-the-bleed-fwi) |
 | 🔬 **Five-way method comparison** | Gate ideal 0.58% · SQA 1.55% · SA 1.58% · gate + noise 8.9% error | [§ Pilot](#-pilot-five-methods-on-the-same-wave) |
 | 🛠️ **Engineering** | Noisy simulator rewritten: **~150× faster** (55 min → 21 s), bit-identical output | [§ Companion](#-companion-team-pipeline) |
+
+> [!IMPORTANT]
+> **Honesty line.** The ~110× per-shot speed was measured on a small test circuit. The 3.3× full-head speedup is a
+> projection, not a measurement. We have **no end-to-end or clinical quantum advantage yet**. See [§ Honest limits](#-honest-limits-and-what-it-would-take).
 
 ---
 
@@ -300,7 +338,7 @@ run in parallel. That makes it **~150× faster with bit-identical results**. See
 
 [`project/`](project/) has everything else from the hackathon:
 - [`RESULTS-SO-FAR.md`](project/RESULTS-SO-FAR.md): every number, with its source file
-- [`Aperion-Project-Dossier.pdf`](project/Aperion-Project-Dossier.pdf) and the HTML deck in `project/deck/`
+- [`Aperion-Pitch-Deck.pdf`](project/Aperion-Pitch-Deck.pdf) (the final pitch deck), [`Aperion-Project-Dossier.pdf`](project/Aperion-Project-Dossier.pdf) and the HTML deck in `project/deck/`
 - talk script, team notes, event brief and judging rubric
 - `project/handoff/`: pilot tarball, reconstruction runs, IBM raw counts and metadata, speed results
 

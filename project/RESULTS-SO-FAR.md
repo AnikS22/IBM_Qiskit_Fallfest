@@ -165,7 +165,7 @@ Script: `team-quantum-ultrasound/scaling/crossover.py`, about 3 min to run local
 ## 6. What this fills in the deck
 
 - **Slide 36 (hardware):** backend `ibm_marrakesh` · job `db9smd9gv2cc73e60pm0` · exact 0.104 → raw 0.013 → post-selected 0.081 ± 0.011 → + ZNE 0.080 ± 0.024
-- **Slide 34 (design):** "Real IBM hardware" row → ✓ Done (6 × 4,000 × 1). Repeats are still pending.
+- **Slide 34 (design):** "Real IBM hardware" row → Done (6 × 4,000 × 1). Repeats are still pending.
 - **Slide 41 (limits):** "Hardware results [until tonight]" can move to "We showed": mitigated hardware within 1 SE of exact.
 - **Results placeholder slide:** the hardware table, plus the pilot comparison table
 - **Timing slide:** replace "~3 s" with the measured job time from the IBM Workloads page

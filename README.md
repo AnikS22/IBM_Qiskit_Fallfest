@@ -2,7 +2,13 @@
 
 # Aperion: can a quantum computer see a brain bleed?
 
-**Quantum wave simulation for portable stroke imaging · Qiskit Fall Fest 2026**
+**Quantum wave simulation for portable stroke imaging**
+
+Anik Sahai · Aaron Loh · Charan Jarugula
+
+Florida Qiskit Fall Fest 2026 · built in 48 hours
+
+[Deck PDF](project/Aperion-Pitch-Deck.pdf) · [Results](results/README.md) · [Hardware run](#real-ibm-quantum-hardware)
 
 <img src="docs/wave_head.gif" width="420" alt="Sound from a transducer crossing the skull and a bleed, simulated with our solver">
 
@@ -24,7 +30,7 @@ simulations, and **over 95% of the compute is the wave simulation itself**. We t
 group's own software, **ran it on a real IBM quantum computer** with error mitigation, and measured where quantum
 overtakes classical as the head grid grows.
 
-## ⏱️ Built in 48 hours
+## Built in 48 hours
 
 Aperion was built at the **Florida Qiskit Fall Fest 2026** hackathon (local event Oct 17–18, 2026), under this
 year's theme, *"A decade of quantum on the cloud"*: ten years since IBM first put a quantum processor online.
@@ -44,19 +50,19 @@ The [event brief](project/00-EVENT-BRIEF.md) has the details. The timeline below
 speed-of-sound map refines. It's a product concept, not a clinical tool.*
 </div>
 
-## 👥 Team
+## Team
 
 <div align="center">
 <img src="docs/team.jpg" width="720" alt="Team slide from the Aperion pitch deck">
 </div>
 
-| | Who | Role | On this project |
-|---|---|---|---|
-| 🩺 | **Anik Sahai** (FAU High) · [@AnikS22](https://github.com/AnikS22) | Clinical & product | Project planning; generated data and implemented algorithms |
-| 📐 | **Aaron Loh** (American Heritage) | Math & numerics | Analyzed algorithms for classical image reconstruction |
-| ⚛️ | **Charan Jarugula** (FAU High) · [@Charanjarugula](https://github.com/Charanjarugula) | Algorithm development | Analyzed quantum to optimize current classical methods |
+| Who | Role | On this project |
+|---|---|---|
+| **Anik Sahai** (FAU High) · [@AnikS22](https://github.com/AnikS22) | Clinical & product | Project planning; generated data and implemented algorithms |
+| **Aaron Loh** (American Heritage) | Math & numerics | Analyzed algorithms for classical image reconstruction |
+| **Charan Jarugula** (FAU High) · [@Charanjarugula](https://github.com/Charanjarugula) | Algorithm development | Analyzed quantum to optimize current classical methods |
 
-📊 **Pitch deck:** [`project/Aperion-Pitch-Deck.pdf`](project/Aperion-Pitch-Deck.pdf) (34 slides)
+**Pitch deck:** [`project/Aperion-Pitch-Deck.pdf`](project/Aperion-Pitch-Deck.pdf) (34 slides)
 
 ## What we built vs. what we reused
 
@@ -87,22 +93,22 @@ Every figure and number file is explained in [`results/README.md`](results/READM
 
 | | Result | Where |
 |---|---|---|
-| ⚛️ **Real quantum hardware** | `ibm_marrakesh`, job `db9smd9gv2cc73e60pm0`, 6 circuits × 4,000 shots, 9 s of QPU. Exact answer **0.104**. Raw chip 0.013, **post-selected 0.081 ± 0.011** | [§ Hardware](#-real-ibm-quantum-hardware) |
-| ⚡ **Gate speed, measured** | One run of the circuit on IBM Heron: **6.3 µs**. Classical solve of the same problem: **695 µs** (**~110× per run**) | [§ Speed](#-speed-where-quantum-overtakes-classical) |
-| 📈 **Crossover, measured + projected** | At equal 5% accuracy, quantum overtakes classical at **~283³ voxels**; **~3.3× faster at a full 440³ head** | [§ Speed](#-speed-where-quantum-overtakes-classical) |
-| ✅ **Quantum = physics** | Circuits match the classical wave in 1D, 2D and **3D (135 qubits)**; the 2,945-qubit 2D animation below stays within 1.5% | [§ Correctness](#-the-quantum-circuit-computes-the-same-wave) |
-| 🎯 **Validated vs the researchers' software** | Our solver vs Stride (the paper group's code): **0.993** trace correlation | [§ Validation](#-validation-against-stride) |
-| 🧠 **Finds the bleed** | Classical FWI recovers the bleed: **1,576 m/s vs true 1,578** | [§ Imaging](#-imaging-the-bleed-fwi) |
-| 🔬 **Five-way method comparison** | Gate ideal 0.58% · SQA 1.55% · SA 1.58% · gate + noise 8.9% error | [§ Pilot](#-pilot-five-methods-on-the-same-wave) |
-| 🛠️ **Engineering** | Noisy simulator rewritten: **~150× faster** (55 min → 21 s), bit-identical output | [§ Companion](#-companion-team-pipeline) |
+| **Real quantum hardware** | `ibm_marrakesh`, job `db9smd9gv2cc73e60pm0`, 6 circuits × 4,000 shots, 9 s of QPU. Exact answer **0.104**. Raw chip 0.013, **post-selected 0.081 ± 0.011** | [§ Hardware](#real-ibm-quantum-hardware) |
+| **Gate speed, measured** | One run of the circuit on IBM Heron: **6.3 µs**. Classical solve of the same problem: **695 µs** (**~110× per run**) | [§ Speed](#speed-where-quantum-overtakes-classical) |
+| **Crossover, measured + projected** | At equal 5% accuracy, quantum overtakes classical at **~283³ voxels**; **~3.3× faster at a full 440³ head** | [§ Speed](#speed-where-quantum-overtakes-classical) |
+| **Quantum = physics** | Circuits match the classical wave in 1D, 2D and **3D (135 qubits)**; the 2,945-qubit 2D animation below stays within 1.5% | [§ Correctness](#the-quantum-circuit-computes-the-same-wave) |
+| **Validated vs the researchers' software** | Our solver vs Stride (the paper group's code): **0.993** trace correlation | [§ Validation](#validation-against-stride) |
+| **Finds the bleed** | Classical FWI recovers the bleed: **1,576 m/s vs true 1,578** | [§ Imaging](#imaging-the-bleed-fwi) |
+| **Five-way method comparison** | Gate ideal 0.58% · SQA 1.55% · SA 1.58% · gate + noise 8.9% error | [§ Pilot](#pilot-five-methods-on-the-same-wave) |
+| **Engineering** | Noisy simulator rewritten: **~150× faster** (55 min → 21 s), bit-identical output | [§ Companion](#companion-team-pipeline) |
 
 > [!IMPORTANT]
 > **Honesty line.** The ~110× per-shot speed was measured on a small test circuit. The 3.3× full-head speedup is a
-> projection, not a measurement. We have **no end-to-end or clinical quantum advantage yet**. See [§ Honest limits](#-honest-limits-and-what-it-would-take).
+> projection, not a measurement. We have **no end-to-end or clinical quantum advantage yet**. See [§ Honest limits](#honest-limits-and-what-it-would-take).
 
 ---
 
-## 🌊 The idea in 30 seconds
+## The idea in 30 seconds
 
 ```
    transducer helmet          wave simulation (95% of compute)          image
@@ -110,7 +116,7 @@ Every figure and number file is explained in [`results/README.md`](results/READM
   │ record echoes │ ─────► │  guess head → simulate → compare │ ───► │ bleed? │
   └───────────────┘        │        ▲                 │       │      └────────┘
                            │        └── update guess ─┘       │
-                           │   ⚛️  this step on a QPU          │
+                           │   this step on a QPU              │
                            └──────────────────────────────────┘
 ```
 
@@ -123,7 +129,7 @@ simulates sound moving through the head. We built two encodings:
 | **Unary** (one qubit per cell/link) | cells + links | small, local, all gates in a layer run in parallel | Run on real hardware; time per step is set by circuit depth, not grid size (given grid-connected qubits) |
 | **Compact** (binary index) | log₂(cells + links): **29 qubits for the full head** | ~40× more in 2D | The memory-advantage route, for fault-tolerant hardware |
 
-## ✅ The quantum circuit computes the same wave
+## The quantum circuit computes the same wave
 
 <div align="center">
 <img src="docs/quantum_vs_classical.gif" width="640" alt="Quantum circuit vs classical exact solver, side by side">
@@ -150,7 +156,7 @@ The test suite (`pytest -q`, 37 checks, ~30 s) proves this formally:
 
 ![Cost vs accuracy of both encodings](results/02_cost_accuracy.png)
 
-## 💻 Real IBM quantum hardware
+## Real IBM quantum hardware
 
 **Backend** `ibm_marrakesh` (156-qubit Heron r2) · **Job** `db9smd9gv2cc73e60pm0` · **Date** 2026-10-17 ·
 **Circuit** the ear-to-ear line through the 3D head, 15 qubits, t = 1.5 · **Settings** SamplerV2 in Batch mode,
@@ -181,7 +187,7 @@ The submission script is [`hardware/run_notebook03_hw.py`](hardware/run_notebook
 
 ![Noise model vs mitigation](results/03_noise.png)
 
-## ⚡ Speed: where quantum overtakes classical
+## Speed: where quantum overtakes classical
 
 ### Per circuit run (measured)
 
@@ -221,7 +227,7 @@ classical cost grows with every voxel while the quantum time per step is set by 
 
 Reproduce: `PYTHONPATH=. python scaling/crossover.py` (~3 min, no QPU).
 
-## 🎯 Validation against Stride
+## Validation against Stride
 
 `validation/compare_stride.py` runs the same 2D head slice (5 cm, 0.5 mm grid, 16 transducers, 200 kHz) through
 [Stride](https://github.com/trustimaging/stride), the open-source ultrasound software from the paper's group, and
@@ -236,7 +242,7 @@ through our solver.
 
 ![Stride validation](results/06_stride_validation.png)
 
-## 🧠 Imaging the bleed (FWI)
+## Imaging the bleed (FWI)
 
 Classical FWI on a 104 × 104 slice with 32 transducers and 40 rounds recovers the bleed: **1,576 m/s vs true 1,578**
 (brain 1,546 vs 1,546; misfit 1.9×10⁻⁵ → 1.3×10⁻⁶). The quantum route plugs in as the forward solver. The
@@ -245,7 +251,7 @@ which is decades of QPU time today. That's the readout wall below.
 
 ![FWI](results/05_fwi.png)
 
-## 🔬 Pilot: five methods on the same wave
+## Pilot: five methods on the same wave
 
 Run on the team pipeline ([`companion/`](companion/IBM_Qiskit_Hackathon/)): same 1D forward wave, 8,192 shots,
 3 repeats each, target ≤ 1% relative L2 error.
@@ -270,7 +276,7 @@ chose the gate model. Small noise (0.1%) costs ~9%, which is why mitigation matt
 
 The ideal quantum forward solver tracks the classical one step for step; noise pulls the estimate the wrong way.
 
-## 🧱 Honest limits (and what it would take)
+## Honest limits (and what it would take)
 
 | Limit | Number | What fixes it |
 |---|---|---|
@@ -283,7 +289,7 @@ See [`LIMITATIONS.md`](LIMITATIONS.md) and [`EXPERIMENTS.md`](EXPERIMENTS.md) fo
 
 ---
 
-## 🚀 Run it
+## Run it
 
 ```bash
 pip install -r requirements.txt
@@ -298,7 +304,7 @@ python hardware/campaign.py --dry-run --with-2d    # free hardware rehearsal on 
 to disk or to this repo. `python hardware/campaign.py --backend ibm_marrakesh` runs the v2 campaign
 (time trace, repeats, ablation, Estimator comparison) within the free 10 minutes.
 
-## 📁 Repository map
+## Repository map
 
 ```
 qwave/                     the package
@@ -326,7 +332,7 @@ EXPERIMENTS.md             every experiment: question, method, criterion, result
 LIMITATIONS.md · USE-CASE.md · RUN_HARDWARE.md
 ```
 
-## 🤝 Companion: team pipeline
+## Companion: team pipeline
 
 [`companion/IBM_Qiskit_Hackathon/`](companion/IBM_Qiskit_Hackathon/) is a snapshot of the team's
 classical-vs-quantum FWI pipeline (classical, Aer gate simulator, IBM hardware, Stride baseline), including every
@@ -334,7 +340,7 @@ run directory with configs, per-circuit counts, histories, manifests (source has
 It also includes our change to `simulator/forward.py`: noisy runs use the exact density-matrix method and circuits
 run in parallel. That makes it **~150× faster with bit-identical results**. See its own README.
 
-## 📦 Project materials
+## Project materials
 
 [`project/`](project/) has everything else from the hackathon:
 - [`RESULTS-SO-FAR.md`](project/RESULTS-SO-FAR.md): every number, with its source file
@@ -342,7 +348,7 @@ run in parallel. That makes it **~150× faster with bit-identical results**. See
 - talk script, team notes, event brief and judging rubric
 - `project/handoff/`: pilot tarball, reconstruction runs, IBM raw counts and metadata, speed results
 
-## 🆕 What is new here
+## What is new here
 
 Already published: the wave-to-Hamiltonian mapping (Costa 2019); 1D heterogeneous circuits (Suau 2021; Schade 2024,
 on IBM Brisbane); 2D in simulation (Sato 2024); a 3D quantum-FWI framework in theory (Bösch 2024).
@@ -354,7 +360,7 @@ on IBM Brisbane); 2D in simulation (Sato 2024); a 3D quantum-FWI framework in th
 - unary encoding with excitation-number post-selection, run on real IBM hardware
 - an accuracy-matched speed crossover anchored to measured Heron gate times
 
-## 📚 Sources
+## Sources
 
 - Guasch, Calderón Agudo, Tang, Nachev, Warner. *Full-waveform inversion imaging of the human brain.* npj Digital Medicine 3:28 (2020). [doi:10.1038/s41746-020-0240-8](https://doi.org/10.1038/s41746-020-0240-8)
 - Costa, Jordan, Ostrander. *Quantum algorithm for simulating the wave equation.* PRA 99, 012323 (2019). [arXiv:1711.05394](https://arxiv.org/abs/1711.05394)
